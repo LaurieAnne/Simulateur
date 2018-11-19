@@ -1,0 +1,10 @@
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.csprojAssemblyReference.cache
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.Properties.Resources.resources
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.csproj.GenerateResource.cache
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.csproj.CoreCompileInputs.cache
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.FormSimulateur.resources
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\bin\Debug\Simulateur.exe.config
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\bin\Debug\Simulateur.exe
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\bin\Debug\Simulateur.pdb
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.exe
+E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.pdb
