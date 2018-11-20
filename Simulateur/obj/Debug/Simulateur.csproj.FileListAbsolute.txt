@@ -19,3 +19,14 @@ P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.csproj.GenerateReso
 P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.csproj.CoreCompileInputs.cache
 P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.exe
 P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.pdb
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\bin\Debug\Simulateur.exe.config
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\bin\Debug\Simulateur.exe
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\bin\Debug\Simulateur.pdb
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\obj\Debug\Simulateur.csprojAssemblyReference.cache
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\obj\Debug\Simulateur.FormMenu.resources
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\obj\Debug\Simulateur.FormSimulateur.resources
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\obj\Debug\Simulateur.Properties.Resources.resources
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\obj\Debug\Simulateur.csproj.GenerateResource.cache
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\obj\Debug\Simulateur.csproj.CoreCompileInputs.cache
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\obj\Debug\Simulateur.exe
+C:\Users\Laurie\Desktop\Simulateur\Simulateur\obj\Debug\Simulateur.pdb

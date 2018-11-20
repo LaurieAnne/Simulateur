@@ -22,13 +22,18 @@ namespace Simulateur
 
         private void cmdRecuperer_Click(object sender, EventArgs e) //Loader le scénario
         {
-            if (m_simulateur.recupererScenario("xml"))
+            string nom = txtRecuperer.Text; //Nom du scénario
+
+            if (nom != "")
             {
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Cet XML n'existe pas dans le dossier 'Scénarios XML'.");
+                if (m_simulateur.recupererScenario(nom))
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Cet XML n'existe pas dans le dossier 'Scénarios XML'.");
+                }
             }
         }
     }
