@@ -14,10 +14,15 @@ namespace Simulateur
 
         }
 
+        public AvionObservateur() : base()
+        {
+
+        }
+
         public override string ToString() //ToString
         {
             string vehicule;
-            vehicule = m_nom + " (Observateur), KM/H: " + m_KMH + ", Maintenance: " + m_tempsMaintenance;
+            vehicule = m_nom + " (Observateur)";
             return vehicule;
         }
     }

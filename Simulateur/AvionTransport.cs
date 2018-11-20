@@ -17,5 +17,22 @@ namespace Simulateur
             m_tempsEmbarquement = p_tempsEmb;
             m_tempsDebarquement = p_tempsDeb;
         }
+
+        public AvionTransport() : base()
+        {
+
+        }
+
+        public int Embarquement
+        {
+            get { return m_tempsEmbarquement; }
+            set { m_tempsEmbarquement = value; }
+        }
+
+        public int Debarquement
+        {
+            get { return m_tempsDebarquement; }
+            set { m_tempsDebarquement = value; }
+        }
     }
 }

@@ -8,3 +8,14 @@ E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\bin\Debug\Simulateur.exe
 E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\bin\Debug\Simulateur.pdb
 E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.exe
 E:\Session 5\prog\TP2\partie 2\Simulateur\Simulateur\obj\Debug\Simulateur.pdb
+P:\Orienté objet\Simulateur\Simulateur\bin\Debug\Simulateur.exe.config
+P:\Orienté objet\Simulateur\Simulateur\bin\Debug\Simulateur.exe
+P:\Orienté objet\Simulateur\Simulateur\bin\Debug\Simulateur.pdb
+P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.csprojAssemblyReference.cache
+P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.FormMenu.resources
+P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.FormSimulateur.resources
+P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.Properties.Resources.resources
+P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.csproj.GenerateResource.cache
+P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.csproj.CoreCompileInputs.cache
+P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.exe
+P:\Orienté objet\Simulateur\Simulateur\obj\Debug\Simulateur.pdb

@@ -15,6 +15,12 @@ namespace Simulateur
             m_aeroports = new List<Aeroport>();
         }
 
+        public List<Aeroport> ListeAeroports
+        {
+            get { return m_aeroports; }
+            set { m_aeroports = value; }
+        }
+
         public string[] obtenirAeroports() //Obtenir tous les aéroports
         {
             string[] aeroports = new string[m_aeroports.Count];

@@ -14,11 +14,15 @@ namespace Simulateur
 
         }
 
+        public AvionPassagers() : base()
+        {
+
+        }
+
         public override string ToString() //ToString
         {
             string vehicule;
-            vehicule = m_nom + " (Passagers), KM/H: " + m_KMH + ", Maintenance: " + m_tempsMaintenance;
-            vehicule += ", Embarquement: " + m_tempsEmbarquement + ", Débarquement: " + m_tempsDebarquement;
+            vehicule = m_nom + " (Passagers)";
             return vehicule;
         }
     }

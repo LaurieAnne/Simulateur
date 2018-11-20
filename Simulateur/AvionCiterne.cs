@@ -18,11 +18,27 @@ namespace Simulateur
             m_tempsLargage = p_tempsLarg;
         }
 
+        public AvionCiterne() : base()
+        {
+
+        }
+
+        public int Chargement
+        {
+            get { return m_tempsChargement; }
+            set { m_tempsChargement = value; }
+        }
+
+        public int Largage
+        {
+            get { return m_tempsLargage; }
+            set { m_tempsLargage = value; }
+        }
+
         public override string ToString() //ToString
         {
             string vehicule;
-            vehicule = m_nom + " (Pompier), KM/H: " + m_KMH + ", Maintenance: " + m_tempsMaintenance;
-            vehicule += ", Chargement: " + m_tempsChargement + ", Largage: " + m_tempsLargage;
+            vehicule = m_nom + " (Pompier)";
             return vehicule;
         }
     }

@@ -14,10 +14,15 @@ namespace Simulateur
 
         }
 
+        public HelicoSecours() : base()
+        {
+
+        }
+
         public override string ToString() //ToString
         {
             string vehicule;
-            vehicule = m_nom + " (Secours), KM/H: " + m_KMH + ", Maintenance: " + m_tempsMaintenance;
+            vehicule = m_nom + " (Secours)";
             return vehicule;
         }
     }
