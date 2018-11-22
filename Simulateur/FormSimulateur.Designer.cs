@@ -69,7 +69,7 @@
             this.imgCarte.Location = new System.Drawing.Point(12, 125);
             this.imgCarte.Name = "imgCarte";
             this.imgCarte.Size = new System.Drawing.Size(900, 528);
-            this.imgCarte.TabIndex = 3;
+            this.imgCarte.TabIndex = 4;
             this.imgCarte.TabStop = false;
             // 
             // FormSimulateur
@@ -78,10 +78,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(924, 665);
-            this.Controls.Add(this.imgCarte);
             this.Controls.Add(this.lstCl);
             this.Controls.Add(this.lstVehicules);
             this.Controls.Add(this.lstAeroports);
+            this.Controls.Add(this.imgCarte);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormSimulateur";

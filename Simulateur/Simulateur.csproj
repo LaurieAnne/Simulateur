@@ -122,5 +122,8 @@
   <ItemGroup>
     <None Include="images\map.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\map.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
