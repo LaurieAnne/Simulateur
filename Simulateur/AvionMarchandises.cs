@@ -8,17 +8,28 @@ namespace Simulateur
 {
     public class AvionMarchandises : AvionTransport
     {
-        public AvionMarchandises(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb) //Constructeur
-            : base(p_nom, p_KMH, p_tempsMain, p_tempsEmb, p_tempsDeb, ConsoleColor.Blue)
+        public AvionMarchandises(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, Aeroport p_aeroport) //Constructeur
+            : base(p_nom, p_KMH, p_tempsMain, p_tempsEmb, p_tempsDeb, ConsoleColor.Blue, p_aeroport)
         {
 
         }
 
-        public AvionMarchandises() : base()
-        {
 
-        }
 
+
+
+
+
+
+
+
+
+
+        //Constructeur vide pour XML
+        public AvionMarchandises() : base(){}
+
+        /**Accesseurs
+        */
         public override string ToString() //ToString
         {
             string vehicule;

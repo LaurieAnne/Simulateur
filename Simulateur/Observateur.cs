@@ -12,5 +12,10 @@ namespace Simulateur
         {
 
         }
+
+        public override string ToString()
+        {
+            return "Observation";
+        }
     }
 }
