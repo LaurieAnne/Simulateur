@@ -21,6 +21,7 @@ namespace Simulateur
             m_simulateur = p_simulateur;
             m_scenario = p_scenario;
             afficherAeroports();
+            afficherImagesAeroports();
             lstAeroports.SelectedIndex = 0;
         }
 
@@ -61,6 +62,31 @@ namespace Simulateur
             else
             {
                 lstVehicules.Items.Clear();
+            }
+        }
+
+        private void afficherImagesAeroports() //Afficher les icônes d'aéroport sur la carte
+        {
+            string[] aeroports = m_scenario.obtenirPosAeroports(); //Les infos
+            int x, y; //L'emplacement
+            string nom; //Le nom de l'aéroport
+
+            for (int i = 0; i < aeroports.Length; i++)
+            {
+                string[] infos = aeroports[i].Split(','); //Séparer le nom, le x et le y
+                nom = infos[0];
+                x = Convert.ToInt32(infos[1]);
+                y = Convert.ToInt32(infos[2]);
+                PictureBox img = new PictureBox();
+                img.Image = Properties.Resources.airport;
+                img.Location = new Point(x, y);
+                img.Name = "img" + i;
+                img.Size = new Size(25, 25);
+                img.TabStop = false;
+                this.imgCarte.Controls.Add(img); //Ajouter l'image
+                ToolTip tt = new ToolTip();
+                tt.ShowAlways = true;
+                tt.SetToolTip(img, nom);
             }
         }
     }

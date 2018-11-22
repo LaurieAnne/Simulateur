@@ -33,6 +33,21 @@ namespace Simulateur
             return aeroports;
         }
 
+        public string[] obtenirPosAeroports() //Obtenir l'emplacement de l'aéroport
+        {
+            string[] aeroports = new string[m_aeroports.Count]; //Les infos de tous les aéroports
+            string aeroport; //Les infos de l'aéroport
+           
+            for (int i = 0; i < m_aeroports.Count; i++)
+            {
+                PosCarte posCarte = m_aeroports[i].Pos;
+                aeroport = m_aeroports[i].Nom + "," + posCarte.X + "," + posCarte.Y;
+                aeroports[i] = aeroport;
+            }
+
+            return aeroports;
+        }
+
         public string[] obtenirVehicules(int p_aeroport) //Obtenir tous les véhicules d'un aéroport
         {
             string[] vehicules = m_aeroports[p_aeroport].obtenirVehicules();

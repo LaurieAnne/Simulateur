@@ -38,7 +38,7 @@
             // lstAeroports
             // 
             this.lstAeroports.FormattingEnabled = true;
-            this.lstAeroports.ItemHeight = 14;
+            this.lstAeroports.ItemHeight = 16;
             this.lstAeroports.Location = new System.Drawing.Point(12, 3);
             this.lstAeroports.Name = "lstAeroports";
             this.lstAeroports.Size = new System.Drawing.Size(296, 116);
@@ -48,7 +48,7 @@
             // lstVehicules
             // 
             this.lstVehicules.FormattingEnabled = true;
-            this.lstVehicules.ItemHeight = 14;
+            this.lstVehicules.ItemHeight = 16;
             this.lstVehicules.Location = new System.Drawing.Point(314, 3);
             this.lstVehicules.Name = "lstVehicules";
             this.lstVehicules.Size = new System.Drawing.Size(296, 116);
@@ -57,7 +57,7 @@
             // lstCl
             // 
             this.lstCl.FormattingEnabled = true;
-            this.lstCl.ItemHeight = 14;
+            this.lstCl.ItemHeight = 16;
             this.lstCl.Location = new System.Drawing.Point(616, 3);
             this.lstCl.Name = "lstCl";
             this.lstCl.Size = new System.Drawing.Size(296, 116);
@@ -74,7 +74,7 @@
             // 
             // FormSimulateur
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(924, 665);
@@ -85,6 +85,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormSimulateur";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simulateur";
             ((System.ComponentModel.ISupportInitialize)(this.imgCarte)).EndInit();
             this.ResumeLayout(false);
