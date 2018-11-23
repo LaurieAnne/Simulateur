@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ListeAeroports>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>1</Nom>
+          <KMH>1</KMH>
+          <Maintenance>1</Maintenance>
+          <Couleur>Gray</Couleur>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>1</Nom>
+      <MinPass>1</MinPass>
+      <MaxPass>2</MaxPass>
+      <MinMarch>3</MinMarch>
+      <MaxMarch>4</MaxMarch>
+      <Pos>
+        <X>53</X>
+        <Y>119</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>2</Nom>
+          <KMH>1</KMH>
+          <Maintenance>1</Maintenance>
+          <Couleur>Gray</Couleur>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>2</Nom>
+      <MinPass>1</MinPass>
+      <MaxPass>2</MaxPass>
+      <MinMarch>3</MinMarch>
+      <MaxMarch>4</MaxMarch>
+      <Pos>
+        <X>520</X>
+        <Y>376</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+  </ListeAeroports>
+</Scenario>
