@@ -8,9 +8,16 @@ namespace Simulateur
 {
     public class Observateur : Client
     {
-        public Observateur(PosCarte p_pos) : base(p_pos) //Constructeur
-        {
+        protected PosCarte m_posDestination;
 
+        public Observateur(Aeroport p_aeDepart, PosCarte p_posDestination) : base(p_aeDepart) //Constructeur
+        {
+            m_posDestination = p_posDestination;
+        }
+
+        public PosCarte PositionDestination
+        {
+            get { return m_posDestination; }
         }
 
         public override string ToString()

@@ -8,9 +8,22 @@ namespace Simulateur
 {
     public class Secours : Client
     {
-        public Secours(PosCarte p_pos) : base(p_pos) //Constructeur
-        {
+        protected PosCarte m_posDestination;
 
+        public Secours(Aeroport p_aeDepart, PosCarte p_posDestination) : base(p_aeDepart) //Constructeur
+        {
+            m_posDestination = p_posDestination;
         }
+
+        public PosCarte PositionDestination
+        {
+            get { return m_posDestination; }
+        }
+
+        public override string ToString()
+        {
+            return "Secours";
+        }
+
     }
 }

@@ -9,18 +9,21 @@ namespace Simulateur
     public class AllerRetour : Vol
     {
         int m_compteur; //Le nombre d'aller retour à effectuer
+        PosCarte m_posDestination; //La coordonnée de destination
 
-        public AllerRetour(PosCarte p_destination, PosCarte p_depart, PosCarte p_posActuelle, int p_compteur, int p_temps) : base(p_destination, p_depart, p_posActuelle, p_temps) //Constructeur
+        public AllerRetour(Aeroport p_aeDepart, PosCarte p_posActuelle, int p_compteur, int p_temps, PosCarte p_posDestination) : base(p_aeDepart, p_posActuelle, p_temps) //Constructeur
         {
+            m_posDestination = p_posDestination;
             m_compteur = p_compteur;
         }
 
-        public AllerRetour(PosCarte p_destination, PosCarte p_depart, PosCarte p_posActuelle, int p_temps) : base(p_destination, p_depart, p_posActuelle, p_temps) //Constructeur par défaut
+        public AllerRetour(Aeroport p_aeDepart, PosCarte p_posActuelle, int p_temps, PosCarte p_posDestination) : base(p_aeDepart, p_posActuelle, p_temps) //Constructeur par défaut
         {
+            m_posDestination = p_posDestination;
             m_compteur = 1; //Si non spécifié 1 aller retour seulement
         }
 
-        public override void Avance(int p_val)
+        public override void Avance(int p_val, PosCarte p_depart, PosCarte p_destination)
         {
             //Changer la position sur la carte
             //Diminuer le temps

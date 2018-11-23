@@ -8,12 +8,10 @@ namespace Simulateur
 {
     public class AvionPassagers : AvionTransport
     {
-        public AvionPassagers(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, Aeroport p_aeroport) //Constructeur
-            : base(p_nom, p_KMH, p_tempsMain, p_tempsEmb, p_tempsDeb, ConsoleColor.Green, p_aeroport)
+        public AvionPassagers(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, Aeroport p_aeroport, ClientTransport p_client) //Constructeur
+            : base(p_nom, p_KMH, p_tempsMain, p_tempsEmb, p_tempsDeb, ConsoleColor.Green, p_aeroport, p_client)
         {
         }
-
-
 
 
 

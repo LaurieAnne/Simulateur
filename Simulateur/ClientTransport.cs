@@ -9,12 +9,22 @@ namespace Simulateur
     public abstract class ClientTransport : Client
     {
         protected int m_nbClients; //Le nombre de clients dans l'objet
-        protected PosCarte m_posDest; //L'emplacement où il veut se rendre
+        protected Aeroport m_aeDestination; //L'Aéroport de destination
 
-        public ClientTransport(PosCarte p_pos, PosCarte p_posDest, int p_nbClients) : base(p_pos) //Constructeur
+        public ClientTransport(Aeroport p_aeDepart, Aeroport p_aeDestination, int p_nbClients) : base(p_aeDepart) //Constructeur
         {
             m_nbClients = p_nbClients;
-            m_posDest = p_posDest;
+            m_aeDestination = p_aeDestination;
+        }
+
+        public Aeroport AeroportDestination
+        {
+            get { return m_aeDestination; }
+        }
+
+        public int NbClients
+        {
+            get { return m_nbClients; }
         }
     }
 }

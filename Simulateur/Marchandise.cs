@@ -8,7 +8,7 @@ namespace Simulateur
 {
     public class Marchandise : ClientTransport
     {
-        public Marchandise(PosCarte p_pos, PosCarte p_posDest, int p_nbClients) : base(p_pos, p_posDest, p_nbClients) //Constructeur
+        public Marchandise(Aeroport p_aeDepart, Aeroport p_aeDestination, int p_nbClients) : base(p_aeDepart, p_aeDestination, p_nbClients) //Constructeur
         {
 
         }

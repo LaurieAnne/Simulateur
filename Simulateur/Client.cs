@@ -8,11 +8,16 @@ namespace Simulateur
 {
     public abstract class Client
     {
-        protected PosCarte m_pos; //Emplacement sur la carte
+        protected Aeroport m_aeDepart; //L'Aéroport de départ
 
-        public Client(PosCarte p_pos) //Constructeur
+        public Client(Aeroport p_aeDepart) //Constructeur
         {
-            m_pos = p_pos;
+            m_aeDepart = p_aeDepart;
+        }
+
+        public Aeroport AeroportDepart
+        {
+            get { return m_aeDepart; }
         }
     }
 }
