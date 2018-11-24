@@ -94,7 +94,7 @@ namespace Simulateur
             }
         }
 
-        private void imgCarte_Paint(object sender, PaintEventArgs e)
+        private void imgCarte_Paint(object sender, PaintEventArgs e) //Réafficher les objets
         {
             Random rnd = new Random();
             int x = rnd.Next(15, 885);
@@ -109,13 +109,33 @@ namespace Simulateur
             y = rnd.Next(15, 510);
             dessinerSecours(x, y, e);
 
+            x = rnd.Next(15, 885);
+            y = rnd.Next(15, 510);
+            dessinerVehiculeSecours(x, y, e);
+
+            x = rnd.Next(15, 885);
+            y = rnd.Next(15, 510);
+            dessinerVehiculePass(x, y, e);
+
+            x = rnd.Next(15, 885);
+            y = rnd.Next(15, 510);
+            dessinerVehiculeMarch(x, y, e);
+
+            x = rnd.Next(15, 885);
+            y = rnd.Next(15, 510);
+            dessinerVehiculePompier(x, y, e);
+
+            x = rnd.Next(15, 885);
+            y = rnd.Next(15, 510);
+            dessinerVehiculeObservateur(x, y, e);
+
             int[] depart = new int[2];
             depart[0] = 500;
             depart[1] = 50;
             int[] dest = new int[2];
             dest[0] = 600;
             dest[1] = 300;
-            dessinerLigne(depart, dest, Color.Black, e);
+            dessinerLigneCercle(depart, dest, Color.Black, e);
 
             //bouton this.invalidate
         }
@@ -134,6 +154,15 @@ namespace Simulateur
             pen.Dispose();
         }
 
+        private void dessinerLigneCercle(int[] p_depart, int[] p_dest, Color p_couleur, PaintEventArgs e) //Dessiner une ligne qui se termine par un cercle
+        {
+            int rayon = 25; //Rayon du cercle
+            Pen pen = new Pen(p_couleur, 2);
+            e.Graphics.DrawLine(pen, p_depart[0], p_depart[1], p_dest[0], p_dest[1]);
+            e.Graphics.DrawEllipse(pen, p_dest[0] - rayon, p_dest[1] - rayon, rayon * 2, rayon * 2);
+            pen.Dispose();
+        }
+
         private void dessinerObservateur(int p_x, int p_y, PaintEventArgs e) //Dessiner un observateur
         {
             Image img = Image.FromFile("..\\..\\images\\observateur.png");
@@ -146,6 +175,41 @@ namespace Simulateur
             Image img = Image.FromFile("..\\..\\images\\secours.png");
             Rectangle rect = new Rectangle(0, 0, 16, 16);
             e.Graphics.DrawImage(img, p_x - 8, p_y - 8, rect, GraphicsUnit.Pixel);
+        }
+
+        private void dessinerVehiculeSecours(int p_x, int p_y, PaintEventArgs e) //Dessiner un véhicule de secours
+        {
+            Image img = Image.FromFile("..\\..\\images\\vehsecours.png");
+            Rectangle rect = new Rectangle(0, 0, 20, 20);
+            e.Graphics.DrawImage(img, p_x - 10, p_y - 10, rect, GraphicsUnit.Pixel);
+        }
+
+        private void dessinerVehiculePass(int p_x, int p_y, PaintEventArgs e) //Dessiner un véhicule de passagers
+        {
+            Image img = Image.FromFile("..\\..\\images\\vehpass.png");
+            Rectangle rect = new Rectangle(0, 0, 20, 20);
+            e.Graphics.DrawImage(img, p_x - 10, p_y - 10, rect, GraphicsUnit.Pixel);
+        }
+
+        private void dessinerVehiculeMarch(int p_x, int p_y, PaintEventArgs e) //Dessiner un véhicule de marchandises
+        {
+            Image img = Image.FromFile("..\\..\\images\\vehmarch.png");
+            Rectangle rect = new Rectangle(0, 0, 20, 20);
+            e.Graphics.DrawImage(img, p_x - 10, p_y - 10, rect, GraphicsUnit.Pixel);
+        }
+
+        private void dessinerVehiculePompier(int p_x, int p_y, PaintEventArgs e) //Dessiner un véhicule pompier
+        {
+            Image img = Image.FromFile("..\\..\\images\\vehpompier.png");
+            Rectangle rect = new Rectangle(0, 0, 20, 20);
+            e.Graphics.DrawImage(img, p_x - 10, p_y - 10, rect, GraphicsUnit.Pixel);
+        }
+
+        private void dessinerVehiculeObservateur(int p_x, int p_y, PaintEventArgs e) //Dessiner un véhicule observateur
+        {
+            Image img = Image.FromFile("..\\..\\images\\vehobs.png");
+            Rectangle rect = new Rectangle(0, 0, 20, 20);
+            e.Graphics.DrawImage(img, p_x - 10, p_y - 10, rect, GraphicsUnit.Pixel);
         }
     }
 }
