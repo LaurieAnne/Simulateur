@@ -8,11 +8,12 @@ namespace Simulateur
 {
     public class Observer : Vol
     {
-        public Observer(PosCarte p_destination, PosCarte p_depart, PosCarte p_posActuelle, int p_temps) : base(p_destination, p_depart, p_posActuelle, p_temps) //Constructeur
+
+        public Observer(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps) : base(p_posDepart,  p_posActuelle, p_posDestination, p_temps) //Constructeur
         {
         }
 
-        public override void Avance(int p_val)
+        public override void Avance(int p_val, PosCarte p_depart, PosCarte p_destination)
         {
             //Changer la position sur la carte
 

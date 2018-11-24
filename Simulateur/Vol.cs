@@ -8,15 +8,15 @@ namespace Simulateur
 {
     public abstract class Vol : Etat
     {
-        PosCarte m_destination; //La coordonnée de destination
-        PosCarte m_depart; //La coordonnée de départ
+        PosCarte m_posDepart; //La coordonnée de départ
         PosCarte m_posActuelle; //La coordonnée actuelle
+        PosCarte m_posDestination; //La coordonnée de destination
 
-        public Vol(PosCarte p_destination, PosCarte p_depart, PosCarte p_posActuelle, int p_temps) : base(p_temps) //Constructeur
+        public Vol(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps) : base(p_temps) //Constructeur
         {
-            m_destination = p_destination;
-            m_depart = p_depart;
+            m_posDepart = p_posDepart;
             m_posActuelle = p_posActuelle;
+            m_posDestination = p_posDestination;
         }
     }
 }

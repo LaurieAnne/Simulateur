@@ -17,8 +17,6 @@ namespace Simulateur
 
 
 
-
-
         //Constructeur vide pour XML
         public AvionPassagers() : base(){ }
 

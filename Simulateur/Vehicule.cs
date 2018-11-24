@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace Simulateur
@@ -19,7 +20,7 @@ namespace Simulateur
         protected int m_tempsMaintenance; //Temps de maintenance
         protected ConsoleColor m_couleur; //Couleur
         protected Etat m_etat; //Etat du véhicule
-        protected Aeroport m_aeroport; //L'Aéroport ou il est
+        protected PosCarte m_posDepart; //PositionDepart Position de l'Aéroport dans lequel il est
 
         public Vehicule(string p_nom, int p_KMH, int p_tempsMain, ConsoleColor p_couleur, Aeroport p_aeroport) //Constructeur
         {
@@ -29,19 +30,24 @@ namespace Simulateur
             m_couleur = p_couleur;
             m_etat = new Hangar(0);
             m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
-            m_aeroport = p_aeroport;
+            m_posDepart = p_aeroport.Pos;
         }
 
         public abstract void ChangerEtat(object source);
 
 
+        public void Avance(int p_temps, PosCarte p_depart, PosCarte p_destination)
+        {
+            m_etat.Avance(p_temps, p_depart, p_destination);
+        }
+
         public void Avance(int p_temps)
         {
-            
             m_etat.Avance(p_temps);
         }
 
-
+        //Todelete???? -> Mettre en abstract?
+        public abstract void AssignerClient(Client p_client);
 
         //Constructeur vide
         public Vehicule()
@@ -75,6 +81,12 @@ namespace Simulateur
         {
             get { return m_couleur; }
             set { m_couleur = value; }
+        }
+
+        public PosCarte PositionCarte
+        {
+            get { return m_posDepart; }
+            set { m_posDepart = value; }
         }
 
         public override string ToString() //ToString

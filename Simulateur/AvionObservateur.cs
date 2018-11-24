@@ -9,33 +9,48 @@ namespace Simulateur
 {
     public class AvionObservateur : Vehicule
     {
+        protected Observateur m_client; //Le client d'observateur
+
         public AvionObservateur(string p_nom, int p_KMH, int p_tempsMain, Aeroport p_aeroport) //Constructeur
             : base(p_nom, p_KMH, p_tempsMain, ConsoleColor.Gray, p_aeroport)
         {
-
         }
 
         //Changer d'Etat
         public override void ChangerEtat(object source)
         {
-            //PosCarte posDepart = m_aeroport.Pos;
-            PosCarte posDepart = new PosCarte();
-            PosCarte posDestination = new PosCarte();
-            string EtatAvant = m_etat.ToString();
+            if (m_client != null)
+            {
+                string EtatAvant = m_etat.ToString();
 
-            if (m_etat.ToString() == "Hangar")
-                m_etat = new Observer(posDepart, posDepart, posDestination, 100);
-            else if (m_etat.ToString() == "Observation")
-                m_etat = new Maintenance(m_tempsMaintenance);
-            else if (m_etat.ToString() == "Maintenance")
-                m_etat = new Hangar(0);
+                if (m_etat.ToString() == "Hangar")
+                {
+                    //PosCarte de l'aeroport et non pas l'aeroport au complet
+                    PosCarte posDestination = m_client.Position;
+                    int tempsVol = m_KMH; //Formule ?
+                    m_etat = new Observer(m_posDepart, m_posDepart, posDestination, tempsVol);
+                }
+                else if (m_etat.ToString() == "Observation")
+                {
+                    m_etat = new Maintenance(m_tempsMaintenance);
+                }
+                else if (m_etat.ToString() == "Maintenance")
+                {
+                    m_etat = new Hangar(0);
+                }
 
-            MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
-            m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
+                m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+            }
         }
 
 
-
+        //?Todelete?
+        public override void AssignerClient(Client p_client)
+        {
+            if (p_client is Observateur)
+                m_client = (Observateur)p_client;
+        }
 
 
 

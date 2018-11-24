@@ -24,9 +24,18 @@ namespace Simulateur
                 eventEtatFini(this);
         }
 
-        public virtual void Avance(int p_val)
+        public virtual void Avance(int p_temps, PosCarte p_depart, PosCarte p_destination)
         {
-            m_temps -= p_val;
+            m_temps -= p_temps;
+            if (m_temps <= 0)
+            {
+                onEtatFini();
+            }
+        }
+
+        public virtual void Avance(int p_temps)
+        {
+            m_temps -= p_temps;
             if (m_temps <= 0)
             {
                 onEtatFini();
