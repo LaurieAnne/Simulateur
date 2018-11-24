@@ -8,13 +8,15 @@ namespace Simulateur
 {
     public class AllerRetour : Vol
     {
-        int m_compteur; //Le nombre d'aller retour à effectuer
-        PosCarte m_posDestination; //La coordonnée de destination
+        protected int m_compteur; //Le nombre d'aller retour à effectuer
+        protected PosCarte m_posDestination; //La coordonnée de destination
+        protected bool aller; //Variable contrôle d'aller retour
 
-        public AllerRetour(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps, int p_compteur) : base(p_posDepart, p_posActuelle, p_posDestination, p_temps) //Constructeur
+        public AllerRetour(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps, int p_compteur, Vehicule p_vehicule) : base(p_posDepart, p_posActuelle, p_posDestination, p_temps, p_vehicule) //Constructeur
         {
             m_posDestination = p_posDestination;
             m_compteur = p_compteur;
+            aller = true;
         }
 
         public AllerRetour(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps) : base(p_posDepart, p_posActuelle, p_posDestination, p_temps) //Constructeur
@@ -23,13 +25,33 @@ namespace Simulateur
             m_compteur = 1; //Si non spécifié 1 aller retour seulement
         }
 
-        public override void Avance(int p_val, PosCarte p_depart, PosCarte p_destination)
+        public override void Avance(int p_val)
         {
-            //Changer la position sur la carte
-            //Diminuer le temps
-            m_temps -= p_val;
-            m_compteur -= m_compteur;
-            if (m_temps <= 0 && m_compteur <= 0)
+            //Si sur l'aller
+            if (aller)
+            {
+                //Ajuster la position actuelle de l'avion
+                PositionActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
+                //Retourner au point de départ
+                if (PositionActuelle == m_posDestination)
+                    aller = !aller;
+            }
+            //Si sur le retour
+            else
+            {
+                PositionActuelle.changerPosition(m_posDestination, m_posDepart, m_vehicule.KMH, p_val);
+                if (PositionActuelle == m_posDepart) //Aller retour complété
+                {
+                    if (m_compteur > 0)
+                    {
+                        aller = !aller;
+                        m_compteur--;
+                    }
+                }
+            }
+
+            //Avertir les abonnées que l'Etat est terminé
+            if (m_compteur <= 0)
             {
                 onEtatFini();
             }

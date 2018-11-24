@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,51 +8,76 @@ using System.Windows.Forms;
 
 namespace Simulateur
 {
-    public class AvionCiterne : Vehicule
+    public class AvionCiterne : Vehicule //Véhicule de type citerne (pour éteindre les feux)
     {
         int m_tempsChargement; //Temps de chargement
         int m_tempsLargage; //Temps de largage
         protected Feu m_client; //Le client Feu
 
-        public AvionCiterne(string p_nom, int p_KMH, int p_tempsMain, int p_tempsCharg, int p_tempsLarg, Aeroport p_aeroport) //Constructeur
-            : base(p_nom, p_KMH, p_tempsMain, ConsoleColor.Yellow, p_aeroport)
+        /** Constructeur d'un avion citerne
+         * p_nom: le nom du véhicule
+         * p_KMH: la vitesse de déplacement de l'avion
+         * p_tempsMain: le temps de maintenance
+         * p_couleur: la couleur de la ligne à l'affichage
+         * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
+         * p_tempsChargement: le temps de chargement de l'avion
+         * p_tempsLargage: le temps de largage de l'avion
+         */
+        public AvionCiterne(string p_nom, int p_KMH, int p_tempsMain, int p_tempsCharg, int p_tempsLarg, Aeroport p_aeroport)
+            : base(p_nom, p_KMH, p_tempsMain, Color.Yellow, p_aeroport)
         {
             m_tempsChargement = p_tempsCharg;
             m_tempsLargage = p_tempsLarg;
         }
 
-        //Changer d'Etat
+        /**Constructeur vide pour XML
+         */
+        public AvionCiterne() : base() { }
+
+        /** Changer l'État du véhicule (Delegate)
+         *  Passer au prochain État lorsque l'État actuel annonce qu'il est prêt à changer
+         */
         public override void ChangerEtat(object source)
         {
             if (m_client != null)
             {
-                string EtatAvant = m_etat.ToString();
+                string EtatAvant = m_etat.ToString(); //To delete aide visuel
+                int surplus = m_etat.Surplus;
 
                 if (m_etat.ToString() == "Hangar")
                 {
-                    PosCarte posDestination = m_client.Position;
+                    PosCarte posDestination = m_client.Position; //Position destination
+                    int intensite = 2;
                     int tempsVol = m_KMH; //Formule ?
-                    m_etat = new AllerRetour(m_posDepart, m_posDepart, posDestination, tempsVol);
+                    m_etat = new AllerRetour(m_posDepart, m_posDepart, posDestination, tempsVol - surplus, intensite, this);
+                    //To delete aide visuel
                     MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
                 }
                 else if (m_etat.ToString() == "AllerRetour")
                 {
-                    AllerRetour m_etatz;
-                    m_etatz = (AllerRetour)this.m_etat;
-                    m_etat = new Maintenance(m_tempsMaintenance);
+                    AllerRetour m_etatz;//To delete aide visuel
+                    m_etatz = (AllerRetour)this.m_etat;//To delete aide visuel
+
+                    m_etat = new Maintenance(m_tempsMaintenance - surplus, this);
+                    
+                    //To delete aide visuel
                     MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps + "*" + m_etatz.Compte.ToString()); //Ne pas oublier de delete la référence using System.Windows.Forms;
                 }
                 else if (m_etat.ToString() == "Maintenance")
                 {
-                    m_etat = new Hangar(0);
+                    m_etat = new Hangar(0, this);
+                    //To delete aide visuel
                     MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
                 }
 
+                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
             }
         }
 
-        //?Todelete?
+        /** Assigne un client au véhicule
+         *  p_client: le client qui lui est assigné
+         */
         public override void AssignerClient(Client p_client)
         {
             if (p_client is Feu)
@@ -59,16 +85,9 @@ namespace Simulateur
         }
 
 
-        
 
 
-
-
-
-        //Constructeur vide pour XML
-        public AvionCiterne() : base(){}
-
-        /**Accesseurs
+        /** Accesseurs
          */
         public int Chargement
         {

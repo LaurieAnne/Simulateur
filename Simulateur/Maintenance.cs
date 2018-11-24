@@ -9,7 +9,7 @@ namespace Simulateur
     public class Maintenance : Etat
     {
 
-        public Maintenance(int p_temps) : base(p_temps) //Constructeur
+        public Maintenance(int p_temps, Vehicule p_vehicule) : base(p_temps, p_vehicule) //Constructeur
         {
         }
 

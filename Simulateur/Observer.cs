@@ -8,20 +8,39 @@ namespace Simulateur
 {
     public class Observer : Vol
     {
+        protected string statut; //Variable contrôle d'aller retour
 
-        public Observer(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps) : base(p_posDepart,  p_posActuelle, p_posDestination, p_temps) //Constructeur
+        public Observer(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps, Vehicule p_vehicule) : base(p_posDepart,  p_posActuelle, p_posDestination, p_temps, p_vehicule) //Constructeur
         {
+            statut = "aller";
         }
 
-        public override void Avance(int p_val, PosCarte p_depart, PosCarte p_destination)
+        public override void Avance(int p_val)
         {
-            //Changer la position sur la carte
-
-            //Diminuer le temps
-            m_temps -= p_val;
-            if (m_temps <= 0)
+            //Si sur l'aller
+            if (statut == "aller")
             {
-                onEtatFini();
+                //Ajuster la position actuelle de l'avion
+                PositionActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
+                
+                //Retourner au point de départ
+                if (PositionActuelle == m_posDestination)
+                    statut = "retour";//Remplacer par tourner <---
+            }
+            else if (statut == "tourner")
+            {
+                //PositionActuelle.Tourner();
+                if (PositionActuelle == m_posDestination)
+                    statut = "retour";
+            }
+            //Si sur le retour
+            else if (statut == "retour")
+            {
+                PositionActuelle.changerPosition(m_posDestination, m_posDepart, m_vehicule.KMH, p_val);
+                if (PositionActuelle == m_posDepart) //Aller retour complété
+                {
+                    onEtatFini();
+                }
             }
         }
 

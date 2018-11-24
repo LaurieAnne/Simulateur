@@ -8,9 +8,9 @@ namespace Simulateur
 {
     public class Debarquement : Etat
     {
-        int m_nbClients; //Le nombre de clients (passagers ou marchandises) dans l'avion
+        protected int m_nbClients; //Le nombre de clients (passagers ou marchandises) dans l'avion
 
-        public Debarquement(int p_nbClients, int p_temps) : base(p_temps) //Constructeur
+        public Debarquement(int p_nbClients, int p_temps, Vehicule p_vehicule) : base(p_temps, p_vehicule) //Constructeur
         {
             m_nbClients = p_nbClients;
         }

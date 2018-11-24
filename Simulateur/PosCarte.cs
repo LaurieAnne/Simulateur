@@ -91,6 +91,15 @@ namespace Simulateur
             return longi;
         }
 
+        public void changerPosition(PosCarte p_depart, PosCarte p_destination, int p_vitesse, int p_temps) //Changer la position selon la vitesse et le temps
+        {
+            int distance = p_vitesse * (p_temps / 10); //Le % de complété
+            int distancex = p_depart.X - p_destination.X; //La distance en x entre le depart et la destination
+            int distancey = p_depart.Y - p_destination.Y; //La distance en y entre le depart et la destination
+            this.m_x += (distance * distancex) / 100;
+            this.m_y += (distance * distancey) / 100;
+        }
+
         public override string ToString() //ToString
         {
             char[] cadran = obtenirCadran();
