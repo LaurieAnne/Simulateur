@@ -93,5 +93,59 @@ namespace Simulateur
                 tt.SetToolTip(img, nom);
             }
         }
+
+        private void imgCarte_Paint(object sender, PaintEventArgs e)
+        {
+            Random rnd = new Random();
+            int x = rnd.Next(15, 885);
+            int y = rnd.Next(15, 510);
+            dessinerFeu(x, y, e);
+
+            x = rnd.Next(15, 885);
+            y = rnd.Next(15, 510);
+            dessinerObservateur(x, y, e);
+
+            x = rnd.Next(15, 885);
+            y = rnd.Next(15, 510);
+            dessinerSecours(x, y, e);
+
+            int[] depart = new int[2];
+            depart[0] = 500;
+            depart[1] = 50;
+            int[] dest = new int[2];
+            dest[0] = 600;
+            dest[1] = 300;
+            dessinerLigne(depart, dest, Color.Black, e);
+
+            //bouton this.invalidate
+        }
+
+        private void dessinerFeu(int p_x, int p_y, PaintEventArgs e) //Dessiner un feu
+        {
+            Image img = Image.FromFile("..\\..\\images\\feu.png");
+            Rectangle rect = new Rectangle(0, 0, 16, 16);
+            e.Graphics.DrawImage(img, p_x - 8, p_y - 8, rect, GraphicsUnit.Pixel);
+        }
+
+        private void dessinerLigne(int[] p_depart, int[] p_dest, Color p_couleur, PaintEventArgs e) //Dessiner une ligne
+        {
+            Pen pen = new Pen(p_couleur, 2);
+            e.Graphics.DrawLine(pen, p_depart[0], p_depart[1], p_dest[0], p_dest[1]);
+            pen.Dispose();
+        }
+
+        private void dessinerObservateur(int p_x, int p_y, PaintEventArgs e) //Dessiner un observateur
+        {
+            Image img = Image.FromFile("..\\..\\images\\observateur.png");
+            Rectangle rect = new Rectangle(0, 0, 16, 16);
+            e.Graphics.DrawImage(img, p_x - 8, p_y - 8, rect, GraphicsUnit.Pixel);
+        }
+
+        private void dessinerSecours(int p_x, int p_y, PaintEventArgs e) //Dessiner un secours
+        {
+            Image img = Image.FromFile("..\\..\\images\\secours.png");
+            Rectangle rect = new Rectangle(0, 0, 16, 16);
+            e.Graphics.DrawImage(img, p_x - 8, p_y - 8, rect, GraphicsUnit.Pixel);
+        }
     }
 }

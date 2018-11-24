@@ -71,6 +71,7 @@
             this.imgCarte.Size = new System.Drawing.Size(900, 528);
             this.imgCarte.TabIndex = 3;
             this.imgCarte.TabStop = false;
+            this.imgCarte.Paint += new System.Windows.Forms.PaintEventHandler(this.imgCarte_Paint);
             // 
             // FormSimulateur
             // 
