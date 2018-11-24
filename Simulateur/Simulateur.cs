@@ -50,5 +50,10 @@ namespace Simulateur
             }
             return false;
         }
+
+        public void go() //Simuler
+        {
+            m_scenario.avancerVehicules(5);
+        }
     }
 }

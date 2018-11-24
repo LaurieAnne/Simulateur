@@ -53,5 +53,35 @@ namespace Simulateur
             string[] vehicules = m_aeroports[p_aeroport].obtenirVehicules();
             return vehicules;
         }
+
+        //TESTAGE DÉGUEULASSE =>
+
+        public void avancerVehicules(int p_temps) //Avancer les véhicules
+        {          
+            for (int i = 0; i < m_aeroports.Count; i++)
+            {
+                m_aeroports[i].avancerVehicules(p_temps);
+            }
+        }
+
+        public List<string> obtenirVehiculesEnVol() //Obtenir les avions en vol
+        {
+            List<string> vehicules = new List<string>(); //Infos de tous les véhicules en vol
+            List<string> enVol; //Infos des véhicules en vol d'un aéroport
+
+            for (int i = 0; i < m_aeroports.Count; i++)
+            {
+                enVol = m_aeroports[i].obtenirVehiculesEnVol();
+                if (enVol.Count > 0) //Si l'aéroport a des avions en vol
+                {
+                    for (int j = 0; j < enVol.Count - 1; j++)
+                    {
+                        vehicules.Add(enVol[j]);
+                    }
+                }
+            }
+
+            return vehicules;
+        }
     }
 }

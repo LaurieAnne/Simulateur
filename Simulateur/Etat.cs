@@ -28,6 +28,11 @@ namespace Simulateur
                 eventEtatFini(this);
         }
 
+        public virtual string obtenirPosVehicule() //Obtenir les stats de pos véhicule
+        {
+            return "";
+        }
+
         public virtual void Avance(int p_temps)
         {
             int temps = m_temps; //Temps actuel

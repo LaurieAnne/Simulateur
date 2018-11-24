@@ -94,5 +94,31 @@ namespace Simulateur
 
             return vehicules;
         }
+
+        //TESTAGE DÉGUEULASSE =>
+
+        public void avancerVehicules(int p_temps) //Avancer les véhicules
+        {
+            for (int i = 0; i < m_vehicules.Count; i++)
+            {
+                m_vehicules[i].Avance(p_temps);
+            }
+        }
+
+        public List<string> obtenirVehiculesEnVol() //Obtenir les avions en vol
+        {
+            List<string> vehicules = new List<string>(); //Infos des véhicules en vol
+
+            for (int i = 0; i < m_vehicules.Count; i++)
+            {
+                if (m_vehicules[i].enVol()) //Si le véhicule est en vol
+                {
+                    string infos = m_vehicules[i].Couleur + "," + m_vehicules[i].obtenirPosVehicule();
+                    vehicules.Add(infos);
+                }
+            }
+
+            return vehicules;
+        }
     }
 }

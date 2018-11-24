@@ -32,13 +32,14 @@
             this.lstVehicules = new System.Windows.Forms.ListBox();
             this.lstCl = new System.Windows.Forms.ListBox();
             this.imgCarte = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgCarte)).BeginInit();
             this.SuspendLayout();
             // 
             // lstAeroports
             // 
             this.lstAeroports.FormattingEnabled = true;
-            this.lstAeroports.ItemHeight = 16;
+            this.lstAeroports.ItemHeight = 14;
             this.lstAeroports.Location = new System.Drawing.Point(12, 3);
             this.lstAeroports.Name = "lstAeroports";
             this.lstAeroports.Size = new System.Drawing.Size(296, 116);
@@ -48,7 +49,7 @@
             // lstVehicules
             // 
             this.lstVehicules.FormattingEnabled = true;
-            this.lstVehicules.ItemHeight = 16;
+            this.lstVehicules.ItemHeight = 14;
             this.lstVehicules.Location = new System.Drawing.Point(314, 3);
             this.lstVehicules.Name = "lstVehicules";
             this.lstVehicules.Size = new System.Drawing.Size(296, 116);
@@ -57,7 +58,7 @@
             // lstCl
             // 
             this.lstCl.FormattingEnabled = true;
-            this.lstCl.ItemHeight = 16;
+            this.lstCl.ItemHeight = 14;
             this.lstCl.Location = new System.Drawing.Point(616, 3);
             this.lstCl.Name = "lstCl";
             this.lstCl.Size = new System.Drawing.Size(296, 116);
@@ -73,12 +74,23 @@
             this.imgCarte.TabStop = false;
             this.imgCarte.Paint += new System.Windows.Forms.PaintEventHandler(this.imgCarte_Paint);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(498, 659);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(315, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormSimulateur
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(924, 665);
+            this.ClientSize = new System.Drawing.Size(924, 712);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.imgCarte);
             this.Controls.Add(this.lstCl);
             this.Controls.Add(this.lstVehicules);
@@ -99,6 +111,7 @@
         private System.Windows.Forms.ListBox lstVehicules;
         private System.Windows.Forms.ListBox lstCl;
         private System.Windows.Forms.PictureBox imgCarte;
+        private System.Windows.Forms.Button button1;
     }
 }
 

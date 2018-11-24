@@ -49,6 +49,22 @@ namespace Simulateur
             m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat); //Abonnement au délegué de l'État
         }
 
+        //TESTAGE DÉGUEULASSE =>
+
+        public bool enVol()
+        {
+            if (m_etat is Aller || m_etat is AllerRetour || m_etat is Observer)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public string obtenirPosVehicule() //Obtenir les stats de pos véhicule
+        {
+            return m_etat.obtenirPosVehicule();
+        }
+
 
         /** Changer l'État du véhicule (Delegate)
          *  Effectue une action lorsque l'État annonce qu'il est prêt à changer

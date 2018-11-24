@@ -96,7 +96,22 @@ namespace Simulateur
 
         private void imgCarte_Paint(object sender, PaintEventArgs e) //Réafficher les objets
         {
-            Random rnd = new Random();
+            List<string> enVol = m_scenario.obtenirVehiculesEnVol();
+            string[] infos;
+
+            for (int i = 0; i < enVol.Count - 1; i++)
+            {
+                infos = enVol[i].Split(',');
+                int[] depart = new int[2];
+                depart[0] = Convert.ToInt32(infos[1]);
+                depart[1] = Convert.ToInt32(infos[2]);
+                int[] pos = new int[2];
+                pos[0] = Convert.ToInt32(infos[3]);
+                pos[1] = Convert.ToInt32(infos[4]);
+                dessinerLigne(depart, pos, Color.Black, e);
+            }
+
+            /*Random rnd = new Random();
             int x = rnd.Next(15, 885);
             int y = rnd.Next(15, 510);
             dessinerFeu(x, y, e);
@@ -135,9 +150,7 @@ namespace Simulateur
             int[] dest = new int[2];
             dest[0] = 600;
             dest[1] = 300;
-            dessinerLigneCercle(depart, dest, Color.Black, e);
-
-            //bouton this.invalidate
+            dessinerLigneCercle(depart, dest, Color.Black, e);*/
         }
 
         private void dessinerFeu(int p_x, int p_y, PaintEventArgs e) //Dessiner un feu
@@ -210,6 +223,12 @@ namespace Simulateur
             Image img = Image.FromFile("..\\..\\images\\vehobs.png");
             Rectangle rect = new Rectangle(0, 0, 20, 20);
             e.Graphics.DrawImage(img, p_x - 10, p_y - 10, rect, GraphicsUnit.Pixel);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            m_simulateur.go();
+            imgCarte.Invalidate();
         }
     }
 }
