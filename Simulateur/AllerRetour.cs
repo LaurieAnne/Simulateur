@@ -19,7 +19,7 @@ namespace Simulateur
             aller = true;
         }
 
-        public AllerRetour(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps) : base(p_posDepart, p_posActuelle, p_posDestination, p_temps) //Constructeur
+        public AllerRetour(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps, Vehicule p_vehicule) : base(p_posDepart, p_posActuelle, p_posDestination, p_temps, p_vehicule) //Constructeur
         {
             m_posDestination = p_posDestination;
             m_compteur = 1; //Si non spécifié 1 aller retour seulement

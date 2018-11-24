@@ -42,7 +42,7 @@ namespace Simulateur
                 {
                     PosCarte posDestination = m_client.Position;
                     int tempsVol = m_KMH; //Formule ?
-                    m_etat = new AllerRetour(m_posDepart, m_posDepart, posDestination, tempsVol - surplus, this);
+                    m_etat = new AllerRetour(m_posDepart, m_posDepart, posDestination, tempsVol - surplus, 1, this);
                 }
                 else if (m_etat.ToString() == "AllerRetour")
                 {

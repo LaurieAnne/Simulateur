@@ -36,7 +36,7 @@ namespace Simulateur
             m_KMH = p_KMH;
             m_tempsMaintenance = p_tempsMain;
             m_couleur = p_couleur;
-            m_etat = new Hangar(0);
+            m_etat = new Hangar(0, this);
             m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
             m_posDepart = p_aeroport.Pos;
         }
@@ -45,7 +45,7 @@ namespace Simulateur
          */
         public Vehicule()
         {
-            m_etat = new Hangar(0); //Par défaut tous les véhicules sont dans le Hangar
+            m_etat = new Hangar(0, this); //Par défaut tous les véhicules sont dans le Hangar
             m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat); //Abonnement au délegué de l'État
         }
 
