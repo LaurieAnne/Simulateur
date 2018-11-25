@@ -24,5 +24,10 @@ namespace Simulateur
             get { return m_posActuelle; }
             set { m_posActuelle = value; }
         }
+
+        public override string obtenirPosVehicule() //Obtenir les stats de pos véhicule
+        {
+            return m_posDepart.X + "," + m_posDepart.Y + "," + m_posActuelle.X + "," + m_posActuelle.Y;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Simulateur
             get { return m_PosX; }
         }
 
-        public int PositonY
+        public int PositionY
         {
             get { return m_PosY; }
         }

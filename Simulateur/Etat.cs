@@ -51,5 +51,10 @@ namespace Simulateur
         {
             get { return m_surplus; }
         }
+
+        public virtual string obtenirPosVehicule() //Obtenir les stats de pos véhicule
+        {
+            return "";
+        }
     }
 }

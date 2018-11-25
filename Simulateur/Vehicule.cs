@@ -112,5 +112,21 @@ namespace Simulateur
         }
 
         public abstract string Type();
+
+        //TESTAGE DÉGUEULASSE =>
+
+        public bool enVol()
+        {
+            if (m_etat is Aller || m_etat is AllerRetour || m_etat is Observer)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public string obtenirPosVehicule() //Obtenir les stats de pos véhicule
+        {
+            return m_etat.obtenirPosVehicule();
+        }
     }
 }
