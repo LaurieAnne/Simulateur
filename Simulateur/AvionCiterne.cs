@@ -48,7 +48,7 @@ namespace Simulateur
                 if (m_etat.ToString() == "Hangar")
                 {
                     PosCarte posDestination = m_client.Position; //Position destination
-                    int intensite = 2;
+                    int intensite = m_client.IntensiteFeu;
                     int tempsVol = m_KMH; //Formule ?
                     m_etat = usine.creerAllerRetour(m_posDepart, posDestination, tempsVol, surplus, intensite, this);
                     //To delete aide visuel
