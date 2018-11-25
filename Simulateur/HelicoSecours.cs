@@ -82,7 +82,7 @@ namespace Simulateur
 
         public override string Type()
         {
-            return "Helico";
+            return "Secours";
         }
     }
 }
