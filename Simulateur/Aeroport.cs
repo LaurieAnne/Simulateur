@@ -120,5 +120,20 @@ namespace Simulateur
 
             return vehicules;
         }
+
+        public bool assignerClient(Client p_client) //Assigner le client à un véhicule
+        {
+            string type = p_client.ToString(); //Type du client
+
+            for (int i = 0; i < m_vehicules.Count; i++)
+            {
+                if (type = m_vehicules[i].Type) //Si c'est le bon type
+                {
+                    m_vehicules[i].AssignerClient(p_client);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

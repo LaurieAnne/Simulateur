@@ -53,6 +53,7 @@ namespace Simulateur
 
         public void go() //Simuler
         {
+            m_scenario.creerClients();
             m_scenario.avancerVehicules(5);
         }
     }
