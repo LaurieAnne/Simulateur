@@ -23,5 +23,30 @@ namespace Simulateur
             }
             return m_usine;
         }
+
+        public void creerFeu()
+        {
+
+        }
+
+        public void creerPassager()
+        {
+
+        }
+
+        public void creerMarchandise()
+        {
+
+        }
+
+        public void creerObservateur()
+        {
+
+        }
+
+        public void creerSecours()
+        {
+
+        }
     }
 }

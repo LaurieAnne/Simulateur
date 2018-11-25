@@ -8,11 +8,36 @@ namespace Simulateur
 {
     public abstract class Client
     {
-        protected PosCarte m_pos; //Emplacement sur la carte
+        protected int m_PosX;
+        protected int m_PosY;
+        protected PosCarte m_Position;
 
-        public Client(PosCarte p_pos) //Constructeur
+        public Client() //Constructeur
         {
-            m_pos = p_pos;
+
         }
+
+        public int PositionX
+        {
+            get { return m_PosX; }
+        }
+
+        public int PositonY
+        {
+            get { return m_PosY; }
+        }
+
+        public PosCarte Position
+        {
+            get { return m_Position; }
+        }
+
+        /*public override string ToString() //ToString
+        {
+            string client;
+            string coord = m_pos.ToString();
+            client = m_Nom + " (" + coord + ")";
+            return client;
+        }*/
     }
 }
