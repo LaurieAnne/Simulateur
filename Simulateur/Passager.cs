@@ -32,6 +32,31 @@ namespace Simulateur
             //TrouverDestination(m_PosX, m_PosY);
         }
 
+        public Passager(PosCarte p_PosDepart, PosCarte p_PosDestination, int p_nbClients, int p_PosX, int p_PosY) : base() //Constructeur séparer
+        {
+            //Nombre de clients
+            m_nbClients = p_nbClients;
+
+            //Position de départ
+            m_Position = p_PosDepart;
+
+            //Position de destination
+            m_posDest = p_PosDestination;
+
+            //Position actuelle
+            m_pos = m_Position;
+
+            //Coordonnées en x et y du client
+            m_PosX = p_PosX;
+            m_PosY = p_PosY;
+        }
+
+            public Passager separerPassager(int nbClients)
+        {
+            this.NbClients = this.NbClients - nbClients;
+            return new Passager(this.Position, this.Destination, nbClients, this.m_PosX, this.m_PosY);
+        }
+
         private void TrouverDestination(int p_PosX, int p_PosY)
         {
             //Taille de l'image 900 par 528
