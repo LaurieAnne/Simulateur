@@ -21,23 +21,34 @@ namespace Simulateur
             if (statut == "aller")
             {
                 //Ajuster la position actuelle de l'avion
-                PositionActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
-                
+                m_posActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
+
                 //Retourner au point de départ
-                if (PositionActuelle == m_posDestination)
-                    statut = "retour";//Remplacer par tourner <---
+                string posActuelle = m_posActuelle.Coords();
+                string posDestination = m_posDestination.Coords();
+                if (posActuelle == posDestination)
+                    statut = "retour"; //Remplacer par tourner <---
             }
             else if (statut == "tourner")
             {
                 //PositionActuelle.Tourner();
-                if (PositionActuelle == m_posDestination)
+
+                //Retourner au point de départ
+                string posActuelle = m_posActuelle.Coords();
+                string posDestination = m_posDestination.Coords();
+                
+                if (posActuelle == posDestination)
                     statut = "retour";
             }
             //Si sur le retour
             else if (statut == "retour")
             {
-                PositionActuelle.changerPosition(m_posDestination, m_posDepart, m_vehicule.KMH, p_val);
-                if (PositionActuelle == m_posDepart) //Aller retour complété
+                m_posActuelle.changerPosition(m_posDestination, m_posDepart, m_vehicule.KMH, p_val);
+
+                //Retourner au point à la destination
+                string posActuelle = m_posActuelle.Coords();
+                string posDepart = m_posDepart.Coords();
+                if (posActuelle == posDepart) //Aller retour complété
                 {
                     onEtatFini();
                 }

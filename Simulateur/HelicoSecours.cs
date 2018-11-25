@@ -42,22 +42,26 @@ namespace Simulateur
                 if (m_etat.ToString() == "Hangar")
                 {
                     PosCarte posDestination = m_client.Position;
+                    PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
                     int tempsVol = m_KMH; //Formule ?
-                    m_etat = usine.creerAllerRetour(m_posDepart, posDestination, tempsVol, surplus, this);
+                    m_etat = usine.creerAllerRetour(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);
+                    //S'abonne au nouvel événement
+                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 }
                 else if (m_etat.ToString() == "AllerRetour")
                 {
                     m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
+                    //S'abonne au nouvel événement
+                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 }
                 else if (m_etat.ToString() == "Maintenance")
                 {
                     m_etat = usine.creerHangar(this);
-                }
-                //To delete aide visuel
-                MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
+                    this.ResetEtat();
+                    //To delete aide visuel
+                    //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
 
-                //S'abonne au nouvel Etat
-                m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                }
             }
         }
 

@@ -31,16 +31,25 @@ namespace Simulateur
             if (aller)
             {
                 //Ajuster la position actuelle de l'avion
-                PositionActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
+                m_posActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
+
                 //Retourner au point de départ
-                if (PositionActuelle == m_posDestination)
+                string posActuelle = m_posActuelle.Coords();
+                string posDestination = m_posDestination.Coords();
+
+                if (posActuelle == posDestination)
                     aller = !aller;
             }
             //Si sur le retour
             else
             {
-                PositionActuelle.changerPosition(m_posDestination, m_posDepart, m_vehicule.KMH, p_val);
-                if (PositionActuelle == m_posDepart) //Aller retour complété
+                m_posActuelle.changerPosition(m_posDestination, m_posDepart, m_vehicule.KMH, p_val);
+
+                //Retourner au point à la destination
+                string posActuelle = m_posActuelle.Coords();
+                string posDepart = m_posDepart.Coords();
+
+                if (posActuelle == posDepart) //Aller retour complété
                 {
                     if (m_compteur > 0)
                     {

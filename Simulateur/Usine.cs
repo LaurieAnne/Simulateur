@@ -25,26 +25,34 @@ namespace Simulateur
         }
 
 
+        public PosCarte creerPosition(int p_x, int p_y)
+        {
+            int[] Taille = new int[2];
+            Taille[0] = 900;
+            Taille[1] = 528;
+            return new PosCarte(p_x, p_y, Taille);
+        }
+
         /**Créations des États
          */
-        public Aller creerAller(PosCarte p_posDepart, PosCarte p_posDestination, int p_nbClients, int p_temps, int p_surplus, Vehicule p_vehicule)
+        public Aller creerAller(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_nbClients, int p_temps, int p_surplus, Vehicule p_vehicule)
         {
-            return new Aller(p_posDepart, p_posDepart, p_posDestination, p_nbClients, p_temps - p_surplus, p_vehicule);
+            return new Aller(p_posDepart, p_posActuelle, p_posDestination, p_nbClients, p_temps - p_surplus, p_vehicule);
         }
 
-        public AllerRetour creerAllerRetour(PosCarte p_posDepart, PosCarte p_posDestination, int p_temps, int p_surplus, int p_compteur, Vehicule p_vehicule)
+        public AllerRetour creerAllerRetour(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps, int p_surplus, int p_compteur, Vehicule p_vehicule)
         {
-            return new AllerRetour(p_posDepart, p_posDepart, p_posDestination, p_temps - p_surplus, p_compteur, p_vehicule);
+            return new AllerRetour(p_posDepart, p_posActuelle, p_posDestination, p_temps - p_surplus, p_compteur, p_vehicule);
         }
 
-        public AllerRetour creerAllerRetour(PosCarte p_posDepart, PosCarte p_posDestination, int p_temps, int p_surplus, Vehicule p_vehicule)
+        public AllerRetour creerAllerRetour(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps, int p_surplus, Vehicule p_vehicule)
         {
-            return new AllerRetour(p_posDepart, p_posDepart, p_posDestination, p_temps - p_surplus, 1, p_vehicule);
+            return new AllerRetour(p_posDepart, p_posActuelle, p_posDestination, p_temps - p_surplus, 1, p_vehicule);
         }
 
-        public Observer creerObserver(PosCarte p_posDepart, PosCarte p_posDestination, int p_temps, int p_surplus, Vehicule p_vehicule)
+        public Observer creerObserver(PosCarte p_posDepart, PosCarte p_posActuelle, PosCarte p_posDestination, int p_temps, int p_surplus, Vehicule p_vehicule)
         {
-            return new Observer(p_posDepart, p_posDepart, p_posDestination, p_temps - p_surplus, p_vehicule);
+            return new Observer(p_posDepart, p_posActuelle, p_posDestination, p_temps - p_surplus, p_vehicule);
         }
 
         public Maintenance creerMaintenance(int p_temps, int p_surplus, Vehicule p_vehicule)

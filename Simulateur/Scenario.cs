@@ -76,7 +76,7 @@ namespace Simulateur
                 enVol = m_aeroports[i].obtenirVehiculesEnVol();
                 if (enVol.Count > 0) //Si l'aéroport a des avions en vol
                 {
-                    for (int j = 0; j < enVol.Count - 1; j++)
+                    for (int j = 0; j < enVol.Count; j++)
                     {
                         vehicules.Add(enVol[j]);
                     }
@@ -88,17 +88,26 @@ namespace Simulateur
 
         public void creerClients() //Créer les clients pour le tour
         {
+            
             m_clients.Add(new Feu());
+            m_clients.Add(new Passager());
+            m_clients.Add(new Marchandise());
+            m_clients.Add(new Observateur());
+            m_clients.Add(new Secours());
 
-            for (int i = 0; i < m_clients.Count; i++)
+            //Somehow ca work weird! xD pas tous les clients se font assigner
+            //même si les avions de bon type existent
+            //Solution: faire la boucle à l'envers #PROG2! :O
+            for (int i = m_clients.Count - 1; i >= 0; i--)
             {
                 assignerClient(m_clients[i]);
+                m_clients.Remove(m_clients[i]);
             }             
         }
 
         public void assignerClient(Client p_client) //Assigner le client à un aéroport proche
         {
-            Aeroport AeroportPlusProche = null; //Aéroport la plus proche
+            Aeroport AeroportProche = null; //Aéroport la plus proche
 
             int PosX = p_client.PositionX; //X du client
             int PosY = p_client.PositionY; //Y du client
@@ -106,7 +115,7 @@ namespace Simulateur
             int DistancesX = 0; //Distance entre les X
             int DistancesY = 0; //Distance entre les Y
             int DistanceTotal = 0; //Distance entre le client et l'aéroport
-            int DistancePlusProche = 0; //La distance la moins grande
+            int DistancePlusProche = 9999999; //La distance la moins grande
             int IndAeroport = 0; //L'aéroport le moins loin
 
             for (int i = 0; i < m_aeroports.Count; i++)
@@ -118,24 +127,21 @@ namespace Simulateur
                 DistancesY = Math.Abs(PosY - PosYAeroport);
                 DistanceTotal = DistancesX + DistancesY;
 
-                if (i == 0)
-                {
-                    DistancePlusProche = DistanceTotal;
-                    IndAeroport = i;
-                }
-                else if (DistanceTotal < DistancePlusProche) //Si moins loin
+                AeroportProche = m_aeroports[i];
+
+                if (DistanceTotal < DistancePlusProche && AeroportProche.assignerClient(p_client)) //Si moins loin
                 {
                     DistancePlusProche = DistanceTotal;
                     IndAeroport = i;
                 }
             }
 
-            AeroportPlusProche = m_aeroports[IndAeroport];
+            
 
-            if (AeroportPlusProche.assignerClient(p_client)) //Si un véhicule est disponible
+            /*if (AeroportPlusProche.assignerClient(p_client)) //Si un véhicule est disponible
             {
                 m_clients.Remove(p_client);
-            }
+            }*/
         }
     }
 }

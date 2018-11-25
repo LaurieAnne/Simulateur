@@ -30,7 +30,7 @@ namespace Simulateur
             m_pos = m_Position;
 
             //Position destination
-            TrouverDestination(m_PosX, m_PosY);
+            //TrouverDestination(m_PosX, m_PosY);
         }
 
         private void TrouverDestination(int p_PosX, int p_PosY)
@@ -58,6 +58,11 @@ namespace Simulateur
             {
                 TrouverDestination(p_PosX, p_PosY);
             }
+        }
+
+        public override string ToString()
+        {
+            return "Marchandises";
         }
     }
 }

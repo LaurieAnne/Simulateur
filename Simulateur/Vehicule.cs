@@ -133,5 +133,10 @@ namespace Simulateur
         {
             return (m_etat is Hangar);
         }
+
+        public void ResetEtat()
+        {
+            m_etat = null;
+        }
     }
 }

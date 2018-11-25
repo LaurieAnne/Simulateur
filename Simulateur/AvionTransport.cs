@@ -52,33 +52,40 @@ namespace Simulateur
                 if (m_etat.ToString() == "Hangar")
                 {
                     m_etat = usine.creerEmbarquement(m_tempsEmbarquement, surplus, this);
+                    //S'abonne au nouvel événement
+                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 }
                 else if (m_etat.ToString() == "Embarquement")
                 {
                     PosCarte posDestination = m_client.Position;
+                    PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
+
                     int nbClients = m_client.NbClients;
-                    int tempsVol = m_KMH; //Formule ?
-                    m_etat = usine.creerAller(m_posDepart, posDestination, nbClients, tempsVol, surplus, this);
+                    int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4;
+                    m_etat = usine.creerAller(m_posDepart, posActuelle, posDestination, nbClients, tempsVol, surplus, this);
+                    //S'abonne au nouvel événement
+                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 }
                 else if (m_etat.ToString() == "Aller")
                 {
                     int nbClients = m_client.NbClients;
                     m_etat = usine.creerDebarquement(nbClients, m_tempsDebarquement, surplus, this);
+                    //S'abonne au nouvel événement
+                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 }
                 else if (m_etat.ToString() == "Debarquement")
                 {
                     m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
+                    //S'abonne au nouvel événement
+                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 }
                 else if (m_etat.ToString() == "Maintenance")
                 {
                     m_etat = usine.creerHangar(this);
+                    this.ResetEtat();
+                    //To delete aide visuel
+                    //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
                 }
-
-                //To delete aide visuel
-                MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
-
-                //S'abonne au nouvel Etat
-                m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
             }
         }
 

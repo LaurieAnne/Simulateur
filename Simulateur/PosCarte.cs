@@ -94,10 +94,43 @@ namespace Simulateur
         public void changerPosition(PosCarte p_depart, PosCarte p_destination, int p_vitesse, int p_temps) //Changer la position selon la vitesse et le temps
         {
             int distance = p_vitesse * (p_temps / 10); //Le % de complété
-            int distancex = p_depart.X - p_destination.X; //La distance en x entre le depart et la destination
-            int distancey = p_depart.Y - p_destination.Y; //La distance en y entre le depart et la destination
-            this.m_x += (distance * distancex) / 100;
-            this.m_y += (distance * distancey) / 100;
+            int distancex = p_destination.X - p_depart.X; //La distance en x entre le depart et la destination
+            int distancey = p_destination.Y - p_depart.Y; //La distance en y entre le depart et la destination
+            char directionx = (p_depart.X > p_destination.X) ? 'g' : 'd'; ; //Direction Gauche Droite
+            char directiony = (p_depart.Y > p_destination.Y) ? 'h' : 'b'; //Direction Haut Bas
+
+            //Direction gauche
+            if (directionx == 'd')
+            {
+                if (this.m_x >= p_destination.X)
+                    this.m_x = p_destination.X;
+                else
+                    this.m_x += (distance * distancex) / 100;
+            }
+            //Direction droite
+            else
+            {
+                if (this.m_x <= p_destination.X)
+                    this.m_x = p_destination.X;
+                else
+                    this.m_x += (distance * distancex) / 100;
+            }
+            //Direction haut
+            if (directiony == 'h')
+            {
+                if (this.m_y <= p_destination.Y)
+                    this.m_y = p_destination.Y;
+                else
+                    this.m_y += (distance * distancey) / 100;
+            }
+            //Direction bas
+            else
+            {
+                if (this.m_y >= p_destination.Y)
+                    this.m_y = p_destination.Y;
+                else
+                    this.m_y += (distance * distancey) / 100;
+            }
         }
 
         public override string ToString() //ToString
@@ -108,5 +141,29 @@ namespace Simulateur
             string coord = lat + "°" + cadran[0] + " " + longi + "°" + cadran[1];
             return coord;
         }
+
+        public static int Distance(PosCarte p_depart, PosCarte p_destination)
+        {
+            int distance;
+            int distancex;
+            int distancey;
+
+            distancex = p_depart.X - p_destination.X;
+            distancey = p_depart.Y - p_destination.Y;
+
+            //Pythagore
+            distance = Math.Abs((int)Math.Sqrt( (distancex * distancex) + (distancey * distancey) ));
+
+            return distance;
+        }
+
+        public string Coords() //ToString
+        {
+            string coords;
+            coords = m_x.ToString();
+            coords += "," + m_y.ToString();
+            return coords;
+        }
+
     }
 }

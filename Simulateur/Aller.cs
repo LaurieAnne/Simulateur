@@ -24,12 +24,14 @@ namespace Simulateur
         public override void Avance(int p_val)
         {
             //Ajuster la position actuelle de l'avion
-            PositionActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
+            m_posActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
 
-            //Avertir les abonnées que l'Etat est terminé
-            if (PositionActuelle == m_posDestination)
+            string posActuelle = m_posActuelle.Coords();
+            string posDestination = m_posDestination.Coords();
+
+            if (posActuelle == posDestination)
             {
-                onEtatFini();
+                onEtatFini();//Avertir les abonnées que l'Etat est terminé
             }
         }
 

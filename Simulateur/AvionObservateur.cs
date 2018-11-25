@@ -43,23 +43,25 @@ namespace Simulateur
                 if (m_etat.ToString() == "Hangar")
                 {
                     PosCarte posDestination = m_client.Position;
-                    int tempsVol = m_KMH; //Formule ?
-                    m_etat = usine.creerObserver(m_posDepart, posDestination, tempsVol, surplus, this);
+                    PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
+                    int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4;
+                    m_etat = usine.creerObserver(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);
+                    //S'abonne au nouvel événement
+                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 }
                 else if (m_etat.ToString() == "Observation")
                 {
                     m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
+                    //S'abonne au nouvel événement
+                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 }
                 else if (m_etat.ToString() == "Maintenance")
                 {
                     m_etat = usine.creerHangar(this);
+                    this.ResetEtat();
+                    //To delete aide visuel
+                    //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
                 }
-
-                //To delete aide visuel
-                MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
-
-                //S'abonne au nouvel événement
-                m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
             }
         }
 
@@ -86,7 +88,7 @@ namespace Simulateur
 
         public override string Type()
         {
-            return "Observateur";
+            return "Observation";
         }
     }
 }
