@@ -79,5 +79,10 @@ namespace Simulateur
             vehicule = m_nom + " (Secours)";
             return vehicule;
         }
+
+        public override string Type()
+        {
+            return "Helico";
+        }
     }
 }

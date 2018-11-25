@@ -83,5 +83,10 @@ namespace Simulateur
             vehicule = m_nom + " (Observateur)";
             return vehicule;
         }
+
+        public override string Type()
+        {
+            return "Observateur";
+        }
     }
 }

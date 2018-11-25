@@ -110,5 +110,7 @@ namespace Simulateur
             vehicule = m_nom + " (Véhicule)";
             return vehicule;
         }
+
+        public abstract string Type();
     }
 }

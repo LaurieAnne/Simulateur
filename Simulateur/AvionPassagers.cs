@@ -36,5 +36,10 @@ namespace Simulateur
             vehicule = m_nom + " (Passagers)";
             return vehicule;
         }
+
+        public override string Type()
+        {
+            return "Passagers";
+        }
     }
 }

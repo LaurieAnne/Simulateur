@@ -108,5 +108,10 @@ namespace Simulateur
             vehicule = m_nom + " (Pompier)";
             return vehicule;
         }
+
+        public override string Type()
+        {
+            return "Citerne";
+        }
     }
 }

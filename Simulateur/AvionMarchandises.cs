@@ -38,5 +38,10 @@ namespace Simulateur
             vehicule = m_nom + " (Marchandises)";
             return vehicule;
         }
+
+        public override string Type()
+        {
+            return "Marchandises";
+        }
     }
 }
