@@ -128,5 +128,10 @@ namespace Simulateur
         {
             return m_etat.obtenirPosVehicule();
         }
+
+        public bool disponible() //Si c'est disponible
+        {
+            return (m_etat is Hangar);
+        }
     }
 }

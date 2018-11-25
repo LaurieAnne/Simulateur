@@ -127,12 +127,13 @@ namespace Simulateur
 
             for (int i = 0; i < m_vehicules.Count; i++)
             {
-                if (type = m_vehicules[i].Type) //Si c'est le bon type
+                if ((type == m_vehicules[i].Type()) && m_vehicules[i].disponible()) //Si c'est le bon type
                 {
                     m_vehicules[i].AssignerClient(p_client);
                     return true;
                 }
             }
+
             return false;
         }
     }

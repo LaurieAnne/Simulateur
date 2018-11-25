@@ -111,7 +111,7 @@ namespace Simulateur
 
         public override string Type()
         {
-            return "Citerne";
+            return "Feu";
         }
     }
 }

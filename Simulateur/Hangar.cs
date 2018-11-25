@@ -15,7 +15,7 @@ namespace Simulateur
         public override void Avance(int p_val)
         {
             //Fait rien on attend
-            //onEtatFini();
+            onEtatFini();
         }
 
         public override string ToString()

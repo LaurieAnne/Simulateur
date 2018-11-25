@@ -14,6 +14,7 @@ namespace Simulateur
         public Scenario() //Constructeur
         {
             m_aeroports = new List<Aeroport>();
+            m_clients = new List<Client>();
         }
 
         public List<Aeroport> ListeAeroports
