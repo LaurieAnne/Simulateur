@@ -21,7 +21,7 @@ namespace Simulateur
             m_PosY = rnd.Next(20, Taille[1] - 20);
 
             //La position sur la carte
-            PosCarte position = new PosCarte(m_PosX, m_PosY, Taille);
+            m_Position = new PosCarte(m_PosX, m_PosY, Taille);
 
             //Random pour nombre de clients
             m_nbClients = rnd.Next(20, 100);
