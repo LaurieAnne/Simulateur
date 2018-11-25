@@ -88,12 +88,12 @@ namespace Simulateur
 
         public void creerClients() //Créer les clients pour le tour
         {
-            
-            m_clients.Add(new Feu());
-            m_clients.Add(new Passager());
-            m_clients.Add(new Marchandise());
-            m_clients.Add(new Observateur());
-            m_clients.Add(new Secours());
+            Random rnd = new Random();
+            m_clients.Add(new Feu(rnd));
+            m_clients.Add(new Passager(rnd));
+            m_clients.Add(new Marchandise(rnd));
+            m_clients.Add(new Observateur(rnd));
+            m_clients.Add(new Secours(rnd));
 
             //Somehow ca work weird! xD pas tous les clients se font assigner
             //même si les avions de bon type existent
@@ -134,13 +134,19 @@ namespace Simulateur
                     DistancePlusProche = DistanceTotal;
                     IndAeroport = i;
                 }
-            }
-
-            
+            }          
 
             /*if (AeroportPlusProche.assignerClient(p_client)) //Si un véhicule est disponible
             {
                 m_clients.Remove(p_client);
+            }*/
+        }
+
+        private void separerClient()
+        {
+            /*for (int i = 0; i < m_clients.)
+            {
+
             }*/
         }
     }

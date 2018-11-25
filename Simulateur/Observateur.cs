@@ -9,7 +9,7 @@ namespace Simulateur
     public class Observateur : Client
     {
 
-        public Observateur() : base() //Constructeur
+        public Observateur(Random p_rnd) : base() //Constructeur
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];
@@ -17,9 +17,8 @@ namespace Simulateur
             Taille[1] = 528;
 
             //Nombre random entre 20 et la taille de l'image - 20
-            Random rnd = new Random();
-            m_PosX = rnd.Next(20, Taille[0] - 20);
-            m_PosY = rnd.Next(20, Taille[1] - 20);
+            m_PosX = p_rnd.Next(20, Taille[0] - 20);
+            m_PosY = p_rnd.Next(20, Taille[1] - 20);
 
             //La position sur la carte
             m_Position = new PosCarte(m_PosX, m_PosY, Taille);

@@ -8,7 +8,7 @@ namespace Simulateur
 {
     public class Marchandise : ClientTransport
     {
-        public Marchandise() : base() //Constructeur
+        public Marchandise(Random p_rnd) : base() //Constructeur
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];
@@ -16,15 +16,14 @@ namespace Simulateur
             Taille[1] = 528;
 
             //Nombre random entre 20 et la taille de l'image - 20
-            Random rnd = new Random();
-            m_PosX = rnd.Next(20, Taille[0] - 20);
-            m_PosY = rnd.Next(20, Taille[1] - 20);
+            m_PosX = p_rnd.Next(20, Taille[0] - 20);
+            m_PosY = p_rnd.Next(20, Taille[1] - 20);
 
             //La position sur la carte
             m_Position = new PosCarte(m_PosX, m_PosY, Taille);
 
             //Random pour nombre de clients
-            m_nbClients = rnd.Next(20, 100);
+            m_nbClients = p_rnd.Next(20, 100);
 
             //Position actuelle
             m_pos = m_Position;
