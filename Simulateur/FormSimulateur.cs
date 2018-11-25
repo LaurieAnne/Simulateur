@@ -96,20 +96,7 @@ namespace Simulateur
 
         private void imgCarte_Paint(object sender, PaintEventArgs e) //Réafficher les objets
         {
-            List<string> enVol = m_scenario.obtenirVehiculesEnVol();
-            string[] infos;
-
-            for (int i = 0; i < enVol.Count - 1; i++)
-            {
-                infos = enVol[i].Split(',');
-                int[] depart = new int[2];
-                depart[0] = Convert.ToInt32(infos[1]);
-                depart[1] = Convert.ToInt32(infos[2]);
-                int[] pos = new int[2];
-                pos[0] = Convert.ToInt32(infos[3]);
-                pos[1] = Convert.ToInt32(infos[4]);
-                dessinerLigne(depart, pos, Color.Black, e);
-            }
+            afficherVehiculesEnVol(e);
 
             /*Random rnd = new Random();
             int x = rnd.Next(15, 885);
@@ -151,6 +138,29 @@ namespace Simulateur
             dest[0] = 600;
             dest[1] = 300;
             dessinerLigneCercle(depart, dest, Color.Black, e);*/
+        }
+
+        private void afficherVehiculesEnVol(PaintEventArgs e) //Afficher tous les véhicules en vol
+        {
+            List<string> enVol = m_scenario.obtenirVehiculesEnVol(); //Véhicules en vol
+            string[] infos; //Infos des véhicules
+
+            for (int i = 0; i < enVol.Count; i++)
+            {
+                infos = enVol[i].Split(',');
+                int[] depart = new int[2];
+                depart[0] = Convert.ToInt32(infos[1]);
+                depart[1] = Convert.ToInt32(infos[2]);
+                int[] pos = new int[2];
+                pos[0] = Convert.ToInt32(infos[3]);
+                pos[1] = Convert.ToInt32(infos[4]);
+                dessinerLigne(depart, pos, Color.Black, e);
+            }
+        }
+
+        private void afficherClients() //Afficher tous les clients
+        {
+
         }
 
         private void dessinerFeu(int p_x, int p_y, PaintEventArgs e) //Dessiner un feu
