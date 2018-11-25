@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,67 +7,54 @@ using System.Windows.Forms;
 
 namespace Simulateur
 {
-    public class HelicoSecours : Vehicule //Véhicule de type Hélicoptère de Secours
+    public class HelicoSecours : Vehicule
     {
-        protected Secours m_client; //Le client Secours
+        protected Secours m_client; //Le client Feu
 
-        /** Constructeur d'un hélicoptère de secours
-         * p_nom: le nom du véhicule
-         * p_KMH: la vitesse de déplacement de l'avion
-         * p_tempsMain: le temps de maintenance
-         * p_couleur: la couleur de la ligne à l'affichage
-         * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
-         */
-        public HelicoSecours(string p_nom, int p_KMH, int p_tempsMain, Aeroport p_aeroport) //Constructeur
-            : base(p_nom, p_KMH, p_tempsMain, Color.Red, p_aeroport)
+        public HelicoSecours(string p_nom, int p_KMH, int p_tempsMain, Aeroport p_aeroport, Secours p_client) //Constructeur
+            : base(p_nom, p_KMH, p_tempsMain, ConsoleColor.Red, p_aeroport)
         {
+            m_client = p_client;
         }
 
-        /**Constructeur vide pour XML
-         */
-        public HelicoSecours() : base() { }
 
-        /** Changer l'État du véhicule (Delegate)
-         *  Passer au prochain État lorsque l'État actuel annonce qu'il est prêt à changer
-         */
+        //Changer d'Etat
         public override void ChangerEtat(object source)
         {
             if (m_client != null)
             {
                 string EtatAvant = m_etat.ToString();
-                int surplus = m_etat.Surplus;
 
                 if (m_etat.ToString() == "Hangar")
                 {
                     PosCarte posDestination = m_client.Position;
                     int tempsVol = m_KMH; //Formule ?
-                    m_etat = new AllerRetour(m_posDepart, m_posDepart, posDestination, tempsVol - surplus, 1, this);
+                    m_etat = new AllerRetour(m_posDepart, m_posDepart, posDestination, tempsVol);
                 }
                 else if (m_etat.ToString() == "AllerRetour")
                 {
-                    m_etat = new Maintenance(m_tempsMaintenance - surplus, this);
+                    m_etat = new Maintenance(m_tempsMaintenance);
                 }
                 else if (m_etat.ToString() == "Maintenance")
                 {
-                    m_etat = new Hangar(0, this);
+                    m_etat = new Hangar(0);
                 }
-                //To delete aide visuel
-                MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
 
-                //S'abonne au nouvel Etat
+                MessageBox.Show(this.m_nom + " : " + EtatAvant + "->" + this.m_etat.ToString() + " ! Temps avant prochaine action: " + this.m_etat.Temps); //Ne pas oublier de delete la référence using System.Windows.Forms;
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
             }
         }
 
 
-        /** Assigne un client au véhicule
-         *  p_client: le client qui lui est assigné
-         */
+        //?Todelete?
         public override void AssignerClient(Client p_client)
         {
             if (p_client is Secours)
                 m_client = (Secours)p_client;
         }
+
+        //Constructeur vide pour XML
+        public HelicoSecours() : base(){}
 
         /** Accesseurs
          */
