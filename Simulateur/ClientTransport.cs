@@ -10,16 +10,40 @@ namespace Simulateur
     {
         protected int m_nbClients; //Le nombre de clients dans l'objet
         protected PosCarte m_posDest; //L'emplacement où il veut se rendre
+        protected PosCarte m_pos; //Position acutelle
 
-        public ClientTransport(PosCarte p_pos, PosCarte p_posDest) : base() //Constructeur
+        protected int m_PosXDest; //Position en X de la destination
+        protected int m_PosYDest; //Position en Y de la destination
+
+        public ClientTransport() : base() //Constructeur
         {
-            m_posDest = p_posDest;
+
         }
 
         public int NbClients
         {
             get { return m_nbClients; }
             set { m_nbClients = value; }
+        }
+
+        public PosCarte Destination
+        {
+            get { return m_posDest; }
+        }
+
+        public PosCarte PositionActuelle
+        {
+            get { return m_pos; }
+        }
+
+        public int PositionXDestination
+        {
+            get { return m_PosXDest; }
+        }
+
+        public int PositionYDestination
+        {
+            get { return m_PosYDest; }
         }
     }
 }

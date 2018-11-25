@@ -8,7 +8,7 @@ namespace Simulateur
 {
     public class Marchandise : ClientTransport
     {
-        public Marchandise(PosCarte p_pos, PosCarte p_posDest) : base(p_pos, p_posDest) //Constructeur
+        public Marchandise() : base() //Constructeur
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];
@@ -25,6 +25,39 @@ namespace Simulateur
 
             //Random pour nombre de clients
             m_nbClients = rnd.Next(20, 100);
+
+            //Position actuelle
+            m_pos = m_Position;
+
+            //Position destination
+            TrouverDestination(m_PosX, m_PosY);
+        }
+
+        private void TrouverDestination(int p_PosX, int p_PosY)
+        {
+            //Taille de l'image 900 par 528
+            int[] Taille = new int[2];
+            Taille[0] = 900;
+            Taille[1] = 528;
+
+            Random rnd = new Random();
+            //Position destination
+            //Nombre random entre 20 et la taille de l'image - 20
+            m_PosXDest = rnd.Next(20, Taille[0] - 20);
+            m_PosYDest = rnd.Next(20, Taille[1] - 20);
+
+            /*Si les coordonnées en X et en Y de la destination et de la position de départ ne sont pas les même 
+              crée la position de la destination, 
+              sinon cherche une autre destination.
+            */
+            if ( (m_PosXDest != m_PosX) || (m_PosYDest != m_PosY) )
+            {
+                m_posDest = new PosCarte(m_PosXDest, m_PosYDest, Taille);
+            }
+            else
+            {
+                TrouverDestination(p_PosX, p_PosY);
+            }
         }
     }
 }
