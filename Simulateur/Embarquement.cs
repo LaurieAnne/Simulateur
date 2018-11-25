@@ -12,7 +12,7 @@ namespace Simulateur
         PosCarte m_destination; //La coordonnée de destination
         PosCarte m_depart; //La coordonnée de départ
 
-        public Embarquement(int p_temps) : base(p_temps) //Constructeur
+        public Embarquement(int p_temps, Vehicule p_vehicule) : base(p_temps, p_vehicule) //Constructeur
         {
         }
 

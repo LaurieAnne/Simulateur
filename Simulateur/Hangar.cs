@@ -8,13 +8,14 @@ namespace Simulateur
 {
     public class Hangar : Etat
     {
-        public Hangar(int p_temps) : base(p_temps) //Constructeur
+        public Hangar(int p_temps, Vehicule p_vehicule) : base(p_temps, p_vehicule) //Constructeur
         {
         }
 
         public override void Avance(int p_val)
         {
-            onEtatFini();
+            //Fait rien on attend
+            //onEtatFini();
         }
 
         public override string ToString()
