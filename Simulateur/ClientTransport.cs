@@ -11,13 +11,15 @@ namespace Simulateur
         protected int m_nbClients; //Le nombre de clients dans l'objet
         protected PosCarte m_posDest; //L'emplacement où il veut se rendre
         protected PosCarte m_pos; //Position acutelle
+        protected Scenario m_scenario; //le scénario actuel
 
         protected int m_PosXDest; //Position en X de la destination
         protected int m_PosYDest; //Position en Y de la destination
 
-        public ClientTransport() : base() //Constructeur
+        public ClientTransport(Scenario p_scenario) : base() //Constructeur
         {
-
+            //Le scénario actuel
+            m_scenario = p_scenario;
         }
 
         public abstract ClientTransport separerClient(int nbClients);
