@@ -16,6 +16,7 @@ namespace Simulateur
         private int m_maxMarchandises; //Maximum de marchandises
         private List<Vehicule> m_vehicules; //Liste de véhicules
         private PosCarte m_pos; //Emplacement de l'aéroport
+        private List<Client> m_clients; //Clients passagers marchandises en attente
 
         public Aeroport(string p_nom, int p_minPass, int p_maxPass, int p_minMarch, int p_maxMarch, PosCarte p_pos) //Constructeur
         {
@@ -95,8 +96,6 @@ namespace Simulateur
             return vehicules;
         }
 
-        //TESTAGE DÉGUEULASSE =>
-
         public void avancerVehicules(int p_temps) //Avancer les véhicules
         {
             for (int i = 0; i < m_vehicules.Count; i++)
@@ -113,7 +112,7 @@ namespace Simulateur
             {
                 if (m_vehicules[i].enVol()) //Si le véhicule est en vol
                 {
-                    string infos = m_vehicules[i].Couleur + "," + m_vehicules[i].obtenirPosVehicule();
+                    string infos = m_vehicules[i].Couleur + "," + m_vehicules[i].obtenirPosVehicule() + "," + m_vehicules[i].Type();
                     vehicules.Add(infos);
                 }
             }
@@ -121,7 +120,25 @@ namespace Simulateur
             return vehicules;
         }
 
-        public bool assignerClient(Client p_client) //Assigner le client à un véhicule
+        public List<string> obtenirClients() //Obtenir les clients de l'aéroport
+        {
+            List<string> clients = new List<string>(); //Infos des clients
+
+            for (int i = 0; i < m_vehicules.Count; i++)
+            {
+                Client client = m_vehicules[i].Client;
+
+                if (client != null) //Si le véhicule a un client
+                {
+                    string infos = client.obtenirInfos();
+                    clients.Add(infos);
+                }
+            }
+
+            return clients;
+        }
+
+        public bool assignerClientPossible(Client p_client) //Si c'est possible d'assigner le client à un véhicule
         {
             string type = p_client.ToString(); //Type du client
 
@@ -129,12 +146,31 @@ namespace Simulateur
             {
                 if ((type == m_vehicules[i].Type()) && m_vehicules[i].disponible()) //Si c'est le bon type
                 {
-                    m_vehicules[i].AssignerClient(p_client);
                     return true;
                 }
             }
 
             return false;
+        }
+
+        public void assignerClient(Client p_client) //Assigner le client à un véhicule
+        {
+            string type = p_client.ToString(); //Type du client
+
+            for (int i = 0; i < m_vehicules.Count; i++)
+            {
+                if ((type == m_vehicules[i].Type()) && m_vehicules[i].disponible()) //Si c'est le bon type
+                {
+                    m_clients.Add(p_client);
+                    m_vehicules[i].AssignerClient(p_client);
+                    return;
+                }
+            }
+        }
+
+        public void assignerClientsTransport() //Assigner les clients de ce type
+        {
+
         }
     }
 }

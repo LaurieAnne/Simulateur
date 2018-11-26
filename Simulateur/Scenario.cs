@@ -56,8 +56,6 @@ namespace Simulateur
             return vehicules;
         }
 
-        //TESTAGE DÉGUEULASSE =>
-
         public void avancerVehicules(int p_temps) //Avancer les véhicules
         {          
             for (int i = 0; i < m_aeroports.Count; i++)
@@ -86,27 +84,37 @@ namespace Simulateur
             return vehicules;
         }
 
+        public List<string> obtenirClients(int p_aeroport) //Obtenir les clients
+        {
+            return m_aeroports[p_aeroport].obtenirClients();
+        }
+
         public void creerClients() //Créer les clients pour le tour
         {
             Random rnd = new Random();
             m_clients.Add(new Feu(rnd));
-            m_clients.Add(new Passager(rnd, this));
-            m_clients.Add(new Marchandise(rnd, this));
             m_clients.Add(new Observateur(rnd));
             m_clients.Add(new Secours(rnd));
-
-            //Somehow ca work weird! xD pas tous les clients se font assigner
-            //même si les avions de bon type existent
-            //Solution: faire la boucle à l'envers #PROG2! :O
-            int compte = m_clients.Count - 1;
-            for (int i = compte; i >= 0; i--)
-            {
-                assignerClient(m_clients[i]);
-                m_clients.Remove(m_clients[i]);
-            }             
+            //m_clients.Add(new Passager(rnd, this)); ajouter dans aeroport plutot
+            //m_clients.Add(new Marchandise(rnd, this));
         }
 
-        public void assignerClient(Client p_client) //Assigner le client à un aéroport proche
+        public void assignerClients() //Assigner les clients en attente
+        {
+            int compte = m_clients.Count - 1; //Nombre de clients à assigner
+
+            for (int i = compte; i >= 0; i--)
+            {
+                if (assignerClient(m_clients[i]))
+                {
+                    m_clients.Remove(m_clients[i]);
+                }
+            }
+
+            //m_aeroports.assignerClients (Passagers et marchandises)
+        }
+
+        private bool assignerClient(Client p_client) //Assigner le client à un aéroport proche
         {
             Aeroport AeroportProche = null; //Aéroport la plus proche
 
@@ -115,9 +123,8 @@ namespace Simulateur
 
             int DistancesX = 0; //Distance entre les X
             int DistancesY = 0; //Distance entre les Y
-            int DistanceTotal = 0; //Distance entre le client et l'aéroport
-            int DistancePlusProche = 9999999; //La distance la moins grande
-            int IndAeroport = 0; //L'aéroport le moins loin
+            int Distance = 0; //Distance entre le client et l'aéroport
+            int DistanceProche = 9999999; //La distance la moins grande
 
             for (int i = 0; i < m_aeroports.Count; i++)
             {
@@ -126,29 +133,32 @@ namespace Simulateur
 
                 DistancesX = Math.Abs(PosX - PosXAeroport);
                 DistancesY = Math.Abs(PosY - PosYAeroport);
-                DistanceTotal = DistancesX + DistancesY;
+                Distance = DistancesX + DistancesY;
 
-                AeroportProche = m_aeroports[i];
-
-                if (DistanceTotal < DistancePlusProche && AeroportProche.assignerClient(p_client)) //Si moins loin
+                if (Distance < DistanceProche && m_aeroports[i].assignerClientPossible(p_client)) //Si moins loin
                 {
-                    DistancePlusProche = DistanceTotal;
-                    IndAeroport = i;
+                    DistanceProche = Distance;
+                    AeroportProche = m_aeroports[i];
                 }
             }          
 
-            /*if (AeroportPlusProche.assignerClient(p_client)) //Si un véhicule est disponible
+            if ((AeroportProche != null) && (AeroportProche.assignerClientPossible(p_client))) //Si un véhicule est disponible
             {
-                m_clients.Remove(p_client);
-            }*/
+                AeroportProche.assignerClient(p_client);
+                return true;
+            }
+
+            return false;
         }
 
-        private void separerClient()
+        private void separerClients()
         {
-            /*for (int i = 0; i < m_clients.)
+            /*
+            for (int i = 0; i < m_clients.)
             {
 
-            }*/
+            }
+            */
         }
     }
 }

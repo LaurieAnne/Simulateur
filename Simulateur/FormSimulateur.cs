@@ -51,6 +51,11 @@ namespace Simulateur
             }
         }
 
+        private void afficherClients()
+        {
+            //afficher les clients dans la lsite selon aeroport
+        }
+
         private void lstAeroports_SelectedValueChanged(object sender, EventArgs e) //sur un changement d'aéroport
         {
             int aeroport = lstAeroports.SelectedIndex; //Aéroport choisi
@@ -96,6 +101,7 @@ namespace Simulateur
 
         private void imgCarte_Paint(object sender, PaintEventArgs e) //Réafficher les objets
         {
+            afficherClients(e);
             afficherVehiculesEnVol(e);
 
             /*Random rnd = new Random();
@@ -158,9 +164,9 @@ namespace Simulateur
             }
         }
 
-        private void afficherClients() //Afficher tous les clients
+        private void afficherClientsSurCarte(PaintEventArgs e) //Afficher tous les clients
         {
-
+            //Boucler sur les aéroports et get leurs clients, afficher leurs images
         }
 
         private void dessinerFeu(int p_x, int p_y, PaintEventArgs e) //Dessiner un feu

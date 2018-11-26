@@ -12,7 +12,7 @@ namespace Simulateur
     public class Simulateur
     {
         private FormMenu m_menu; //Menu
-        private FormSimulateur m_interface;
+        private FormSimulateur m_interface; //Interface
         private Scenario m_scenario; //Façade/Médiateur
         bool todelete = true; //todelete
 
@@ -54,10 +54,13 @@ namespace Simulateur
 
         public void go() //Simuler
         {
-            if (todelete)//To delete prévient de recréer plein de clients à chaque clique
+            if (todelete) //To delete
+            {
                 m_scenario.creerClients();
+            }
 
             todelete = false;
+            m_scenario.assignerClients();
             m_scenario.avancerVehicules(10);
         }
     }
