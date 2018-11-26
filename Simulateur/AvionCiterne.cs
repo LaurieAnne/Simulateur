@@ -47,7 +47,7 @@ namespace Simulateur
 
                 if (m_etat.ToString() == "Hangar")
                 {
-                    PosCarte posDestination = m_client.Position; //Position destination
+                    PosCarte posDestination = m_client.PositionDepart; //Position destination
                     PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
                     int intensite = m_client.IntensiteFeu;
                     int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4;

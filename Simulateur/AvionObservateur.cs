@@ -42,7 +42,7 @@ namespace Simulateur
 
                 if (m_etat.ToString() == "Hangar")
                 {
-                    PosCarte posDestination = m_client.Position;
+                    PosCarte posDestination = m_client.PositionDepart;
                     PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
                     int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4;
                     m_etat = usine.creerObserver(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);

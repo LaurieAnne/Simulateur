@@ -41,7 +41,7 @@ namespace Simulateur
 
                 if (m_etat.ToString() == "Hangar")
                 {
-                    PosCarte posDestination = m_client.Position;
+                    PosCarte posDestination = m_client.PositionDepart;
                     PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
                     int tempsVol = m_KMH; //Formule ?
                     m_etat = usine.creerAllerRetour(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);

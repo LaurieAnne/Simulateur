@@ -22,7 +22,7 @@ namespace Simulateur
             m_PosY = p_rnd.Next(20, Taille[1] - 20);
 
             //La position sur la carte
-            m_Position = new PosCarte(m_PosX, m_PosY, Taille);
+            m_PositionDepart = new PosCarte(m_PosX, m_PosY, Taille);
 
             //Intensité du feu
             m_intensite = p_rnd.Next(1, 3);

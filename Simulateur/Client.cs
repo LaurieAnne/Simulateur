@@ -10,7 +10,7 @@ namespace Simulateur
     {
         protected int m_PosX;
         protected int m_PosY;
-        protected PosCarte m_Position;
+        protected PosCarte m_PositionDepart;
 
         public Client() //Constructeur
         {
@@ -27,9 +27,9 @@ namespace Simulateur
             get { return m_PosY; }
         }
 
-        public PosCarte Position
+        public PosCarte PositionDepart
         {
-            get { return m_Position; }
+            get { return m_PositionDepart; }
         }
 
         /*public override string ToString() //ToString
