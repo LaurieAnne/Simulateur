@@ -20,6 +20,8 @@ namespace Simulateur
 
         }
 
+        public abstract ClientTransport separerClient(int nbClients);
+
         public int NbClients
         {
             get { return m_nbClients; }

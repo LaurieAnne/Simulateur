@@ -51,7 +51,12 @@ namespace Simulateur
             m_PosY = p_PosY;
         }
 
-        public Marchandise separerMarchandise(int nbClients)
+        public Marchandise()
+        {
+
+        }
+
+        public override ClientTransport separerClient(int nbClients)
         {
             this.NbClients = this.NbClients - nbClients;
             return new Marchandise(this.Position, this.Destination, nbClients, this.m_PosX, this.m_PosY);

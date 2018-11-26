@@ -32,6 +32,11 @@ namespace Simulateur
             //TrouverDestination(m_PosX, m_PosY);
         }
 
+        public Passager()
+        {
+
+        }
+
         public Passager(PosCarte p_PosDepart, PosCarte p_PosDestination, int p_nbClients, int p_PosX, int p_PosY) : base() //Constructeur séparer
         {
             //Nombre de clients
@@ -51,7 +56,7 @@ namespace Simulateur
             m_PosY = p_PosY;
         }
 
-            public Passager separerPassager(int nbClients)
+        public override ClientTransport separerClient(int nbClients)
         {
             this.NbClients = this.NbClients - nbClients;
             return new Passager(this.Position, this.Destination, nbClients, this.m_PosX, this.m_PosY);
