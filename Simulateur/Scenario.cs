@@ -10,11 +10,13 @@ namespace Simulateur
     {
         private List<Aeroport> m_aeroports; //Liste d'aéroports
         private List<Client> m_clients; //Liste de clients
+        private List<PosCarte> m_posAeroports; //Liste de positions des aéroports
 
         public Scenario() //Constructeur
         {
             m_aeroports = new List<Aeroport>();
             m_clients = new List<Client>();
+            m_posAeroports = new List<PosCarte>();
         }
 
         public List<Aeroport> ListeAeroports
@@ -84,19 +86,32 @@ namespace Simulateur
             return vehicules;
         }
 
-        public List<string> obtenirClients(int p_aeroport) //Obtenir les clients
+        /*public List<string> obtenirClients(int p_aeroport) //Obtenir les clients
         {
             return m_aeroports[p_aeroport].obtenirClients();
-        }
+        }*/
 
         public void creerClients() //Créer les clients pour le tour
         {
+            trouverPositionAeroports();
+
             Random rnd = new Random();
+
+            //Créer les clients
+            Passager lePassager = new Passager(rnd);
+            lePassager.TrouverDestination(m_posAeroports);
+            lePassager.TrouverDepart(m_posAeroports);
+
+
+            Marchandise laMarchandise = new Marchandise(rnd);
+            laMarchandise.TrouverDestination(m_posAeroports);
+            laMarchandise.TrouverDepart(m_posAeroports);
+
             m_clients.Add(new Feu(rnd));
+            m_clients.Add(lePassager);
+            m_clients.Add(laMarchandise);
             m_clients.Add(new Observateur(rnd));
             m_clients.Add(new Secours(rnd));
-            //m_clients.Add(new Passager(rnd, this)); ajouter dans aeroport plutot
-            //m_clients.Add(new Marchandise(rnd, this));
         }
 
         public void assignerClients() //Assigner les clients en attente
@@ -151,14 +166,17 @@ namespace Simulateur
             return false;
         }
 
-        private void separerClients()
+        private void trouverPositionAeroports() //Trouver les positions des aéroports sur la carte
         {
-            /*
-            for (int i = 0; i < m_clients.)
+            for (int i = 0; i < m_aeroports.Count; i++)
             {
-
+                m_posAeroports.Add(m_aeroports[i].Pos);
             }
-            */
+        }
+
+        public List<PosCarte> ListePositionAeroports
+        {
+            get { return m_posAeroports; }
         }
     }
 }
