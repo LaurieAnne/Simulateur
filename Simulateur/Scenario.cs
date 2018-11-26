@@ -90,15 +90,16 @@ namespace Simulateur
         {
             Random rnd = new Random();
             m_clients.Add(new Feu(rnd));
-            m_clients.Add(new Passager(rnd));
-            m_clients.Add(new Marchandise(rnd));
+            m_clients.Add(new Passager(rnd, this));
+            m_clients.Add(new Marchandise(rnd, this));
             m_clients.Add(new Observateur(rnd));
             m_clients.Add(new Secours(rnd));
 
             //Somehow ca work weird! xD pas tous les clients se font assigner
             //même si les avions de bon type existent
             //Solution: faire la boucle à l'envers #PROG2! :O
-            for (int i = m_clients.Count - 1; i >= 0; i--)
+            int compte = m_clients.Count - 1;
+            for (int i = compte; i >= 0; i--)
             {
                 assignerClient(m_clients[i]);
                 m_clients.Remove(m_clients[i]);
