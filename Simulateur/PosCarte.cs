@@ -91,13 +91,27 @@ namespace Simulateur
             return longi;
         }
 
+        public override string ToString() //ToString
+        {
+            char[] cadran = obtenirCadran();
+            int lat = obtenirLat(cadran[0]);
+            int longi = obtenirLongi(cadran[1]);
+            string coord = lat + "°" + cadran[0] + " " + longi + "°" + cadran[1];
+            return coord;
+        }
+
         public void changerPosition(PosCarte p_depart, PosCarte p_destination, int p_vitesse, int p_temps) //Changer la position selon la vitesse et le temps
         {
             int distance = p_vitesse * (p_temps / 10); //Le % de complété
             int distancex = p_destination.X - p_depart.X; //La distance en x entre le depart et la destination
             int distancey = p_destination.Y - p_depart.Y; //La distance en y entre le depart et la destination
-            char directionx = (p_depart.X > p_destination.X) ? 'g' : 'd'; ; //Direction Gauche Droite
+            char directionx = (p_depart.X > p_destination.X) ? 'g' : 'd'; //Direction Gauche Droite
             char directiony = (p_depart.Y > p_destination.Y) ? 'h' : 'b'; //Direction Haut Bas
+
+
+            double a = (double)distancey / (double)distancex;
+            double b = (p_depart.Y - (a * p_depart.X));
+
 
             //Direction gauche
             if (directionx == 'd')
@@ -121,7 +135,7 @@ namespace Simulateur
                 if (this.m_y <= p_destination.Y)
                     this.m_y = p_destination.Y;
                 else
-                    this.m_y += (distance * distancey) / 100;
+                    this.m_y = (int)(a * m_x + b);//this.m_y += (distance * distancey) / 100;
             }
             //Direction bas
             else
@@ -129,17 +143,8 @@ namespace Simulateur
                 if (this.m_y >= p_destination.Y)
                     this.m_y = p_destination.Y;
                 else
-                    this.m_y += (distance * distancey) / 100;
+                    this.m_y = (int)(a * m_x + b);//this.m_y += (distance * distancey) / 100;
             }
-        }
-
-        public override string ToString() //ToString
-        {
-            char[] cadran = obtenirCadran();
-            int lat = obtenirLat(cadran[0]);
-            int longi = obtenirLongi(cadran[1]);
-            string coord = lat + "°" + cadran[0] + " " + longi + "°" + cadran[1];
-            return coord;
         }
 
         public static int Distance(PosCarte p_depart, PosCarte p_destination)
