@@ -101,7 +101,7 @@ namespace Simulateur
 
         private void imgCarte_Paint(object sender, PaintEventArgs e) //Réafficher les objets
         {
-            afficherClients(e);
+            afficherClientsSurCarte(e);
             afficherVehiculesEnVol(e);
 
             /*Random rnd = new Random();
