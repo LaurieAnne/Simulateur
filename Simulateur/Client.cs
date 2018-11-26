@@ -39,5 +39,16 @@ namespace Simulateur
             client = m_Nom + " (" + coord + ")";
             return client;
         }*/
+
+
+        /*
+            type : Passager, marchandise, feu, etc
+
+            si Passager ou marchandise mettre la quantité 
+
+            et poisition en tout temps
+
+            séparer par des virgule pas d'espaces
+        */
     }
 }

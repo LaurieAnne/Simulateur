@@ -94,9 +94,14 @@ namespace Simulateur
                     PosY = p_ListePosAeroport[Aeroport1ind].Y;
                     m_pos = new PosCarte(PosX, PosY, Taille);
 
-                    m_PosXDest = PosX;
-                    m_PosYDest = PosY;
+                    m_PositionDepart = m_pos;
+
+                    m_PosX = PosX;
+                    m_PosY = PosY;
+
                 }
+                else
+                    Aeroport1ind = rnd.Next(0, p_ListePosAeroport.Count);
             }
         }
 
