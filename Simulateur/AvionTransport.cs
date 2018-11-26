@@ -57,7 +57,7 @@ namespace Simulateur
                 }
                 else if (m_etat.ToString() == "Embarquement")
                 {
-                    PosCarte posDestination = m_client.Position;
+                    PosCarte posDestination = m_client.Destination;
                     PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
 
                     int nbClients = m_client.NbClients;
