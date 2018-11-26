@@ -40,15 +40,23 @@ namespace Simulateur
             return client;
         }*/
 
+        public string obtenirInfoClient()
+        {
+            //Renvoi Type,PositionX,PositionY
 
-        /*
-            type : Passager, marchandise, feu, etc
 
-            si Passager ou marchandise mettre la quantité 
+            //Le type du client
+            string TypeClient;
+            TypeClient = this.ToString();
 
-            et poisition en tout temps
+            //La position actuel du client X,Y 
+            string PositionClient;
+            PositionClient = this.PositionX + "," + this.PositionY;
 
-            séparer par des virgule pas d'espaces
-        */
+            //La chaîne complète
+            string InfosClient = TypeClient + "," + PositionClient;
+
+            return InfosClient;
+        }
     }
 }

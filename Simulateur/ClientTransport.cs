@@ -139,6 +139,29 @@ namespace Simulateur
             }
         }
 
+        public string obtenirInfoClientTransport()
+        {
+            //Renvoi Type,PositionX,PositionY,nbClients
+
+
+            //Le type du client
+            string TypeClient;
+            TypeClient = this.ToString();
+
+            //La position actuel du client X,Y 
+            string PositionClient;
+            PositionClient = this.PositionX + "," + this.PositionY;
+
+            //Le nombre de clients (passagers ou marchandises)
+            string nbClients;
+            nbClients = this.NbClients.ToString();
+
+            //La chaîne complète
+            string InfosClient = TypeClient + "," + PositionClient + "," + nbClients;
+
+            return InfosClient;
+        }
+
         public abstract ClientTransport separerClient(int nbClients);
 
         public int NbClients
