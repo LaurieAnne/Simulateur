@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ListeAeroports>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Feu1</Nom>
+          <KMH>5</KMH>
+          <Maintenance>50</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>253</X>
+            <Y>184</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>25</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observer 1</Nom>
+          <KMH>10</KMH>
+          <Maintenance>15</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>253</X>
+            <Y>184</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passagers MTL 1</Nom>
+          <KMH>5</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>253</X>
+            <Y>184</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>Montreal</Nom>
+      <MinPass>111</MinPass>
+      <MaxPass>1111</MaxPass>
+      <MinMarch>111</MinMarch>
+      <MaxMarch>1111</MaxMarch>
+      <Pos>
+        <X>253</X>
+        <Y>184</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Feu2</Nom>
+          <KMH>5</KMH>
+          <Maintenance>50</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>429</X>
+            <Y>200</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>25</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Secours 1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>30</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>429</X>
+            <Y>200</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise Paris 1</Nom>
+          <KMH>2</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>429</X>
+            <Y>200</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>120</Embarquement>
+          <Debarquement>120</Debarquement>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>Paris</Nom>
+      <MinPass>222</MinPass>
+      <MaxPass>2222</MaxPass>
+      <MinMarch>222</MinMarch>
+      <MaxMarch>2222</MaxMarch>
+      <Pos>
+        <X>429</X>
+        <Y>200</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+  </ListeAeroports>
+</Scenario>
