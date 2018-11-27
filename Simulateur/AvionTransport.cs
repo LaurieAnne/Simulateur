@@ -10,6 +10,8 @@ namespace Simulateur
 {
     public abstract class AvionTransport : Vehicule //Véhicule de type transport
     {
+        const int nbMax = 500; //Le nombre maximum de clients (passager/marchandises)
+        const double pourcentage = 0.75; //Le % avant d'être prêt à partir
         protected int m_tempsEmbarquement; //Temps d'embarquement
         protected int m_tempsDebarquement; //Temps de débarquement
         protected ClientTransport m_client; //Le client de transport
@@ -24,8 +26,8 @@ namespace Simulateur
          * p_tempsEmb: le temps d'embarquement de l'avion
          * p_tempsDeb: le temps de debarquement de l'avion
          */
-        public AvionTransport(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, Color p_couleur, PosCarte p_posAeroport) //Constructeur
-            : base(p_nom, p_KMH, p_tempsMain, p_couleur, p_posAeroport)
+        public AvionTransport(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, Color p_couleur, PosCarte p_posAeroport, Scenario p_scenario) //Constructeur
+            : base(p_nom, p_KMH, p_tempsMain, p_couleur, p_posAeroport, p_scenario)
         {
             m_tempsEmbarquement = p_tempsEmb;
             m_tempsDebarquement = p_tempsDeb;
@@ -43,7 +45,7 @@ namespace Simulateur
          */
         public override void ChangerEtat(object source)
         {
-            if (m_client != null)
+            if ((m_client != null) && (m_client.NbClients >= (nbMax * pourcentage)))
             {
                 string EtatAvant = m_etat.ToString();
                 int surplus = m_etat.Surplus;
@@ -82,6 +84,7 @@ namespace Simulateur
                 else if (m_etat.ToString() == "Maintenance")
                 {
                     m_etat = usine.creerHangar(this);
+                    m_client = null;
                     this.ResetEtat();
                     //To delete aide visuel
                     //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
@@ -112,6 +115,11 @@ namespace Simulateur
         {
             get { return m_tempsDebarquement; }
             set { m_tempsDebarquement = value; }
+        }
+
+        public Client Client
+        {
+            get { return m_client; }
         }
     }
 }
