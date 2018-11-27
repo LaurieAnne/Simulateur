@@ -143,7 +143,7 @@ namespace Simulateur
             //Direction haut
             if (directiony == 'h')
             {
-                this.m_y = (int)(a * m_x + b);//this.m_y += (distance * distancey) / 100;
+                this.m_y = (int)Math.Floor((double)(a * m_x + b));//this.m_y += (distance * distancey) / 100;
 
                 if (this.m_y <= p_destination.Y)
                     this.m_y = p_destination.Y;
@@ -151,7 +151,7 @@ namespace Simulateur
             //Direction bas
             else
             {
-                this.m_y = (int)(a * m_x + b);//this.m_y += (distance * distancey) / 100;
+                this.m_y = (int)Math.Ceiling((double)(a * m_x + b));//this.m_y += (distance * distancey) / 100;
 
                 if (this.m_y >= p_destination.Y)
                     this.m_y = p_destination.Y;

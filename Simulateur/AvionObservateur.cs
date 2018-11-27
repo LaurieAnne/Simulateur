@@ -50,19 +50,23 @@ namespace Simulateur
                 m_etat = usine.creerObserver(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Observation")
             {
                 m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Maintenance")
             {
                 m_etat = usine.creerHangar(this);
                 m_client = null;
                 ResetClient();
-                ResetEtat();
+                //ResetEtat();
                 //To delete aide visuel
                 //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
             }

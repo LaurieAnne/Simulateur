@@ -85,7 +85,7 @@ namespace Simulateur
             {
                 m_etat = usine.creerHangar(this);
                 ResetClient();
-                ResetEtat();
+                //ResetEtat();
                 //To delete aide visuel
                 //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
             }
@@ -124,6 +124,16 @@ namespace Simulateur
         public override void ResetClient()
         {
             m_client = null;
+        }
+
+        public int CapaciteMaximum
+        {
+            get{return nbMax; }
+        }
+
+        public int CapaciteMinimale
+        {
+            get { return (int)(nbMax * pourcentage); }
         }
     }
 }

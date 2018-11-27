@@ -145,14 +145,19 @@ namespace Simulateur
             return m_etat.obtenirPosVehicule();
         }
 
-        public bool disponible() //Si c'est disponible
-        {
-            return (m_etat is Hangar);
-        }
-
         public void ResetEtat()
         {
             m_etat = null;
+        }
+
+        /*public bool disponible() //Si c'est disponible
+        {
+            return (m_etat is Hangar);
+        }*/
+
+        public bool disponible() //Si c'est disponible
+        {
+            return ((m_etat is Hangar) && (Client() == null));
         }
 
         public abstract void ResetClient();

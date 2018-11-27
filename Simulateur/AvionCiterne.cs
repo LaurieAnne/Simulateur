@@ -54,18 +54,22 @@ namespace Simulateur
                 m_etat = usine.creerAllerRetour(m_posDepart, posActuelle, posDestination, tempsVol, surplus, intensite, this);
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "AllerRetour")
             {
                 m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Maintenance")
             {
                 m_etat = usine.creerHangar(this);
                 ResetClient();
-                ResetEtat();
+                //ResetEtat();
                 //To delete aide visuel
                 //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
             }

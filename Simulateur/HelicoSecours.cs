@@ -35,36 +35,37 @@ namespace Simulateur
          */
         public override void ChangerEtat(object source)
         {
-            //if (m_client != null)
+            string EtatAvant = m_etat.ToString();
+            int surplus = m_etat.Surplus;
+            Usine usine = Usine.obtenirUsine();
+
+            if (m_etat.ToString() == "Hangar" && m_client != null)
             {
-                string EtatAvant = m_etat.ToString();
-                int surplus = m_etat.Surplus;
-                Usine usine = Usine.obtenirUsine();
+                PosCarte posDestination = m_client.PositionDepart;
+                PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
+                int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4; //Formule ?
+                m_etat = usine.creerAllerRetour(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);
+                //S'abonne au nouvel événement
+                m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
+            }
+            else if (m_etat.ToString() == "AllerRetour")
+            {
+                m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
+                //S'abonne au nouvel événement
+                m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
+            }
+            else if (m_etat.ToString() == "Maintenance")
+            {
+                m_etat = usine.creerHangar(this);
+                ResetClient();
+                //ResetEtat();
+                //To delete aide visuel
+                //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
 
-                if (m_etat.ToString() == "Hangar" && m_client != null)
-                {
-                    PosCarte posDestination = m_client.PositionDepart;
-                    PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
-                    int tempsVol = m_KMH; //Formule ?
-                    m_etat = usine.creerAllerRetour(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);
-                    //S'abonne au nouvel événement
-                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
-                }
-                else if (m_etat.ToString() == "AllerRetour")
-                {
-                    m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
-                    //S'abonne au nouvel événement
-                    m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
-                }
-                else if (m_etat.ToString() == "Maintenance")
-                {
-                    m_etat = usine.creerHangar(this);
-                    ResetClient();
-                    ResetEtat();
-                    //To delete aide visuel
-                    //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
-
-                }
             }
         }
 

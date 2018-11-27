@@ -15,7 +15,8 @@ namespace Simulateur
         public override void Avance(int p_val)
         {
             //Fait rien on attend
-            onEtatFini();
+            if (m_vehicule.Client() != null)
+                onEtatFini();
         }
 
         public override string ToString()

@@ -30,14 +30,22 @@ namespace Simulateur
 
         public virtual void Avance(int p_temps)
         {
-            int temps = m_temps; //Temps actuel
             int m_surplus = 0; //Temps de surplus après modification
-            m_temps -= p_temps;
 
-            if (m_temps <= 0)
+            if (p_temps > m_temps)
             {
-                m_surplus = p_temps - temps;
+                m_surplus = p_temps - m_temps;
                 onEtatFini();
+            }
+            else
+            {
+                m_temps -= p_temps;
+
+                if (m_temps <= 0)
+                {
+                    m_surplus = p_temps - m_temps;
+                    onEtatFini();
+                }
             }
         }
 
@@ -50,6 +58,7 @@ namespace Simulateur
         public int Surplus
         {
             get { return m_surplus; }
+            set { m_surplus = value; }
         }
 
         public virtual string obtenirPosVehicule() //Obtenir les stats de pos véhicule

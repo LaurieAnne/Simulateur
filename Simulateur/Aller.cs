@@ -23,15 +23,22 @@ namespace Simulateur
 
         public override void Avance(int p_val)
         {
-            //Ajuster la position actuelle de l'avion
-            m_posActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
-
-            string posActuelle = m_posActuelle.Coords();
-            string posDestination = m_posDestination.Coords();
-
-            if (posActuelle == posDestination)
+            if (p_val > m_temps)
             {
-                onEtatFini();//Avertir les abonnées que l'Etat est terminé
+                m_surplus = p_val - m_temps;
+                onEtatFini();
+            }
+            else { 
+                //Ajuster la position actuelle de l'avion
+                m_posActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
+
+                string posActuelle = m_posActuelle.Coords();
+                string posDestination = m_posDestination.Coords();
+
+                if (posActuelle == posDestination)
+                {
+                    onEtatFini();//Avertir les abonnées que l'Etat est terminé
+                }
             }
         }
 

@@ -27,39 +27,47 @@ namespace Simulateur
 
         public override void Avance(int p_val)
         {
-            //Si sur l'aller
-            if (aller)
+            if (p_val > m_temps)
             {
-                //Ajuster la position actuelle de l'avion
-                m_posActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
-
-                //Retourner au point de départ
-                string posActuelle = m_posActuelle.Coords();
-                string posDestination = m_posDestination.Coords();
-
-                if (posActuelle == posDestination)
-                {
-                    aller = !aller;
-                    m_compteur--;
-                    if (m_compteur == 0)
-                        m_vehicule.ResetClient();
-                }
+                m_surplus = p_val - m_temps;
+                onEtatFini();
             }
-            //Si sur le retour
             else
             {
-                m_posActuelle.changerPosition(m_posDestination, m_posDepart, m_vehicule.KMH, p_val);
-
-                //Retourner au point à la destination
-                string posActuelle = m_posActuelle.Coords();
-                string posDepart = m_posDepart.Coords();
-
-                if (posActuelle == posDepart) //Aller retour complété
+                //Si sur l'aller
+                if (aller)
                 {
-                    if (m_compteur > 0)
+                    //Ajuster la position actuelle de l'avion
+                    m_posActuelle.changerPosition(m_posDepart, m_posDestination, m_vehicule.KMH, p_val);
+
+                    //Retourner au point de départ
+                    string posActuelle = m_posActuelle.Coords();
+                    string posDestination = m_posDestination.Coords();
+
+                    if (posActuelle == posDestination)
+                    {
                         aller = !aller;
-                    else
-                        onEtatFini();
+                        m_compteur--;
+                        if (m_compteur == 0)
+                            m_vehicule.ResetClient();
+                    }
+                }
+                //Si sur le retour
+                else
+                {
+                    m_posActuelle.changerPosition(m_posDestination, m_posDepart, m_vehicule.KMH, p_val);
+
+                    //Retourner au point à la destination
+                    string posActuelle = m_posActuelle.Coords();
+                    string posDepart = m_posDepart.Coords();
+
+                    if (posActuelle == posDepart) //Aller retour complété
+                    {
+                        if (m_compteur > 0)
+                            aller = !aller;
+                        else
+                            onEtatFini();
+                    }
                 }
             }
         }
