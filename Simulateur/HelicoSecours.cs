@@ -57,6 +57,7 @@ namespace Simulateur
                 else if (m_etat.ToString() == "Maintenance")
                 {
                     m_etat = usine.creerHangar(this);
+                    m_client = null;
                     this.ResetEtat();
                     //To delete aide visuel
                     //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
