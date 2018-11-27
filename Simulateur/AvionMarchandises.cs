@@ -43,5 +43,6 @@ namespace Simulateur
         {
             return "Marchandises";
         }
+
     }
 }

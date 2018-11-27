@@ -154,5 +154,7 @@ namespace Simulateur
         {
             m_etat = null;
         }
+
+        public abstract Client Client();
     }
 }

@@ -107,10 +107,9 @@ namespace Simulateur
             return "Feu";
         }
 
-        public Feu Client
+        public override Client Client()
         {
-            get { return m_client; }
-            set { m_client = value; }
+            return m_client;
         }
     }
 }

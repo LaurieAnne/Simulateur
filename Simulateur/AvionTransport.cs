@@ -117,10 +117,9 @@ namespace Simulateur
             set { m_tempsDebarquement = value; }
         }
 
-        public ClientTransport Client
+        public override Client Client()
         {
-            get { return m_client; }
-            set { m_client = value; }
+            return m_client;
         }
     }
 }
