@@ -75,11 +75,7 @@ namespace Simulateur
         /** Assigne un client au véhicule
          *  p_client: le client qui lui est assigné
          */
-        public virtual void AssignerClient(Client p_client) { }
-        public virtual void AssignerClient(ClientTransport p_client) { }
-        public virtual void AssignerClient(Feu p_client) { }
-        public virtual void AssignerClient(Secours p_client) { }
-        public virtual void AssignerClient(Observateur p_client) { }
+        public abstract void AssignerClient(Client p_client);
 
 
         /** Accesseurs
@@ -129,7 +125,7 @@ namespace Simulateur
         public override string ToString()
         {
             string vehicule;
-            vehicule = m_nom + " (Véhicule)";
+            vehicule = m_nom + " (Véhicule), " + m_etat.ToString();
             return vehicule;
         }
 

@@ -35,7 +35,7 @@ namespace Simulateur
         public override string ToString() //ToString
         {
             string vehicule;
-            vehicule = m_nom + " (Marchandises)";
+            vehicule = m_nom + " (Marchandises)->(" + m_etat.ToString() + ")";
             return vehicule;
         }
 
