@@ -113,37 +113,48 @@ namespace Simulateur
             double b = (p_depart.Y - (a * p_depart.X));
 
 
-            //Direction gauche
+            //Direction droite
             if (directionx == 'd')
             {
+                double value = (distance * distancex) / 100;
+
+                if (value >= 1 || value <= -1)
+                    this.m_x += (distance * distancex) / 100;
+                else
+                    this.m_x++;
+
                 if (this.m_x >= p_destination.X)
                     this.m_x = p_destination.X;
-                else
-                    this.m_x += (distance * distancex) / 100;
             }
-            //Direction droite
+            //Direction gauche
             else
             {
+                this.m_x += (distance * distancex) / 100;
+                double value = (distance * distancex) / 100;
+
+                if (value >= 1 || value <= -1)
+                    this.m_x += (distance * distancex) / 100;
+                else
+                    this.m_x--;
+
                 if (this.m_x <= p_destination.X)
                     this.m_x = p_destination.X;
-                else
-                    this.m_x += (distance * distancex) / 100;
             }
             //Direction haut
             if (directiony == 'h')
             {
+                this.m_y = (int)(a * m_x + b);//this.m_y += (distance * distancey) / 100;
+
                 if (this.m_y <= p_destination.Y)
                     this.m_y = p_destination.Y;
-                else
-                    this.m_y = (int)(a * m_x + b);//this.m_y += (distance * distancey) / 100;
             }
             //Direction bas
             else
             {
+                this.m_y = (int)(a * m_x + b);//this.m_y += (distance * distancey) / 100;
+
                 if (this.m_y >= p_destination.Y)
                     this.m_y = p_destination.Y;
-                else
-                    this.m_y = (int)(a * m_x + b);//this.m_y += (distance * distancey) / 100;
             }
         }
 
