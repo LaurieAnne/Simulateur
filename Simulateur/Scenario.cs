@@ -10,19 +10,23 @@ namespace Simulateur
     {
         private List<Aeroport> m_aeroports; //Liste d'aéroports
         private List<Client> m_clients; //Liste de clients
-        private List<PosCarte> m_posAeroports; //Liste de positions des aéroports
 
         public Scenario() //Constructeur
         {
             m_aeroports = new List<Aeroport>();
             m_clients = new List<Client>();
-            m_posAeroports = new List<PosCarte>();
         }
 
-        public List<Aeroport> ListeAeroports
+        public List<Aeroport> ListeAeroports //Accesseur aéroports
         {
             get { return m_aeroports; }
             set { m_aeroports = value; }
+        }
+
+        public List<Client> ListeClients //Accesseur clients
+        {
+            get { return m_clients; }
+            set { m_clients = value; }
         }
 
         public void assignerScenario() //Assigner le scénario à tous les véhicules
@@ -47,7 +51,7 @@ namespace Simulateur
             return aeroports;
         }
 
-        public string[] obtenirPosAeroports() //Obtenir l'emplacement de l'aéroport
+        public string[] obtenirPosAeroports() //Obtenir l'emplacement des aéroports
         {
             string[] aeroports = new string[m_aeroports.Count]; //Les infos de tous les aéroports
             string aeroport; //Les infos de l'aéroport
@@ -103,25 +107,42 @@ namespace Simulateur
 
         public void creerClients() //Créer les clients pour le tour
         {
-            trouverPositionAeroports();
-
             Random rnd = new Random();
-
-            //Créer les clients
-            Passager lePassager = new Passager(rnd);
-            lePassager.TrouverDestination(m_posAeroports);
-            lePassager.TrouverDepart(m_posAeroports);
-
-
-            Marchandise laMarchandise = new Marchandise(rnd);
-            laMarchandise.TrouverDestination(m_posAeroports);
-            laMarchandise.TrouverDepart(m_posAeroports);
-
             m_clients.Add(new Feu(rnd));
-            m_clients.Add(lePassager);
-            m_clients.Add(laMarchandise);
+            m_clients.Add(new Feu(rnd));
+            m_clients.Add(new Feu(rnd));
+            m_clients.Add(new Observateur(rnd));
             m_clients.Add(new Observateur(rnd));
             m_clients.Add(new Secours(rnd));
+            m_clients.Add(new Secours(rnd));
+
+            List<PosCarte> posAeroports = aeroportsPosListe(); //Liste de pos
+            creerPassager(rnd, posAeroports);
+            creerMarchandise(rnd, posAeroports);
+        }
+
+        private void creerPassager(Random p_rnd, List<PosCarte> p_posAeroports) //Créer un client passager
+        {
+            Passager passager = new Passager(p_rnd); //Passager
+            Aeroport aeroport; //Aéroport de départ
+
+            passager.TrouverDestination(p_posAeroports);
+            passager.TrouverDepart(p_posAeroports);
+            aeroport = aeroportCorrespondant(passager.PositionDepart);
+
+            aeroport.ajouterClient(passager); //Ajouter dans l'aéroport
+        }
+
+        private void creerMarchandise(Random p_rnd, List<PosCarte> p_posAeroports) //Créer un client marchandise
+        {
+            Marchandise marchandise = new Marchandise(p_rnd); //Passager
+            Aeroport aeroport; //Aéroport de départ
+
+            marchandise.TrouverDestination(p_posAeroports);
+            marchandise.TrouverDepart(p_posAeroports);
+            aeroport = aeroportCorrespondant(marchandise.PositionDepart);
+
+            aeroport.ajouterClient(marchandise); //Ajouter dans l'aéroport
         }
 
         public void assignerClients() //Assigner les clients en attente
@@ -136,7 +157,10 @@ namespace Simulateur
                 }
             }
 
-            //m_aeroports.assignerClients (Passagers et marchandises)
+            for (int i = 0; i < m_aeroports.Count; i++) //Transport
+            {
+                m_aeroports[i].assignerClientsTransport();
+            }
         }
 
         private bool assignerClient(Client p_client) //Assigner le client à un aéroport proche
@@ -176,17 +200,33 @@ namespace Simulateur
             return false;
         }
 
-        private void trouverPositionAeroports() //Trouver les positions des aéroports sur la carte
+        private List<PosCarte> aeroportsPosListe() //Lister les emplacements des aéroports
         {
+            List<PosCarte> posAeroports = new List<PosCarte>();
+
             for (int i = 0; i < m_aeroports.Count; i++)
             {
-                m_posAeroports.Add(m_aeroports[i].Pos);
+                posAeroports.Add(m_aeroports[i].Pos);
             }
+
+            return posAeroports;
         }
 
-        public List<PosCarte> ListePositionAeroports
+        private Aeroport aeroportCorrespondant(PosCarte p_pos) //Trouver l'aéroport correspondant aux coordonnées
         {
-            get { return m_posAeroports; }
+            Aeroport aeroport = null; //Aéroport
+
+            for (int i = 0; i < m_aeroports.Count; i++)
+            {
+                PosCarte posAero = m_aeroports[i].Pos; //Emplacement aéroport
+
+                if ((posAero.X == p_pos.X) && (posAero.Y == p_pos.Y)) //Si c'est le même emplacement
+                {
+                    aeroport = m_aeroports[i];
+                }
+            }
+
+            return aeroport;
         }
     }
 }

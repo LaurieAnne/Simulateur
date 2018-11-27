@@ -57,6 +57,7 @@ namespace Simulateur
             List<string> clients = m_scenario.obtenirClients(aeroport); //Liste des clients
             string client = ""; //Le client
             string type; //Type client
+            string qte; //Quantité de clients
 
             lstCl.Items.Clear();
 
@@ -67,19 +68,21 @@ namespace Simulateur
                 switch (type)
                 {
                     case "Passagers":
-                        client = "Avion de Passagers";
+                        qte = clients[i].Split(',')[3];
+                        client = qte + " passagers";
                         break;
                     case "Marchandises":
-                        client = "Avion de Marchandises";
+                        qte = clients[i].Split(',')[3];
+                        client = qte + " marchandises";
                         break;
                     case "Observation":
-                        client = "Avion Observateur";
+                        client = "Observateur";
                         break;
                     case "Feu":
-                        client = "Avion Pompier";
+                        client = "Feu";
                         break;
                     case "Secours":
-                        client = "Avion de Secours";
+                        client = "Secours";
                         break;
                 }
 

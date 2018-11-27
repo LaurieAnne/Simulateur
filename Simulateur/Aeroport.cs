@@ -16,7 +16,7 @@ namespace Simulateur
         private int m_maxMarchandises; //Maximum de marchandises
         private List<Vehicule> m_vehicules; //Liste de véhicules
         private PosCarte m_pos; //Emplacement de l'aéroport
-        private List<Client> m_clients; //Clients passagers marchandises en attente
+        private List<Client> m_clients; //Clients passagers et marchandises en attente
         private Scenario m_scenario; //Référence au scénario
 
         public Aeroport(string p_nom, int p_minPass, int p_maxPass, int p_minMarch, int p_maxMarch, PosCarte p_pos) //Constructeur
@@ -30,12 +30,12 @@ namespace Simulateur
             m_pos = p_pos;
         }
 
-        public Aeroport()
+        public Aeroport() //Constructeur vide xml
         {
             m_clients = new List<Client>();
         }
 
-        public void assignerScenarioVehicules() 
+        public void assignerScenarioVehicules() //Assigner le scénario aux véhicules
         {
             int compteVehicules = m_vehicules.Count;
             for (int i = 0; i < compteVehicules; i++)
@@ -45,49 +45,55 @@ namespace Simulateur
             }
         }
 
-        public Scenario Scenario
+        public Scenario Scenario //Accesseur scénario
         {
             get { return m_scenario; }
             set { m_scenario = value; }
         }
 
-        public List<Vehicule> ListeVehicules
+        public List<Client> ListeClients //Accesseur clients
+        {
+            get { return m_clients; }
+            set { m_clients = value; }
+        }
+
+        public List<Vehicule> ListeVehicules //Accesseur véhicules
         {
             get { return m_vehicules; }
             set { m_vehicules = value; }
         }
 
-        public string Nom
+        public string Nom //Accesseur nom
         {
             get { return m_nom; }
             set { m_nom = value; }
         }
 
-        public int MinPass
+        public int MinPass //Accesseur min passagers
         {
             get { return m_minPassagers; }
             set { m_minPassagers = value; }
         }
 
-        public int MaxPass
+        public int MaxPass //Accesseur max passagers
         {
             get { return m_maxPassagers; }
             set { m_maxPassagers = value; }
         }
 
-        public int MinMarch
+        public int MinMarch //Accesseur min marchandises
         {
             get { return m_minMarchandises; }
             set { m_minMarchandises = value; }
         }
 
-        public int MaxMarch
+        public int MaxMarch //Accesseur max marchandises
         {
             get { return m_maxMarchandises; }
             set { m_maxMarchandises = value; }
         }
 
-        public PosCarte Pos
+        public PosCarte Pos //Accesseur emplacement
         {
             get { return m_pos; }
             set { m_pos = value; }
@@ -113,7 +119,7 @@ namespace Simulateur
             return vehicules;
         }
 
-        public void avancerVehicules(int p_temps) //Avancer les véhicules
+        public void avancerVehicules(int p_temps) //Avancer tous les véhicules
         {
             for (int i = 0; i < m_vehicules.Count; i++)
             {
@@ -146,9 +152,8 @@ namespace Simulateur
                 Client client = m_vehicules[i].Client();
 
                 if (client != null) //Si le véhicule a un client
-                {
-                    string infos = client.obtenirInfoClient();
-                    clients.Add(infos);
+                {                  
+                    clients.Add(client.obtenirInfos());
                 }
             }
 
@@ -178,16 +183,29 @@ namespace Simulateur
             {
                 if ((type == m_vehicules[i].Type()) && m_vehicules[i].disponible()) //Si c'est le bon type
                 {
-                    m_clients.Add(p_client);
                     m_vehicules[i].AssignerClient(p_client);
                     return;
                 }
             }
         }
 
+        public void ajouterClient(Client p_client) //Ajouter un client en attente
+        {
+            m_clients.Add(p_client);
+        }
+
         public void assignerClientsTransport() //Assigner les clients de ce type
         {
+            int compte = m_clients.Count - 1; //Nombre de clients à assigner
 
+            for (int i = compte; i >= 0; i--)
+            {
+                if (assignerClientPossible(m_clients[i]))
+                {
+                    assignerClient(m_clients[i]);
+                    m_clients.Remove(m_clients[i]);
+                }
+            }
         }
     }
 }
