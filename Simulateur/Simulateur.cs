@@ -14,7 +14,6 @@ namespace Simulateur
         private FormMenu m_menu; //Menu
         private FormSimulateur m_interface; //Interface
         private Scenario m_scenario; //Façade/Médiateur
-        bool todelete = true; //todelete
 
         [STAThread]
 
@@ -53,14 +52,12 @@ namespace Simulateur
             return false;
         }
 
+        public void creer()
+        {
+            m_scenario.creerClients();
+        }
         public void go() //Simuler
         {
-            if (todelete) //To delete
-            {
-                m_scenario.creerClients();
-            }
-
-            todelete = false;
             m_scenario.assignerClients();
             m_scenario.avancerVehicules(10);
         }
