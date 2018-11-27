@@ -27,12 +27,14 @@ namespace Simulateur
                 string posActuelle = m_posActuelle.Coords();
                 string posDestination = m_posDestination.Coords();
                 if (posActuelle == posDestination)
+                {
                     statut = "retour"; //Remplacer par tourner <---
+                    m_vehicule.ResetClient();
+                }
             }
             else if (statut == "tourner")
             {
                 //PositionActuelle.Tourner();
-
                 //Retourner au point de départ
                 string posActuelle = m_posActuelle.Coords();
                 string posDestination = m_posDestination.Coords();

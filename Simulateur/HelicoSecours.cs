@@ -17,7 +17,9 @@ namespace Simulateur
          * p_KMH: la vitesse de déplacement de l'avion
          * p_tempsMain: le temps de maintenance
          * p_couleur: la couleur de la ligne à l'affichage
-         * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
+         * p_posAeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
+         * p_scenario: référence sur le scenario
+         * p_aeroport: référence sur l'aeroport dans lequel il est
          */
         public HelicoSecours(string p_nom, int p_KMH, int p_tempsMain, PosCarte p_posAeroport, Scenario p_scenario, Aeroport p_aeroport) //Constructeur
             : base(p_nom, p_KMH, p_tempsMain, Color.Red, p_posAeroport, p_scenario, p_aeroport)
@@ -33,13 +35,13 @@ namespace Simulateur
          */
         public override void ChangerEtat(object source)
         {
-            if (m_client != null)
+            //if (m_client != null)
             {
                 string EtatAvant = m_etat.ToString();
                 int surplus = m_etat.Surplus;
                 Usine usine = Usine.obtenirUsine();
 
-                if (m_etat.ToString() == "Hangar")
+                if (m_etat.ToString() == "Hangar" && m_client != null)
                 {
                     PosCarte posDestination = m_client.PositionDepart;
                     PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle

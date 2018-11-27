@@ -38,7 +38,12 @@ namespace Simulateur
                 string posDestination = m_posDestination.Coords();
 
                 if (posActuelle == posDestination)
+                {
                     aller = !aller;
+                    m_compteur--;
+                    if (m_compteur == 0)
+                        m_vehicule.ResetClient();
+                }
             }
             //Si sur le retour
             else
@@ -52,18 +57,10 @@ namespace Simulateur
                 if (posActuelle == posDepart) //Aller retour complété
                 {
                     if (m_compteur > 0)
-                    {
-                        m_vehicule.ResetClient();
                         aller = !aller;
-                        m_compteur--;
-                    }
+                    else
+                        onEtatFini();
                 }
-            }
-
-            //Avertir les abonnées que l'Etat est terminé
-            if (m_compteur <= 0)
-            {
-                onEtatFini();
             }
         }
 
