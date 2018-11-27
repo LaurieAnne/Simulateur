@@ -46,6 +46,7 @@ namespace Simulateur
                 using (StreamReader rd = new StreamReader(path))
                 {
                     m_scenario = xs.Deserialize(rd) as Scenario;
+                    m_scenario.assignerScenario();
                     return true;
                 }
             }
