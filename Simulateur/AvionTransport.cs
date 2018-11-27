@@ -26,8 +26,8 @@ namespace Simulateur
          * p_tempsEmb: le temps d'embarquement de l'avion
          * p_tempsDeb: le temps de debarquement de l'avion
          */
-        public AvionTransport(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, Color p_couleur, PosCarte p_posAeroport, Scenario p_scenario) //Constructeur
-            : base(p_nom, p_KMH, p_tempsMain, p_couleur, p_posAeroport, p_scenario)
+        public AvionTransport(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, Color p_couleur, PosCarte p_posAeroport, Scenario p_scenario, Aeroport p_aeroport) //Constructeur
+            : base(p_nom, p_KMH, p_tempsMain, p_couleur, p_posAeroport, p_scenario, p_aeroport)
         {
             m_tempsEmbarquement = p_tempsEmb;
             m_tempsDebarquement = p_tempsDeb;

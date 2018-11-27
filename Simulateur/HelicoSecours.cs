@@ -19,8 +19,8 @@ namespace Simulateur
          * p_couleur: la couleur de la ligne à l'affichage
          * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
          */
-        public HelicoSecours(string p_nom, int p_KMH, int p_tempsMain, PosCarte p_posAeroport, Scenario p_scenario) //Constructeur
-            : base(p_nom, p_KMH, p_tempsMain, Color.Red, p_posAeroport, p_scenario)
+        public HelicoSecours(string p_nom, int p_KMH, int p_tempsMain, PosCarte p_posAeroport, Scenario p_scenario, Aeroport p_aeroport) //Constructeur
+            : base(p_nom, p_KMH, p_tempsMain, Color.Red, p_posAeroport, p_scenario, p_aeroport)
         {
         }
 
