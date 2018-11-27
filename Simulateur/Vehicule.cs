@@ -75,7 +75,11 @@ namespace Simulateur
         /** Assigne un client au véhicule
          *  p_client: le client qui lui est assigné
          */
-        public abstract void AssignerClient(Client p_client);
+        public virtual void AssignerClient(Client p_client) { }
+        public virtual void AssignerClient(ClientTransport p_client) { }
+        public virtual void AssignerClient(Feu p_client) { }
+        public virtual void AssignerClient(Secours p_client) { }
+        public virtual void AssignerClient(Observateur p_client) { }
 
 
         /** Accesseurs

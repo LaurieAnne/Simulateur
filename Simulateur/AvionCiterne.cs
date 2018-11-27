@@ -80,10 +80,9 @@ namespace Simulateur
         /** Assigne un client au véhicule
          *  p_client: le client qui lui est assigné
          */
-        public override void AssignerClient(Client p_client)
+        public override void AssignerClient(Feu p_client)
         {
-            if (p_client is Feu)
-                m_client = (Feu)p_client;
+                m_client = p_client;
         }
 
 

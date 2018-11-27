@@ -96,10 +96,16 @@ namespace Simulateur
         /** Assigne un client au véhicule
           *  p_client: le client qui lui est assigné
           */
-        public override void AssignerClient(Client p_client)
+        public override void AssignerClient(ClientTransport p_client)
         {
-            if (p_client is ClientTransport)
-                m_client = (ClientTransport)p_client;
+            if (m_client == null)
+            {
+                m_client = p_client;
+            }
+            else
+            {
+                m_client.NbClients += p_client.NbClients;
+            }
         }
 
 

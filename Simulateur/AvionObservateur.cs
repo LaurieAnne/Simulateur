@@ -78,10 +78,9 @@ namespace Simulateur
         /** Assigne un client au véhicule
          *  p_client: le client qui lui est assigné
          */
-        public override void AssignerClient(Client p_client)
+        public override void AssignerClient(Observateur p_client)
         {
-            if (p_client is Observateur)
-                m_client = (Observateur)p_client;
+            m_client = p_client;
         }
 
 
