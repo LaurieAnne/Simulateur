@@ -25,6 +25,16 @@ namespace Simulateur
             set { m_aeroports = value; }
         }
 
+        public void assignerScenario() //Assigner le scénario à tous les véhicules
+        {
+            int compteAeroport = m_aeroports.Count;
+            for (int i = 0; i < compteAeroport; i++)
+            {
+                m_aeroports[i].Scenario = this;
+                m_aeroports[i].assignerScenarioVehicules();
+            }
+        }
+
         public string[] obtenirAeroports() //Obtenir tous les aéroports
         {
             string[] aeroports = new string[m_aeroports.Count];
@@ -86,10 +96,10 @@ namespace Simulateur
             return vehicules;
         }
 
-        /*public List<string> obtenirClients(int p_aeroport) //Obtenir les clients
+        public List<string> obtenirClients(int p_aeroport) //Obtenir les clients
         {
             return m_aeroports[p_aeroport].obtenirClients();
-        }*/
+        }
 
         public void creerClients() //Créer les clients pour le tour
         {

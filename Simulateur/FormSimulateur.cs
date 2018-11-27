@@ -51,9 +51,17 @@ namespace Simulateur
             }
         }
 
-        private void afficherClients()
+        private void afficherClients() //Afficher les clients
         {
-            //afficher les clients dans la lsite selon aeroport
+            int aeroport = lstAeroports.SelectedIndex; //Aéroport choisi
+            List<string> clients = m_scenario.obtenirClients(aeroport); //Liste des clients
+
+            lstCl.Items.Clear();
+
+            for (int i = 0; i < clients.Count; i++)
+            {
+                lstCl.Items.Add(clients[i]);
+            }
         }
 
         private void lstAeroports_SelectedValueChanged(object sender, EventArgs e) //sur un changement d'aéroport
@@ -63,6 +71,7 @@ namespace Simulateur
             if (aeroport > -1)
             {
                 afficherVehicules();
+                afficherClients();
             }
             else
             {
@@ -103,53 +112,15 @@ namespace Simulateur
         {
             afficherClientsSurCarte(e);
             afficherVehiculesEnVol(e);
-
-            /*Random rnd = new Random();
-            int x = rnd.Next(15, 885);
-            int y = rnd.Next(15, 510);
-            dessinerFeu(x, y, e);
-
-            x = rnd.Next(15, 885);
-            y = rnd.Next(15, 510);
-            dessinerObservateur(x, y, e);
-
-            x = rnd.Next(15, 885);
-            y = rnd.Next(15, 510);
-            dessinerSecours(x, y, e);
-
-            x = rnd.Next(15, 885);
-            y = rnd.Next(15, 510);
-            dessinerVehiculeSecours(x, y, e);
-
-            x = rnd.Next(15, 885);
-            y = rnd.Next(15, 510);
-            dessinerVehiculePass(x, y, e);
-
-            x = rnd.Next(15, 885);
-            y = rnd.Next(15, 510);
-            dessinerVehiculeMarch(x, y, e);
-
-            x = rnd.Next(15, 885);
-            y = rnd.Next(15, 510);
-            dessinerVehiculePompier(x, y, e);
-
-            x = rnd.Next(15, 885);
-            y = rnd.Next(15, 510);
-            dessinerVehiculeObservateur(x, y, e);
-
-            int[] depart = new int[2];
-            depart[0] = 500;
-            depart[1] = 50;
-            int[] dest = new int[2];
-            dest[0] = 600;
-            dest[1] = 300;
-            dessinerLigneCercle(depart, dest, Color.Black, e);*/
+            afficherClients();
+            afficherVehicules();
         }
 
         private void afficherVehiculesEnVol(PaintEventArgs e) //Afficher tous les véhicules en vol
         {
             List<string> enVol = m_scenario.obtenirVehiculesEnVol(); //Véhicules en vol
             string[] infos; //Infos des véhicules
+            string type; //Le type du véhicule
 
             for (int i = 0; i < enVol.Count; i++)
             {
@@ -160,13 +131,66 @@ namespace Simulateur
                 int[] pos = new int[2];
                 pos[0] = Convert.ToInt32(infos[3]);
                 pos[1] = Convert.ToInt32(infos[4]);
-                dessinerLigne(depart, pos, Color.Black, e);
+                type = infos[5];
+
+                switch (type)
+                {
+                    case "Passagers":
+                        dessinerVehiculePass(pos[0], pos[1], e);
+                        dessinerLigne(depart, pos, Color.Green, e);
+                        break;
+                    case "Marchandises":
+                        dessinerVehiculeMarch(pos[0], pos[1], e);
+                        dessinerLigne(depart, pos, Color.Blue, e);
+                        break;
+                    case "Observation":
+                        dessinerVehiculeObservateur(pos[0], pos[1], e);
+                        dessinerLigne(depart, pos, Color.Gray, e);
+                        break;
+                    case "Feu":
+                        dessinerVehiculePompier(pos[0], pos[1], e);
+                        dessinerLigne(depart, pos, Color.Yellow, e);
+                        break;
+                    case "Secours":
+                        dessinerVehiculeSecours(pos[0], pos[1], e);
+                        dessinerLigne(depart, pos, Color.Red, e);
+                        break;
+                }              
             }
         }
 
-        private void afficherClientsSurCarte(PaintEventArgs e) //Afficher tous les clients
+        private void afficherClientsSurCarte(PaintEventArgs e) //Afficher tous les clients sur la carte
         {
-            //Boucler sur les aéroports et get leurs clients, afficher leurs images
+            int nb = lstAeroports.Items.Count; //Nombre d'aéroports
+            List<string> clients; //Liste des clients
+            string[] infos; //Infos sur le client
+            string type; //Le type de client
+
+            for (int i = 0; i < nb; i++)
+            {
+                clients = m_scenario.obtenirClients(i);
+
+                for (int j = 0; j < clients.Count; j++)
+                {
+                    infos = clients[j].Split(',');
+                    type = infos[0];
+                    int x = Convert.ToInt32(infos[1]);
+                    int y = Convert.ToInt32(infos[2]);
+
+                    switch (type)
+                    {
+                        case "Observation":
+                            dessinerObservateur(x, y, e);
+                            break;
+                        case "Feu":
+                            dessinerFeu(x, y, e);
+                            break;
+                        case "Secours":
+                            dessinerSecours(x, y, e);
+                            break;
+                    }
+                }
+            }
         }
 
         private void dessinerFeu(int p_x, int p_y, PaintEventArgs e) //Dessiner un feu

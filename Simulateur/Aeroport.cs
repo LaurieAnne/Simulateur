@@ -17,6 +17,7 @@ namespace Simulateur
         private List<Vehicule> m_vehicules; //Liste de véhicules
         private PosCarte m_pos; //Emplacement de l'aéroport
         private List<Client> m_clients; //Clients passagers marchandises en attente
+        private Scenario m_scenario; //Référence au scénario
 
         public Aeroport(string p_nom, int p_minPass, int p_maxPass, int p_minMarch, int p_maxMarch, PosCarte p_pos) //Constructeur
         {
@@ -32,6 +33,22 @@ namespace Simulateur
         public Aeroport()
         {
 
+        }
+
+        public void assignerScenarioVehicules() 
+        {
+            int compteVehicules = m_vehicules.Count;
+            for (int i = 0; i < compteVehicules; i++)
+            {
+                m_vehicules[i].Scenario = m_scenario;
+                m_vehicules[i].Aeroport = this;
+            }
+        }
+
+        public Scenario Scenario
+        {
+            get { return m_scenario; }
+            set { m_scenario = value; }
         }
 
         public List<Vehicule> ListeVehicules
@@ -130,7 +147,7 @@ namespace Simulateur
 
                 if (client != null) //Si le véhicule a un client
                 {
-                    string infos = client.obtenirInfos();
+                    string infos = client.obtenirInfoClient();
                     clients.Add(infos);
                 }
             }
