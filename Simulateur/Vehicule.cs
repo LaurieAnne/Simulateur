@@ -167,6 +167,11 @@ namespace Simulateur
             get {return -1; }
         }
 
+        public virtual int CapaciteRestante
+        {
+            get { return -1; }
+        }
+
         public abstract void ResetClient();
 
         public abstract Client Client();

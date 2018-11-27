@@ -131,6 +131,11 @@ namespace Simulateur
             get{ return nbMax; }
         }
 
+        public override int CapaciteRestante
+        {
+            get { return nbMax - m_client.NbClients; }
+        }
+
         public int CapaciteMinimale
         {
             get { return (int)(nbMax * pourcentage); }
