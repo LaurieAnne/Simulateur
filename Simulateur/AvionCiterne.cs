@@ -68,6 +68,8 @@ namespace Simulateur
             else if (m_etat.ToString() == "Maintenance")
             {
                 m_etat = usine.creerHangar(this);
+                //S'abonne au nouvel événement
+                m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 ResetClient();
                 //ResetEtat();
                 //To delete aide visuel

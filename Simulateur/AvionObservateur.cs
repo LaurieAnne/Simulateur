@@ -64,6 +64,8 @@ namespace Simulateur
             else if (m_etat.ToString() == "Maintenance")
             {
                 m_etat = usine.creerHangar(this);
+                //S'abonne au nouvel événement
+                m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 m_client = null;
                 ResetClient();
                 //ResetEtat();
