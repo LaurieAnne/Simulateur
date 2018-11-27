@@ -22,7 +22,8 @@ namespace Simulateur
         protected Color m_couleur; //Couleur
         protected Etat m_etat; //Etat du véhicule
         protected PosCarte m_posDepart; //Position de départ du véhicule
-        protected Scenario m_scenario;
+        protected Scenario m_scenario; //Référence au scénario
+        protected Aeroport m_aeroport; //Référence à l'aeroport
 
         /** Constructeur de véhicule
          * p_nom: le nom du véhicule
@@ -31,7 +32,7 @@ namespace Simulateur
          * p_couleur: la couleur de la ligne à l'affichage
          * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
          */
-        public Vehicule(string p_nom, int p_KMH, int p_tempsMain, Color p_couleur, PosCarte p_posAeroport, Scenario p_scenario)
+        public Vehicule(string p_nom, int p_KMH, int p_tempsMain, Color p_couleur, PosCarte p_posAeroport, Scenario p_scenario, Aeroport p_aeroport)
         {
             m_nom = p_nom;
             m_KMH = p_KMH;
@@ -42,6 +43,7 @@ namespace Simulateur
             m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
             m_posDepart = p_posAeroport;
             m_scenario = p_scenario;
+            m_aeroport = p_aeroport;
         }
         
         /**Constructeur vide pour XML
@@ -110,6 +112,12 @@ namespace Simulateur
         {
             get { return m_scenario; }
             set { m_scenario = value; }
+        }
+
+        public Aeroport Aeroport
+        {
+            get { return m_aeroport; }
+            set { m_aeroport = value; }
         }
 
         public override string ToString()
