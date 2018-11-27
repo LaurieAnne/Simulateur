@@ -133,12 +133,30 @@ namespace Simulateur
 
         public override int CapaciteRestante
         {
-            get { return nbMax - m_client.NbClients; }
+            get
+            {
+                if (m_client != null)
+                    return nbMax - m_client.NbClients;
+                else
+                    return nbMax;
+            }
         }
 
         public int CapaciteMinimale
         {
             get { return (int)(nbMax * pourcentage); }
+        }
+
+        public override bool disponible()
+        {
+            if (m_etat is Hangar)
+            {
+                if ((m_client == null) || (m_client.NbClients < nbMax))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -157,9 +157,9 @@ namespace Simulateur
             return (m_etat is Hangar);
         }*/
 
-        public bool disponible() //Si c'est disponible
+        public virtual bool disponible() //Si c'est disponible
         {
-            return ((m_etat is Hangar) && (Client() == null));
+            return (m_etat is Hangar) && (Client() == null);
         }
 
         public virtual int CapaciteMaximum

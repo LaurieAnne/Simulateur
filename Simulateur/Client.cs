@@ -46,5 +46,15 @@ namespace Simulateur
 
             return this.ToString() + "," + this.PositionX + "," + this.PositionY;
         }
+
+        public virtual Passager separerClientPassager(int p_nbClients)
+        {
+            return new Passager();
+        }
+
+        public virtual Marchandise separerClientMarchandise(int p_nbClients)
+        {
+            return new Marchandise();
+        }
     }
 }

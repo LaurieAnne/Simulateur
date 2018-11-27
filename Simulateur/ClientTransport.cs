@@ -151,7 +151,6 @@ namespace Simulateur
             return this.ToString() + "," + this.PositionX + "," + this.PositionY + "," + this.NbClients.ToString();
         }
 
-        public abstract ClientTransport separerClient(int nbClients);
 
         public int NbClients
         {

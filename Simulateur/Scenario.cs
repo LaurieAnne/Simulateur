@@ -111,22 +111,39 @@ namespace Simulateur
             Usine usine = Usine.obtenirUsine();
             m_clients.Add(usine.creerFeu(rnd));
             m_clients.Add(usine.creerFeu(rnd));
-            m_clients.Add(usine.creerFeu(rnd));
-            m_clients.Add(usine.creerObservateur(rnd));
             m_clients.Add(usine.creerObservateur(rnd));
             m_clients.Add(usine.creerObservateur(rnd));
             m_clients.Add(usine.creerSecours(rnd));
             m_clients.Add(usine.creerSecours(rnd));
-            m_clients.Add(usine.creerSecours(rnd));
+            creerClientsTransport(rnd);
+        }
 
+        private void creerClientsTransport(Random p_rnd)
+        {
             List<PosCarte> posAeroports = aeroportsPosListe(); //Liste de pos
             Aeroport aeroport; //Aéroport de départ
+            Usine usine = Usine.obtenirUsine();
 
-            Passager passager = usine.creerPassager(rnd, posAeroports);
+            Passager passager = usine.creerPassager(p_rnd, posAeroports);
             aeroport = aeroportCorrespondant(passager.PositionDepart);
-            aeroport.ajouterClient(passager); //Ajouter dans l'aéroport
+            aeroport.ajouterClient(passager);
+            passager = usine.creerPassager(p_rnd, posAeroports);
+            aeroport = aeroportCorrespondant(passager.PositionDepart);
+            aeroport.ajouterClient(passager);
+            passager = usine.creerPassager(p_rnd, posAeroports);
+            aeroport = aeroportCorrespondant(passager.PositionDepart);
+            aeroport.ajouterClient(passager);
 
-            Marchandise marchandise = usine.creerMarchandise(rnd, posAeroports);
+            Marchandise marchandise = usine.creerMarchandise(p_rnd, posAeroports);
+            aeroport = aeroportCorrespondant(marchandise.PositionDepart);
+            aeroport.ajouterClient(marchandise);
+            marchandise = usine.creerMarchandise(p_rnd, posAeroports);
+            aeroport = aeroportCorrespondant(marchandise.PositionDepart);
+            aeroport.ajouterClient(marchandise);
+            marchandise = usine.creerMarchandise(p_rnd, posAeroports);
+            aeroport = aeroportCorrespondant(marchandise.PositionDepart);
+            aeroport.ajouterClient(marchandise);
+            marchandise = usine.creerMarchandise(p_rnd, posAeroports);
             aeroport = aeroportCorrespondant(marchandise.PositionDepart);
             aeroport.ajouterClient(marchandise);
         }

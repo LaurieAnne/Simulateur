@@ -23,7 +23,7 @@ namespace Simulateur
 
         }
 
-        public override ClientTransport separerClient(int p_nbClients)
+        public override Passager separerClientPassager(int p_nbClients)
         {
             this.NbClients = this.NbClients - p_nbClients;
             return new Passager(this.PositionDepart, this.Destination, p_nbClients, this.m_PosX, this.m_PosY, this.m_PosXDest, this.m_PosYDest, this.m_posDest);

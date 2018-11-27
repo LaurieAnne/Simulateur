@@ -153,7 +153,7 @@ namespace Simulateur
 
                 if (client != null) //Si le véhicule a un client
                 {                  
-                    clients.Add(client.obtenirInfos());
+                    clients.Add(client.obtenirInfoClient());
                 }
             }
 
@@ -202,8 +202,48 @@ namespace Simulateur
             {
                 if (assignerClientPossible(m_clients[i]))
                 {
-                    assignerClient(m_clients[i]);
-                    m_clients.Remove(m_clients[i]);
+                    assignerClientTransport(m_clients[i]);
+                }
+            }
+        }
+
+        public void assignerClientTransport(Client p_client) //Assigner le client à un véhicule
+        {
+            string type = p_client.ToString(); //Type du client
+            string[] infos = p_client.obtenirInfoClient().Split(',');
+            int qte = Convert.ToInt32(infos[3]); //Quantité du client
+            int qteMax; //Quantité maximale du véhicule
+
+            for (int i = 0; i < m_vehicules.Count; i++)
+            {
+                if ((type == m_vehicules[i].Type()) && m_vehicules[i].disponible()) //Si c'est le bon type
+                {
+                    qteMax = m_vehicules[i].CapaciteRestante;
+
+                    if (qte <= qteMax) //S'il y a de l'espace
+                    {
+                        m_vehicules[i].AssignerClient(p_client);
+                        m_clients.Remove(p_client);
+                    }
+                    else
+                    {
+                        int surplus = qteMax - qte; //Le nombre de clients en surplus
+
+                        if (type == "Passagers")
+                        {
+                            Passager newPass = p_client.separerClientPassager(surplus);
+                            m_vehicules[i].AssignerClient(p_client);
+                            m_clients.Remove(p_client);
+                            m_clients.Add(newPass);
+                        }
+                        else
+                        {
+                            Marchandise newMarch = p_client.separerClientMarchandise(surplus);
+                            m_vehicules[i].AssignerClient(p_client);
+                            m_clients.Remove(p_client);
+                            m_clients.Add(newMarch);
+                        }                      
+                    }
                 }
             }
         }
