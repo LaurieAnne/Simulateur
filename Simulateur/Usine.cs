@@ -80,29 +80,31 @@ namespace Simulateur
 
         /**Créations des clients
          */
-        public void creerFeu()
+        public Feu creerFeu(Random p_rnd)
         {
-
+            return new Feu(p_rnd);
         }
 
-        public void creerPassager()
+        public ClientTransport creerPassager(Random p_rnd, List<PosCarte> p_ListePosAeroport)
         {
-
+            ClientTransport lePassager = new Passager(p_rnd, p_ListePosAeroport);
+            return lePassager;
         }
 
-        public void creerMarchandise()
+        public ClientTransport creerMarchandise(Random p_rnd, List<PosCarte> p_ListePosAeroport)
         {
-
+            ClientTransport laMarchandise = new Marchandise(p_rnd, p_ListePosAeroport);
+            return laMarchandise;
         }
 
-        public void creerObservateur()
+        public Observateur creerObservateur(Random p_rnd)
         {
-
+            return new Observateur(p_rnd);
         }
 
-        public void creerSecours()
+        public Secours creerSecours(Random p_rnd)
         {
-
+            return new Secours(p_rnd);
         }
     }
 }

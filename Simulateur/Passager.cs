@@ -8,7 +8,7 @@ namespace Simulateur
 {
     public class Passager : ClientTransport
     {
-        public Passager(Random p_rnd) : base(p_rnd) //Constructeur
+        public Passager(Random p_rnd, List<PosCarte> p_ListePosAeroport) : base(p_rnd, p_ListePosAeroport) //Constructeur
         {
 
         }

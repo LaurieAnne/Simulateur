@@ -40,23 +40,11 @@ namespace Simulateur
             return client;
         }*/
 
-        public string obtenirInfoClient()
+        public virtual string obtenirInfoClient()
         {
             //Renvoi Type,PositionX,PositionY
 
-
-            //Le type du client
-            string TypeClient;
-            TypeClient = this.ToString();
-
-            //La position actuel du client X,Y 
-            string PositionClient;
-            PositionClient = this.PositionX + "," + this.PositionY;
-
-            //La chaîne complète
-            string InfosClient = TypeClient + "," + PositionClient;
-
-            return InfosClient;
+            return this.ToString() + "," + this.PositionX + "," + this.PositionY;
         }
     }
 }

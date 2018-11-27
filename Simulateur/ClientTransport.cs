@@ -14,7 +14,7 @@ namespace Simulateur
         protected int m_PosXDest; //Position en X de la destination
         protected int m_PosYDest; //Position en Y de la destination
 
-        public ClientTransport(Random p_rnd) : base() //Constructeur
+        public ClientTransport(Random p_rnd, List<PosCarte> p_ListePosAeroport) : base() //Constructeur
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];
@@ -25,8 +25,13 @@ namespace Simulateur
             m_PosX = p_rnd.Next(20, Taille[0] - 20);
             m_PosY = p_rnd.Next(20, Taille[1] - 20);
 
+
+
             //La position sur la carte
             m_PositionDepart = new PosCarte(m_PosX, m_PosY, Taille);
+
+            this.TrouverDestination(p_ListePosAeroport);
+            this.TrouverDepart(p_ListePosAeroport);
 
             //Random pour nombre de clients
             m_nbClients = p_rnd.Next(20, 100);
@@ -139,27 +144,11 @@ namespace Simulateur
             }
         }
 
-        public string obtenirInfoClientTransport()
+        public override string obtenirInfoClient()
         {
             //Renvoi Type,PositionX,PositionY,nbClients
 
-
-            //Le type du client
-            string TypeClient;
-            TypeClient = this.ToString();
-
-            //La position actuel du client X,Y 
-            string PositionClient;
-            PositionClient = this.PositionX + "," + this.PositionY;
-
-            //Le nombre de clients (passagers ou marchandises)
-            string nbClients;
-            nbClients = this.NbClients.ToString();
-
-            //La chaîne complète
-            string InfosClient = TypeClient + "," + PositionClient + "," + nbClients;
-
-            return InfosClient;
+            return this.ToString() + "," + this.PositionX + "," + this.PositionY + "," + this.NbClients.ToString();
         }
 
         public abstract ClientTransport separerClient(int nbClients);
