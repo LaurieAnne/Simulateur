@@ -106,6 +106,12 @@ namespace Simulateur
             set { m_posDepart = value; }
         }
 
+        public Scenario Scenario
+        {
+            get { return m_scenario; }
+            set { m_scenario = value; }
+        }
+
         public override string ToString()
         {
             string vehicule;
