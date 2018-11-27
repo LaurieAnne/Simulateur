@@ -23,8 +23,8 @@ namespace Simulateur
          * p_tempsChargement: le temps de chargement de l'avion
          * p_tempsLargage: le temps de largage de l'avion
          */
-        public AvionCiterne(string p_nom, int p_KMH, int p_tempsMain, int p_tempsCharg, int p_tempsLarg, PosCarte p_posAeroport)
-            : base(p_nom, p_KMH, p_tempsMain, Color.Yellow, p_posAeroport)
+        public AvionCiterne(string p_nom, int p_KMH, int p_tempsMain, int p_tempsCharg, int p_tempsLarg, PosCarte p_posAeroport, Scenario p_scenario)
+            : base(p_nom, p_KMH, p_tempsMain, Color.Yellow, p_posAeroport, p_scenario)
         {
             m_tempsChargement = p_tempsCharg;
             m_tempsLargage = p_tempsLarg;

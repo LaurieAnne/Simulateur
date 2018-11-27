@@ -22,6 +22,7 @@ namespace Simulateur
         protected Color m_couleur; //Couleur
         protected Etat m_etat; //Etat du véhicule
         protected PosCarte m_posDepart; //Position de départ du véhicule
+        protected Scenario m_scenario;
 
         /** Constructeur de véhicule
          * p_nom: le nom du véhicule
@@ -30,7 +31,7 @@ namespace Simulateur
          * p_couleur: la couleur de la ligne à l'affichage
          * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
          */
-        public Vehicule(string p_nom, int p_KMH, int p_tempsMain, Color p_couleur, PosCarte p_posAeroport)
+        public Vehicule(string p_nom, int p_KMH, int p_tempsMain, Color p_couleur, PosCarte p_posAeroport, Scenario p_scenario)
         {
             m_nom = p_nom;
             m_KMH = p_KMH;
@@ -40,6 +41,7 @@ namespace Simulateur
             m_etat = usine.creerHangar(this);
             m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
             m_posDepart = p_posAeroport;
+            m_scenario = p_scenario;
         }
         
         /**Constructeur vide pour XML

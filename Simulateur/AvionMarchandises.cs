@@ -19,8 +19,8 @@ namespace Simulateur
          * p_tempsEmb: le temps d'embarquement de l'avion
          * p_tempsDeb: le temps de debarquement de l'avion
          */
-        public AvionMarchandises(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, PosCarte p_posAeroport) //Constructeur
-            : base(p_nom, p_KMH, p_tempsMain, p_tempsEmb, p_tempsDeb, Color.Blue, p_posAeroport)
+        public AvionMarchandises(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, PosCarte p_posAeroport, Scenario p_scenario) //Constructeur
+            : base(p_nom, p_KMH, p_tempsMain, p_tempsEmb, p_tempsDeb, Color.Blue, p_posAeroport, p_scenario)
         {
         }
 
