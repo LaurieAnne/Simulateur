@@ -120,6 +120,7 @@ namespace Simulateur
         public ClientTransport Client
         {
             get { return m_client; }
+            set { m_client = value; }
         }
     }
 }
