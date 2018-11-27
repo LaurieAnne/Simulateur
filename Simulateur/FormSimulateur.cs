@@ -55,13 +55,34 @@ namespace Simulateur
         {
             int aeroport = lstAeroports.SelectedIndex; //Aéroport choisi
             List<string> clients = m_scenario.obtenirClients(aeroport); //Liste des clients
-            string client; //Le client
+            string client = ""; //Le client
+            string type; //Type client
 
             lstCl.Items.Clear();
 
             for (int i = 0; i < clients.Count; i++)
             {
-                client = clients[i].Split(',')[0];
+                type = clients[i].Split(',')[0];
+
+                switch (type)
+                {
+                    case "Passagers":
+                        client = "Avion de Passagers";
+                        break;
+                    case "Marchandises":
+                        client = "Avion de Marchandises";
+                        break;
+                    case "Observation":
+                        client = "Avion Observateur";
+                        break;
+                    case "Feu":
+                        client = "Avion Pompier";
+                        break;
+                    case "Secours":
+                        client = "Avion de Secours";
+                        break;
+                }
+
                 lstCl.Items.Add(client);
             }
         }
