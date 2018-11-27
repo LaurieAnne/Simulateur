@@ -25,7 +25,7 @@ namespace Simulateur
             m_PositionDepart = new PosCarte(m_PosX, m_PosY, Taille);
 
             //Intensité du feu
-            m_intensite = p_rnd.Next(1, 3);
+            m_intensite = p_rnd.Next(1, 6);
         }
 
         public int IntensiteFeu
