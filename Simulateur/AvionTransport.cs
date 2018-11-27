@@ -22,7 +22,7 @@ namespace Simulateur
          * p_KMH: la vitesse de déplacement de l'avion
          * p_tempsMain: le temps de maintenance
          * p_couleur: la couleur de la ligne à l'affichage
-         * p_posAeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
+         * p_posAeroport: l'aeroport qui le contient
          * p_tempsEmb: le temps d'embarquement de l'avion
          * p_tempsDeb: le temps de debarquement de l'avion
          * p_scenario: référence sur le scenario
@@ -126,9 +126,9 @@ namespace Simulateur
             m_client = null;
         }
 
-        public int CapaciteMaximum
+        public override int CapaciteMaximum
         {
-            get{return nbMax; }
+            get{ return nbMax; }
         }
 
         public int CapaciteMinimale

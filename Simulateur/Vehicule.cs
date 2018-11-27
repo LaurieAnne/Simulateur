@@ -30,7 +30,9 @@ namespace Simulateur
          * p_KMH: la vitesse de déplacement du véhicule
          * p_tempsMaintenance: le temps de maintenance du véhicule
          * p_couleur: la couleur de la ligne à l'affichage
-         * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
+         * p_posAeroport: position de l'aeroport qui le contient
+         * p_scenario: référence sur le scenario
+         * p_aeroport: référence sur l'aeroport dans lequel il est
          */
         public Vehicule(string p_nom, int p_KMH, int p_tempsMain, Color p_couleur, PosCarte p_posAeroport, Scenario p_scenario, Aeroport p_aeroport)
         {
@@ -158,6 +160,11 @@ namespace Simulateur
         public bool disponible() //Si c'est disponible
         {
             return ((m_etat is Hangar) && (Client() == null));
+        }
+
+        public virtual int CapaciteMaximum
+        {
+            get {return -1; }
         }
 
         public abstract void ResetClient();
