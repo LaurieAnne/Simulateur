@@ -87,14 +87,12 @@ namespace Simulateur
 
         public ClientTransport creerPassager(Random p_rnd, List<PosCarte> p_ListePosAeroport)
         {
-            ClientTransport lePassager = new Passager(p_rnd, p_ListePosAeroport);
-            return lePassager;
+            return new Passager(p_rnd, p_ListePosAeroport);
         }
 
         public ClientTransport creerMarchandise(Random p_rnd, List<PosCarte> p_ListePosAeroport)
         {
-            ClientTransport laMarchandise = new Marchandise(p_rnd, p_ListePosAeroport);
-            return laMarchandise;
+            return new Marchandise(p_rnd, p_ListePosAeroport);
         }
 
         public Observateur creerObservateur(Random p_rnd)
