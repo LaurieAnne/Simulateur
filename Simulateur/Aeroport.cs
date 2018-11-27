@@ -32,7 +32,7 @@ namespace Simulateur
 
         public Aeroport()
         {
-
+            m_clients = new List<Client>();
         }
 
         public void assignerScenarioVehicules() 
@@ -143,7 +143,7 @@ namespace Simulateur
 
             for (int i = 0; i < m_vehicules.Count; i++)
             {
-                Client client = m_vehicules[i].Client;
+                Client client = m_vehicules[i].Client();
 
                 if (client != null) //Si le véhicule a un client
                 {

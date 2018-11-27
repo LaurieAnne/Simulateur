@@ -55,12 +55,14 @@ namespace Simulateur
         {
             int aeroport = lstAeroports.SelectedIndex; //Aéroport choisi
             List<string> clients = m_scenario.obtenirClients(aeroport); //Liste des clients
+            string client; //Le client
 
             lstCl.Items.Clear();
 
             for (int i = 0; i < clients.Count; i++)
             {
-                lstCl.Items.Add(clients[i]);
+                client = clients[i].Split(',')[0];
+                lstCl.Items.Add(client);
             }
         }
 
