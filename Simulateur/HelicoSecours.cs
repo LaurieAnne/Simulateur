@@ -88,5 +88,11 @@ namespace Simulateur
         {
             return "Secours";
         }
+
+        public Secours Client
+        {
+            get { return m_client; }
+            set { m_client = value; }
+        }
     }
 }

@@ -81,8 +81,6 @@ namespace Simulateur
         }
 
 
-
-
         /** Accesseurs
          */
         public int Chargement
@@ -107,6 +105,12 @@ namespace Simulateur
         public override string Type()
         {
             return "Feu";
+        }
+
+        public Feu Client
+        {
+            get { return m_client; }
+            set { m_client = value; }
         }
     }
 }

@@ -90,5 +90,11 @@ namespace Simulateur
         {
             return "Observation";
         }
+
+        public Observateur Client
+        {
+            get { return m_client; }
+            set { m_client = value; }
+        }
     }
 }
