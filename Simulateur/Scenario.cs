@@ -108,41 +108,27 @@ namespace Simulateur
         public void creerClients() //Créer les clients pour le tour
         {
             Random rnd = new Random();
-            m_clients.Add(new Feu(rnd));
-            m_clients.Add(new Feu(rnd));
-            m_clients.Add(new Feu(rnd));
-            m_clients.Add(new Observateur(rnd));
-            m_clients.Add(new Observateur(rnd));
-            m_clients.Add(new Secours(rnd));
-            m_clients.Add(new Secours(rnd));
+            Usine usine = Usine.obtenirUsine();
+            m_clients.Add(usine.creerFeu(rnd));
+            m_clients.Add(usine.creerFeu(rnd));
+            m_clients.Add(usine.creerFeu(rnd));
+            m_clients.Add(usine.creerObservateur(rnd));
+            m_clients.Add(usine.creerObservateur(rnd));
+            m_clients.Add(usine.creerObservateur(rnd));
+            m_clients.Add(usine.creerSecours(rnd));
+            m_clients.Add(usine.creerSecours(rnd));
+            m_clients.Add(usine.creerSecours(rnd));
 
             List<PosCarte> posAeroports = aeroportsPosListe(); //Liste de pos
-            creerPassager(rnd, posAeroports);
-            creerMarchandise(rnd, posAeroports);
-        }
-
-        private void creerPassager(Random p_rnd, List<PosCarte> p_posAeroports) //Créer un client passager
-        {
-            Passager passager = new Passager(p_rnd); //Passager
             Aeroport aeroport; //Aéroport de départ
 
-            passager.TrouverDestination(p_posAeroports);
-            passager.TrouverDepart(p_posAeroports);
+            Passager passager = usine.creerPassager(rnd, posAeroports);
             aeroport = aeroportCorrespondant(passager.PositionDepart);
-
             aeroport.ajouterClient(passager); //Ajouter dans l'aéroport
-        }
 
-        private void creerMarchandise(Random p_rnd, List<PosCarte> p_posAeroports) //Créer un client marchandise
-        {
-            Marchandise marchandise = new Marchandise(p_rnd); //Passager
-            Aeroport aeroport; //Aéroport de départ
-
-            marchandise.TrouverDestination(p_posAeroports);
-            marchandise.TrouverDepart(p_posAeroports);
+            Marchandise marchandise = usine.creerMarchandise(rnd, posAeroports);
             aeroport = aeroportCorrespondant(marchandise.PositionDepart);
-
-            aeroport.ajouterClient(marchandise); //Ajouter dans l'aéroport
+            aeroport.ajouterClient(marchandise);
         }
 
         public void assignerClients() //Assigner les clients en attente
