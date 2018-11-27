@@ -155,6 +155,8 @@ namespace Simulateur
             m_etat = null;
         }
 
+        public abstract void ResetClient();
+
         public abstract Client Client();
     }
 }

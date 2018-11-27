@@ -53,6 +53,7 @@ namespace Simulateur
                 {
                     if (m_compteur > 0)
                     {
+                        m_vehicule.ResetClient();
                         aller = !aller;
                         m_compteur--;
                     }
