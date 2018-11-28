@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ListeAeroports>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>255</X>
+            <Y>187</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>65</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>255</X>
+            <Y>187</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>55</Embarquement>
+          <Debarquement>45</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observateur1</Nom>
+          <KMH>9</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>255</X>
+            <Y>187</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise1</Nom>
+          <KMH>6</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>255</X>
+            <Y>187</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>35</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>70</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>255</X>
+            <Y>187</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>45</Embarquement>
+          <Debarquement>30</Debarquement>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a1</Nom>
+      <MinPass>200</MinPass>
+      <MaxPass>2000</MaxPass>
+      <MinMarch>500</MinMarch>
+      <MaxMarch>2000</MaxMarch>
+      <Pos>
+        <X>255</X>
+        <Y>187</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>222</X>
+            <Y>216</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observateur1</Nom>
+          <KMH>9</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>222</X>
+            <Y>216</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Secours1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>222</X>
+            <Y>216</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>222</X>
+            <Y>216</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>25</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>30</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>222</X>
+            <Y>216</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>15</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a2</Nom>
+      <MinPass>300</MinPass>
+      <MaxPass>3000</MaxPass>
+      <MinMarch>250</MinMarch>
+      <MaxMarch>1500</MaxMarch>
+      <Pos>
+        <X>222</X>
+        <Y>216</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>533</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>65</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>533</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>55</Embarquement>
+          <Debarquement>45</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Secours1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>533</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>533</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>25</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observateur1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>30</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>533</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a3</Nom>
+      <MinPass>100</MinPass>
+      <MaxPass>1500</MaxPass>
+      <MinMarch>100</MinMarch>
+      <MaxMarch>1500</MaxMarch>
+      <Pos>
+        <X>533</X>
+        <Y>275</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>258</X>
+            <Y>425</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Secours1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>258</X>
+            <Y>425</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise1</Nom>
+          <KMH>6</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>258</X>
+            <Y>425</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>35</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>70</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>258</X>
+            <Y>425</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>45</Embarquement>
+          <Debarquement>30</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observateur1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>30</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>258</X>
+            <Y>425</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a4</Nom>
+      <MinPass>300</MinPass>
+      <MaxPass>2500</MaxPass>
+      <MinMarch>150</MinMarch>
+      <MaxMarch>2000</MaxMarch>
+      <Pos>
+        <X>258</X>
+        <Y>425</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>725</X>
+            <Y>386</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>65</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>725</X>
+            <Y>386</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>55</Embarquement>
+          <Debarquement>45</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observateur1</Nom>
+          <KMH>9</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>725</X>
+            <Y>386</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>725</X>
+            <Y>386</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>25</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>725</X>
+            <Y>386</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>45</Embarquement>
+          <Debarquement>45</Debarquement>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a5</Nom>
+      <MinPass>250</MinPass>
+      <MaxPass>2500</MaxPass>
+      <MinMarch>200</MinMarch>
+      <MaxMarch>2000</MaxMarch>
+      <Pos>
+        <X>725</X>
+        <Y>386</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>130</X>
+            <Y>178</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Secours1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>130</X>
+            <Y>178</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise1</Nom>
+          <KMH>6</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>130</X>
+            <Y>178</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>35</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>130</X>
+            <Y>178</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>25</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a6</Nom>
+      <MinPass>100</MinPass>
+      <MaxPass>1000</MaxPass>
+      <MinMarch>100</MinMarch>
+      <MaxMarch>1000</MaxMarch>
+      <Pos>
+        <X>130</X>
+        <Y>178</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>471</X>
+            <Y>367</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>65</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>471</X>
+            <Y>367</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>55</Embarquement>
+          <Debarquement>45</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise1</Nom>
+          <KMH>6</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>471</X>
+            <Y>367</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>35</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>70</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>471</X>
+            <Y>367</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>45</Embarquement>
+          <Debarquement>30</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>471</X>
+            <Y>367</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>30</Chargement>
+          <Largage>20</Largage>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a7</Nom>
+      <MinPass>250</MinPass>
+      <MaxPass>1500</MaxPass>
+      <MinMarch>150</MinMarch>
+      <MaxMarch>1500</MaxMarch>
+      <Pos>
+        <X>471</X>
+        <Y>367</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>686</X>
+            <Y>256</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observateur1</Nom>
+          <KMH>9</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>686</X>
+            <Y>256</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise1</Nom>
+          <KMH>6</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>686</X>
+            <Y>256</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>35</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>686</X>
+            <Y>256</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>30</Chargement>
+          <Largage>20</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Secours1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>686</X>
+            <Y>256</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a8</Nom>
+      <MinPass>300</MinPass>
+      <MaxPass>3000</MaxPass>
+      <MinMarch>200</MinMarch>
+      <MaxMarch>2000</MaxMarch>
+      <Pos>
+        <X>686</X>
+        <Y>256</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Passager1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>783</X>
+            <Y>146</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>50</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observateur1</Nom>
+          <KMH>9</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>783</X>
+            <Y>146</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise1</Nom>
+          <KMH>6</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>783</X>
+            <Y>146</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>35</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>783</X>
+            <Y>146</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>25</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Pompier2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>30</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>783</X>
+            <Y>146</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>15</Chargement>
+          <Largage>10</Largage>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a9</Nom>
+      <MinPass>250</MinPass>
+      <MaxPass>3000</MaxPass>
+      <MinMarch>300</MinMarch>
+      <MaxMarch>2000</MaxMarch>
+      <Pos>
+        <X>783</X>
+        <Y>146</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Observateur1</Nom>
+          <KMH>9</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>644</X>
+            <Y>123</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Secours1</Nom>
+          <KMH>8</KMH>
+          <Maintenance>45</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>644</X>
+            <Y>123</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise1</Nom>
+          <KMH>6</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>644</X>
+            <Y>123</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>50</Embarquement>
+          <Debarquement>35</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Marchandise2</Nom>
+          <KMH>7</KMH>
+          <Maintenance>70</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>644</X>
+            <Y>123</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>45</Embarquement>
+          <Debarquement>30</Debarquement>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>a10</Nom>
+      <MinPass>225</MinPass>
+      <MaxPass>2250</MaxPass>
+      <MinMarch>225</MinMarch>
+      <MaxMarch>2250</MaxMarch>
+      <Pos>
+        <X>644</X>
+        <Y>123</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+  </ListeAeroports>
+</Scenario>
