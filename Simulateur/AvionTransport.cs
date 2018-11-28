@@ -81,6 +81,7 @@ namespace Simulateur
                 m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+                m_client.NbClients = 0;
             }
             else if (m_etat.ToString() == "Maintenance")
             {
