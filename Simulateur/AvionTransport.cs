@@ -78,10 +78,10 @@ namespace Simulateur
             }
             else if (m_etat.ToString() == "Debarquement")
             {
+                m_client.NbClients = 0;
                 m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
-                m_client.NbClients = 0;
             }
             else if (m_etat.ToString() == "Maintenance")
             {
@@ -89,7 +89,7 @@ namespace Simulateur
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 ResetClient();
-                
+
 
                 //ResetEtat();
                 //To delete aide visuel

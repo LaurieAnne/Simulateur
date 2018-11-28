@@ -33,6 +33,7 @@ namespace Simulateur
             {
                 m_interface = new FormSimulateur(this, m_scenario);
                 Application.Run(m_interface);
+                m_scenario.tuerThread();
             }
         }
 
@@ -40,38 +41,24 @@ namespace Simulateur
         {
             XmlSerializer xs = new XmlSerializer(typeof(Scenario));
             string path = "..\\..\\..\\Scénarios XML\\" + p_nom + ".xml";
+
             if (File.Exists(path))
             {
                 using (StreamReader rd = new StreamReader(path))
                 {
                     m_scenario = xs.Deserialize(rd) as Scenario;
                     m_scenario.assignerScenario();
+                    m_scenario.assignerSimulateur(this);
                     return true;
                 }
             }
+
             return false;
         }
 
-        public void creer()
+        public void refreshForm() //Rafraîchir les données
         {
-            m_scenario.creerClients();
+            m_interface.refreshForm();
         }
-        public void go() //Simuler
-        {
-            m_scenario.assignerClients();
-            m_scenario.avancerVehicules(10);
-        }
-
-        public void invalidate()
-        {
-            m_interface.invalidate();
-        }
-
-        public void setSimulateur()
-        {
-            m_scenario.setSimulateur(this);
-        }
-
-
     }
 }

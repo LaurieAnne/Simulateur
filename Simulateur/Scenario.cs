@@ -11,8 +11,9 @@ namespace Simulateur
     {
         private List<Aeroport> m_aeroports; //Liste d'aéroports
         private List<Client> m_clients; //Liste de clients
-        private Chrono m_chrono; //Le chrono du scenario
+        private Chrono m_chrono; //Le chrono du scénario
         private Simulateur m_simulateur; //Le simulateur
+        private Thread thread; //Thread de la boucle
 
         public Scenario() //Constructeur
         {
@@ -21,7 +22,7 @@ namespace Simulateur
             m_chrono = new Chrono();
         }
 
-        public void setSimulateur(Simulateur p_simulateur)
+        public void assignerSimulateur(Simulateur p_simulateur) //Assigner simulateur
         {
             m_simulateur = p_simulateur;
         }
@@ -141,11 +142,6 @@ namespace Simulateur
             aeroport = aeroportCorrespondant(passager2.PositionDepart);
             aeroport.ajouterClient(passager2);
 
-            Passager passager3 = usine.creerPassager(p_rnd, posAeroports);
-            aeroport = aeroportCorrespondant(passager3.PositionDepart);
-            aeroport.ajouterClient(passager3);
-
-
             Marchandise marchandise1 = usine.creerMarchandise(p_rnd, posAeroports);
             aeroport = aeroportCorrespondant(marchandise1.PositionDepart);
             aeroport.ajouterClient(marchandise1);
@@ -153,14 +149,6 @@ namespace Simulateur
             Marchandise marchandise2 = usine.creerMarchandise(p_rnd, posAeroports);
             aeroport = aeroportCorrespondant(marchandise2.PositionDepart);
             aeroport.ajouterClient(marchandise2);
-
-            Marchandise marchandise3 = usine.creerMarchandise(p_rnd, posAeroports);
-            aeroport = aeroportCorrespondant(marchandise3.PositionDepart);
-            aeroport.ajouterClient(marchandise3);
-
-            Marchandise marchandise4 = usine.creerMarchandise(p_rnd, posAeroports);
-            aeroport = aeroportCorrespondant(marchandise4.PositionDepart);
-            aeroport.ajouterClient(marchandise4);
         }
 
         public void assignerClients() //Assigner les clients en attente
@@ -254,36 +242,45 @@ namespace Simulateur
             aeroport.ajouterVehicule(p_vehicule);
         }
 
-        public void changerTemps(int p_temps)
+        public string obtenirTemps() //Obtenir le temps pour l'afficher
+        {
+            return m_chrono.ToString();
+        }
+
+        public void changerTemps(int p_temps) //Changer le temps des sauts
         {
             m_chrono.changerSauts(p_temps);
         }
         
-        public void start()
+        public void start() //Démarrer la boucle
         {
-            Thread thread = new Thread(Go);
+            thread = new Thread(Go);
             thread.Start();
+            creerClients();
         }
 
-        public void Go()
+        public void Go() //Boucle
         {
             int heure = m_chrono.Heures;
 
             while (true)
             {
-                Thread.Sleep(400);
+                Thread.Sleep(700);
                 m_chrono.avancerTemps();
 
-                if( m_chrono.Heures > heure)
+                if (m_chrono.Heures > heure) //Si c'est une nouvelle heure
                 {
                     creerClients();
-                    heure = m_chrono.Heures;
                 }
-                string bob = m_chrono.ToString();
                 assignerClients();
                 avancerVehicules(m_chrono.Saut);
-                m_simulateur.invalidate();
+                m_simulateur.refreshForm();
             }
+        }
+
+        public void tuerThread() //Arrêter la boucle
+        {
+            thread.Abort();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Simulateur
             this.TrouverDepart(p_ListePosAeroport, p_rnd);
 
             //Random pour nombre de clients
-            m_nbClients = p_rnd.Next(20, 100);
+            m_nbClients = p_rnd.Next(20, 70);
 
             //Position actuelle
             m_pos = m_PositionDepart;

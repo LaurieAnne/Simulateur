@@ -23,7 +23,7 @@ namespace Simulateur
 
         public Chrono() //Constructeur
         {
-            m_minutesSaut = 10;
+            m_minutesSaut = 1;
             m_seconde = 0;
             m_minute = 0;
             m_heure = 0;
@@ -35,12 +35,17 @@ namespace Simulateur
             ajusterTemps();
         }
 
-        public void ajusterTemps()
+        public void ajusterTemps() //Ajuster le temps
         {
-            if (m_minute >= 60)
+            if ((m_minute >= 60))
             {
                 m_heure += m_minute / 60;
                 m_minute = m_minute % 60;
+
+                if (m_heure > 23)
+                {
+                    m_heure = m_heure - 24;
+                }
             }
         }
 
@@ -49,7 +54,7 @@ namespace Simulateur
             m_minutesSaut = p_minutesSaut;
         }
 
-        public override string ToString()
+        public override string ToString() //Retourner le temps en chaine
         {
             string heures;
             string minutes;
@@ -64,6 +69,11 @@ namespace Simulateur
             heurefinale += secondes;
 
             return heurefinale;
+        }
+
+        public int Secondes
+        {
+            get { return m_seconde;  }
         }
 
         public int Minutes

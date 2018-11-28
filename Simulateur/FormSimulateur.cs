@@ -14,7 +14,6 @@ namespace Simulateur
     {
         private Simulateur m_simulateur; //Le simulateur
         private Scenario m_scenario; //Le scénario
-        private bool start = false;
 
         public FormSimulateur(Simulateur p_simulateur, Scenario p_scenario) //Constructeur
         {
@@ -24,6 +23,7 @@ namespace Simulateur
             afficherAeroports();
             afficherImagesAeroports();
             lstAeroports.SelectedIndex = 0;
+            m_scenario.start();
         }
 
         private void afficherAeroports() //Afficher les aéroports
@@ -141,6 +141,7 @@ namespace Simulateur
             afficherVehiculesEnVol(e);
             afficherClients();
             afficherVehicules();
+            afficherTemps();
         }
 
         private void afficherVehiculesEnVol(PaintEventArgs e) //Afficher tous les véhicules en vol
@@ -292,47 +293,17 @@ namespace Simulateur
             e.Graphics.DrawImage(img, p_x - 10, p_y - 10, rect, GraphicsUnit.Pixel);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void updTemps_ValueChanged(object sender, EventArgs e) //Sur changement de sauts de temps
         {
-            m_simulateur.creer();
-            /*
-            if (!start)
-            {
-                button1.Text = "Création en cours...";
-                timer1.Start();
-                start = !start;
-            }
-            else
-            {
-                button1.Text = "Créer au X secondes.";
-                timer1.Stop();
-                start = !start;
-            }*/
+            m_scenario.changerTemps((int)updTemps.Value);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void afficherTemps() //Afficher l'heure
         {
-            m_simulateur.go();
-            imgCarte.Invalidate();
+            etqTemps.Text = m_scenario.obtenirTemps();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            m_simulateur.creer();
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            m_scenario.changerTemps((int)UpDown_temps.Value);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            m_scenario.start();
-            m_simulateur.setSimulateur();
-        }
-
-        public void invalidate()
+        public void refreshForm() //Rafraîchir les images
         {
             imgCarte.Invalidate();
         }
