@@ -87,7 +87,7 @@ namespace Simulateur
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 ResetClient();
-                transfererVehicule(this, m_etat.DestinationFinale());
+                m_aeroport.transfererVehicule(this, m_etat.DestinationFinale());
 
                 //ResetEtat();
                 //To delete aide visuel
