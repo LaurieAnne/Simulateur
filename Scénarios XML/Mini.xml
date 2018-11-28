@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ListeAeroports>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Logan</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>323</X>
+            <Y>102</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Sara</Nom>
+          <KMH>9</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>323</X>
+            <Y>102</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>60</Embarquement>
+          <Debarquement>60</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Max</Nom>
+          <KMH>7</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>323</X>
+            <Y>102</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>60</Embarquement>
+          <Debarquement>60</Debarquement>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Dominic</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>323</X>
+            <Y>102</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>60</Chargement>
+          <Largage>60</Largage>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>Ours polaires</Nom>
+      <MinPass>400</MinPass>
+      <MaxPass>500</MaxPass>
+      <MinMarch>400</MinMarch>
+      <MaxMarch>500</MaxMarch>
+      <Pos>
+        <X>323</X>
+        <Y>102</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Paul</Nom>
+          <KMH>7</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>710</X>
+            <Y>381</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Peter</Nom>
+          <KMH>5</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>710</X>
+            <Y>381</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Girouette</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>710</X>
+            <Y>381</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>60</Chargement>
+          <Largage>60</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="AvionPassagers">
+          <Nom>Daniel</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>710</X>
+            <Y>381</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>60</Embarquement>
+          <Debarquement>60</Debarquement>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>Kangourous</Nom>
+      <MinPass>400</MinPass>
+      <MaxPass>500</MaxPass>
+      <MinMarch>400</MinMarch>
+      <MaxMarch>600</MaxMarch>
+      <Pos>
+        <X>710</X>
+        <Y>381</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+    <Aeroport>
+      <ListeVehicules>
+        <Vehicule xsi:type="AvionObservateur">
+          <Nom>Doris</Nom>
+          <KMH>8</KMH>
+          <Maintenance>50</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>397</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="HelicoSecours">
+          <Nom>Simba</Nom>
+          <KMH>9</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>397</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+        </Vehicule>
+        <Vehicule xsi:type="AvionCiterne">
+          <Nom>Chouette</Nom>
+          <KMH>6</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>397</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Chargement>60</Chargement>
+          <Largage>60</Largage>
+        </Vehicule>
+        <Vehicule xsi:type="AvionMarchandises">
+          <Nom>Billie</Nom>
+          <KMH>8</KMH>
+          <Maintenance>60</Maintenance>
+          <Couleur />
+          <PositionCarte>
+            <X>397</X>
+            <Y>275</Y>
+            <Taille>
+              <int>900</int>
+              <int>528</int>
+            </Taille>
+          </PositionCarte>
+          <Embarquement>60</Embarquement>
+          <Debarquement>60</Debarquement>
+        </Vehicule>
+      </ListeVehicules>
+      <Nom>Lions</Nom>
+      <MinPass>400</MinPass>
+      <MaxPass>500</MaxPass>
+      <MinMarch>400</MinMarch>
+      <MaxMarch>550</MaxMarch>
+      <Pos>
+        <X>397</X>
+        <Y>275</Y>
+        <Taille>
+          <int>900</int>
+          <int>528</int>
+        </Taille>
+      </Pos>
+    </Aeroport>
+  </ListeAeroports>
+</Scenario>
