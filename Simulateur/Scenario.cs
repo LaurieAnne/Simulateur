@@ -271,7 +271,7 @@ namespace Simulateur
 
             while (true)
             {
-                Thread.Sleep(200);
+                Thread.Sleep(400);
                 m_chrono.avancerTemps();
 
                 if( m_chrono.Heures > heure)

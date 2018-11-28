@@ -71,7 +71,7 @@ namespace Simulateur
             else if (m_etat.ToString() == "Aller")
             {
                 int nbClients = m_client.NbClients;
-                transfererVehicule(this, m_etat.DestinationFinale());
+                m_aeroport.transfererVehicule(this, m_etat.DestinationFinale());
                 m_etat = usine.creerDebarquement(nbClients, m_tempsDebarquement, surplus, this);
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
