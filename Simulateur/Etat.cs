@@ -60,6 +60,11 @@ namespace Simulateur
             get { return m_surplus; }
             set { m_surplus = value; }
         }
+        public virtual PosCarte DestinationFinale()
+        {
+            PosCarte poscarte = new PosCarte();
+            return poscarte;
+        }
 
         public virtual string obtenirPosVehicule() //Obtenir les stats de pos véhicule
         {

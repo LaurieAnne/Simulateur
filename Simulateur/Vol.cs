@@ -25,6 +25,11 @@ namespace Simulateur
             set { m_posActuelle = value; }
         }
 
+        public override PosCarte DestinationFinale()
+        {
+            return m_posDestination;
+        }
+
         public override string obtenirPosVehicule() //Obtenir les stats de pos véhicule
         {
             return m_posDepart.X + "," + m_posDepart.Y + "," + m_posActuelle.X + "," + m_posActuelle.Y;

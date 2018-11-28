@@ -131,8 +131,6 @@ namespace Simulateur
 
         public abstract string Type();
 
-        //TESTAGE DÉGUEULASSE =>
-
         public bool enVol()
         {
             if (m_etat is Aller || m_etat is AllerRetour || m_etat is Observer)

@@ -14,6 +14,7 @@ namespace Simulateur
     {
         private Simulateur m_simulateur; //Le simulateur
         private Scenario m_scenario; //Le scénario
+        private bool start = false;
 
         public FormSimulateur(Simulateur p_simulateur, Scenario p_scenario) //Constructeur
         {
@@ -293,13 +294,46 @@ namespace Simulateur
 
         private void button1_Click(object sender, EventArgs e)
         {
-            m_simulateur.go();
-            imgCarte.Invalidate();
+            m_simulateur.creer();
+            /*
+            if (!start)
+            {
+                button1.Text = "Création en cours...";
+                timer1.Start();
+                start = !start;
+            }
+            else
+            {
+                button1.Text = "Créer au X secondes.";
+                timer1.Stop();
+                start = !start;
+            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            m_simulateur.creerClients();
+            m_simulateur.go();
+            imgCarte.Invalidate();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            m_simulateur.creer();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            m_scenario.changerTemps((int)UpDown_temps.Value);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            m_scenario.start();
+            m_simulateur.setSimulateur();
+        }
+
+        public void invalidate()
+        {
             imgCarte.Invalidate();
         }
     }

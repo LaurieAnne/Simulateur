@@ -52,15 +52,26 @@ namespace Simulateur
             return false;
         }
 
-        public void creerClients()
+        public void creer()
         {
             m_scenario.creerClients();
         }
-
         public void go() //Simuler
         {
             m_scenario.assignerClients();
             m_scenario.avancerVehicules(10);
         }
+
+        public void invalidate()
+        {
+            m_interface.invalidate();
+        }
+
+        public void setSimulateur()
+        {
+            m_scenario.setSimulateur(this);
+        }
+
+
     }
 }

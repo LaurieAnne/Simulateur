@@ -87,6 +87,8 @@ namespace Simulateur
                 //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
                 ResetClient();
+                transfererVehicule(this, m_etat.DestinationFinale());
+
                 //ResetEtat();
                 //To delete aide visuel
                 //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
