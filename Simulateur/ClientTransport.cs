@@ -10,7 +10,7 @@ namespace Simulateur
     {
         protected int m_nbClients; //Le nombre de clients dans l'objet
         protected PosCarte m_posDest; //L'emplacement où il veut se rendre
-        protected PosCarte m_pos; //Position acutelle
+        protected PosCarte m_pos; //Position actuelle
         protected int m_PosXDest; //Position en X de la destination
         protected int m_PosYDest; //Position en Y de la destination
 
@@ -30,8 +30,8 @@ namespace Simulateur
             //La position sur la carte
             m_PositionDepart = new PosCarte(m_PosX, m_PosY, Taille);
 
-            this.TrouverDestination(p_ListePosAeroport);
-            this.TrouverDepart(p_ListePosAeroport);
+            this.TrouverDestination(p_ListePosAeroport, p_rnd);
+            this.TrouverDepart(p_ListePosAeroport, p_rnd);
 
             //Random pour nombre de clients
             m_nbClients = p_rnd.Next(20, 100);
@@ -71,14 +71,15 @@ namespace Simulateur
 
         }
 
-        public void TrouverDepart(List<PosCarte> p_ListePosAeroport)
+        public void TrouverDepart(List<PosCarte> p_ListePosAeroport, Random p_rnd)
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];
             Taille[0] = 900;
             Taille[1] = 528;
 
-            Random rnd = new Random();
+            //Random rnd = new Random();
+            Random rnd = p_rnd;
             //Position destination
             //Nombre random entre 0 et le nombre d'éléments dans les liste X et Y
             int Aeroport1ind = rnd.Next(0, p_ListePosAeroport.Count);
@@ -93,7 +94,7 @@ namespace Simulateur
 
             while ((PosX == 0) && (PosY == 0))
             {
-                if ((p_ListePosAeroport[Aeroport1ind].X != m_posDest.X) && (p_ListePosAeroport[Aeroport1ind].Y != m_posDest.Y))
+                if ((p_ListePosAeroport[Aeroport1ind].X != m_posDest.X) || (p_ListePosAeroport[Aeroport1ind].Y != m_posDest.Y))
                 {
                     PosX = p_ListePosAeroport[Aeroport1ind].X;
                     PosY = p_ListePosAeroport[Aeroport1ind].Y;
@@ -110,14 +111,15 @@ namespace Simulateur
             }
         }
 
-        public void TrouverDestination(List<PosCarte> p_ListePosAeroport)
+        public void TrouverDestination(List<PosCarte> p_ListePosAeroport, Random p_rnd)
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];
             Taille[0] = 900;
             Taille[1] = 528;
 
-            Random rnd = new Random();
+            //Random rnd = new Random();
+            Random rnd = p_rnd;
             //Position destination
             //Nombre random entre 0 et le nombre d'éléments dans les liste X et Y
             int Aeroport1ind = rnd.Next(0, p_ListePosAeroport.Count);
@@ -132,7 +134,7 @@ namespace Simulateur
 
             while ((PosX == 0) && (PosY == 0))
             {
-                if ((p_ListePosAeroport[Aeroport1ind].X != m_PositionDepart.X) && (p_ListePosAeroport[Aeroport1ind].Y != m_PositionDepart.Y))
+                if ((p_ListePosAeroport[Aeroport1ind].X != m_PositionDepart.X) || (p_ListePosAeroport[Aeroport1ind].Y != m_PositionDepart.Y))
                 {
                     PosX = p_ListePosAeroport[Aeroport1ind].X;
                     PosY = p_ListePosAeroport[Aeroport1ind].Y;
@@ -141,6 +143,8 @@ namespace Simulateur
                     m_PosXDest = PosX;
                     m_PosYDest = PosY;
                 }
+                else
+                    Aeroport1ind = rnd.Next(0, p_ListePosAeroport.Count);
             }
         }
 

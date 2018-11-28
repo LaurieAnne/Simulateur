@@ -13,7 +13,7 @@ namespace Simulateur
 
         }
 
-        public Marchandise(PosCarte p_PosDepart, PosCarte p_PosDestination, int p_nbClients, int p_PosX, int p_PosY, int p_PosXDest, int p_PosYDest, PosCarte p_posDest) : base() //Constructeur séparer
+        public Marchandise(PosCarte p_PosDepart, PosCarte p_PosDestination, int p_nbClients, int p_PosX, int p_PosY, int p_PosXDest, int p_PosYDest, PosCarte p_posDest) : base(p_PosDepart, p_PosDestination, p_nbClients, p_PosX, p_PosY, p_PosXDest, p_PosYDest, p_posDest) //Constructeur séparer
         {
 
         }

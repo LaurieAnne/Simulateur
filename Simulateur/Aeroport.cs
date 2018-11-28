@@ -227,7 +227,7 @@ namespace Simulateur
                     }
                     else
                     {
-                        int surplus = qteMax - qte; //Le nombre de clients en surplus
+                        int surplus = qte - qteMax; //Le nombre de clients en surplus
 
                         if (type == "Passagers")
                         {
@@ -244,6 +244,7 @@ namespace Simulateur
                             m_clients.Add(newMarch);
                         }                      
                     }
+                    return;
                 }
             }
         }
