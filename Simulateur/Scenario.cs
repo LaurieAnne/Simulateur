@@ -132,12 +132,6 @@ namespace Simulateur
             aeroport = aeroportCorrespondant(passager2.PositionDepart);
             aeroport.ajouterClient(passager2);
 
-            Passager passager3 = usine.creerPassager(p_rnd, posAeroports);
-            aeroport = aeroportCorrespondant(passager3.PositionDepart);
-            aeroport.ajouterClient(passager3);
-
-
-
             Marchandise marchandise1 = usine.creerMarchandise(p_rnd, posAeroports);
             aeroport = aeroportCorrespondant(marchandise1.PositionDepart);
             aeroport.ajouterClient(marchandise1);
@@ -145,14 +139,6 @@ namespace Simulateur
             Marchandise marchandise2 = usine.creerMarchandise(p_rnd, posAeroports);
             aeroport = aeroportCorrespondant(marchandise2.PositionDepart);
             aeroport.ajouterClient(marchandise2);
-
-            Marchandise marchandise3 = usine.creerMarchandise(p_rnd, posAeroports);
-            aeroport = aeroportCorrespondant(marchandise3.PositionDepart);
-            aeroport.ajouterClient(marchandise3);
-
-            Marchandise marchandise4 = usine.creerMarchandise(p_rnd, posAeroports);
-            aeroport = aeroportCorrespondant(marchandise4.PositionDepart);
-            aeroport.ajouterClient(marchandise4);
         }
 
         public void assignerClients() //Assigner les clients en attente

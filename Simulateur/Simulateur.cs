@@ -52,10 +52,11 @@ namespace Simulateur
             return false;
         }
 
-        public void creer()
+        public void creerClients()
         {
             m_scenario.creerClients();
         }
+
         public void go() //Simuler
         {
             m_scenario.assignerClients();
