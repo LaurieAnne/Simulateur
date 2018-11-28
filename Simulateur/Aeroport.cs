@@ -258,6 +258,8 @@ namespace Simulateur
         public void ajouterVehicule(Vehicule p_vehicule) //Ajouter le véhicule dans l'aéroport
         {
             m_vehicules.Add(p_vehicule);
+            p_vehicule.Aeroport = this;
+            p_vehicule.PositionCarte = this.Pos;
         }
     }
 }
