@@ -207,7 +207,7 @@ namespace Simulateur
             }
         }
 
-        public void assignerClientTransport(Client p_client) //Assigner le client à un véhicule
+        private void assignerClientTransport(Client p_client) //Assigner le client à un véhicule
         {
             string type = p_client.ToString(); //Type du client
             string[] infos = p_client.obtenirInfoClient().Split(',');
@@ -247,6 +247,17 @@ namespace Simulateur
                     return;
                 }
             }
+        }
+
+        public void transfererVehicule(Vehicule p_vehicule, PosCarte p_posAero) //Transférer le véhicule entre aéroports
+        {
+            m_scenario.transfererVehicule(p_vehicule, p_posAero);
+            m_vehicules.Remove(p_vehicule);
+        }
+
+        public void ajouterVehicule(Vehicule p_vehicule) //Ajouter le véhicule dans l'aéroport
+        {
+            m_vehicules.Add(p_vehicule);
         }
     }
 }

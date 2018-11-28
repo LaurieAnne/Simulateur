@@ -224,5 +224,12 @@ namespace Simulateur
 
             return aeroport;
         }
+
+        public void transfererVehicule(Vehicule p_vehicule, PosCarte p_posAero) //Transférer le véhicule entre aéroports
+        {
+            Aeroport aeroport = aeroportCorrespondant(p_posAero);
+
+            aeroport.ajouterVehicule(p_vehicule);
+        }
     }
 }
