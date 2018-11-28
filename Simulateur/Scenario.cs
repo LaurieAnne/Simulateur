@@ -14,6 +14,7 @@ namespace Simulateur
         private Chrono m_chrono; //Le chrono du scénario
         private Simulateur m_simulateur; //Le simulateur
         private Thread thread; //Thread de la boucle
+        private Random rnd; //Random
 
         public Scenario() //Constructeur
         {
@@ -117,38 +118,41 @@ namespace Simulateur
 
         public void creerClients() //Créer les clients pour le tour
         {
-            Random rnd = new Random();
             Usine usine = Usine.obtenirUsine();
-            m_clients.Add(usine.creerFeu(rnd));
-            m_clients.Add(usine.creerFeu(rnd));
-            m_clients.Add(usine.creerObservateur(rnd));
             m_clients.Add(usine.creerObservateur(rnd));
             m_clients.Add(usine.creerSecours(rnd));
-            m_clients.Add(usine.creerSecours(rnd));
-            creerClientsTransport(rnd);
+            m_clients.Add(usine.creerFeu(rnd));
         }
 
-        private void creerClientsTransport(Random p_rnd)
+        private void creerClientsTransport() //Créer les clients de ce type
         {
+            Usine usine = Usine.obtenirUsine();
             List<PosCarte> posAeroports = aeroportsPosListe(); //Liste de pos
             Aeroport aeroport; //Aéroport de départ
-            Usine usine = Usine.obtenirUsine();
 
-            Passager passager1 = usine.creerPassager(p_rnd, posAeroports);
+            Passager passager1 = usine.creerPassager(rnd, posAeroports);
             aeroport = aeroportCorrespondant(passager1.PositionDepart);
             aeroport.ajouterClient(passager1);
 
-            Passager passager2 = usine.creerPassager(p_rnd, posAeroports);
+            Passager passager2 = usine.creerPassager(rnd, posAeroports);
             aeroport = aeroportCorrespondant(passager2.PositionDepart);
             aeroport.ajouterClient(passager2);
 
-            Marchandise marchandise1 = usine.creerMarchandise(p_rnd, posAeroports);
+            Passager passager3 = usine.creerPassager(rnd, posAeroports);
+            aeroport = aeroportCorrespondant(passager3.PositionDepart);
+            aeroport.ajouterClient(passager3);
+
+            Marchandise marchandise1 = usine.creerMarchandise(rnd, posAeroports);
             aeroport = aeroportCorrespondant(marchandise1.PositionDepart);
             aeroport.ajouterClient(marchandise1);
 
-            Marchandise marchandise2 = usine.creerMarchandise(p_rnd, posAeroports);
+            Marchandise marchandise2 = usine.creerMarchandise(rnd, posAeroports);
             aeroport = aeroportCorrespondant(marchandise2.PositionDepart);
             aeroport.ajouterClient(marchandise2);
+
+            Marchandise marchandise3 = usine.creerMarchandise(rnd, posAeroports);
+            aeroport = aeroportCorrespondant(marchandise3.PositionDepart);
+            aeroport.ajouterClient(marchandise3);
         }
 
         public void assignerClients() //Assigner les clients en attente
@@ -256,26 +260,34 @@ namespace Simulateur
         {
             thread = new Thread(Go);
             thread.Start();
+            rnd = new Random();
             creerClients();
+            creerClientsTransport();
         }
 
         public void Go() //Boucle
         {
-            int heure = m_chrono.Heures;
-
+            m_chrono.NouvelleHeure += new Chrono.NouvelleHeureDelegate(onNouvelleHeure);
+            m_chrono.Nouveau4Heures += new Chrono.Nouveau4HeuresDelegate(onNouveau4Heures);
+            m_chrono.changerSauts(60);
             while (true)
             {
-                Thread.Sleep(700);
+                Thread.Sleep(1000);
                 m_chrono.avancerTemps();
-
-                if (m_chrono.Heures > heure) //Si c'est une nouvelle heure
-                {
-                    creerClients();
-                }
                 assignerClients();
                 avancerVehicules(m_chrono.Saut);
                 m_simulateur.refreshForm();
             }
+        }
+
+        public void onNouvelleHeure() //Créer des clients sur l'évènement changement d'heure
+        {
+            creerClientsTransport();
+        }
+
+        public void onNouveau4Heures() //Créer des clients normaux sur l'évènement 4 heures passées
+        {
+            creerClients();
         }
 
         public void tuerThread() //Arrêter la boucle
