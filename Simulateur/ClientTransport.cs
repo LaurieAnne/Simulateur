@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simulateur
 {
-    public abstract class ClientTransport : Client
+    public abstract class ClientTransport : Client //Client de type ClientTransport
     {
         protected int m_nbClients; //Le nombre de clients dans l'objet
         protected PosCarte m_posDest; //L'emplacement où il veut se rendre
@@ -14,7 +14,11 @@ namespace Simulateur
         protected int m_PosXDest; //Position en X de la destination
         protected int m_PosYDest; //Position en Y de la destination
 
-        public ClientTransport(Random p_rnd, List<PosCarte> p_ListePosAeroport) : base() //Constructeur
+        /**Constructeur
+         * p_rnd: seed random
+         * p_ListePosAeroport: La liste des positions des aéroport
+         */
+        public ClientTransport(Random p_rnd, List<PosCarte> p_ListePosAeroport) : base() 
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];
@@ -40,6 +44,16 @@ namespace Simulateur
             m_pos = m_PositionDepart;
         }
 
+        /**Constructeur lors de la séparation de deux clients
+         * p_PosDepart: la position de départ
+         * p_PosDestination: la position de destination 
+         * p_nbClients: le nombre de client
+         * p_PosX: la position X du client
+         * p_PosY: la position Y du client
+         * p_PosXDest: la position X de la destination
+         * p_PosYDest: la position Y de la destination
+         * p_posDest: la position de la destination
+         */
         public ClientTransport(PosCarte p_PosDepart, PosCarte p_PosDestination, int p_nbClients, int p_PosX, int p_PosY, int p_PosXDest, int p_PosYDest, PosCarte p_posDest) : base()
         {
             //Nombre de clients
@@ -66,11 +80,12 @@ namespace Simulateur
             m_posDest = p_posDest;
         }
 
-        public ClientTransport()
-        {
+        public ClientTransport(){}
 
-        }
-
+        /**Trouver un aeroport de départ
+         * p_ListePosAeroport: Liste des position des aéroport
+         * p_rnd: Seed Random
+         */
         public void TrouverDepart(List<PosCarte> p_ListePosAeroport, Random p_rnd)
         {
             //Taille de l'image 900 par 528
@@ -104,13 +119,16 @@ namespace Simulateur
 
                     m_PosX = PosX;
                     m_PosY = PosY;
-
                 }
                 else
                     Aeroport1ind = rnd.Next(0, p_ListePosAeroport.Count);
             }
         }
 
+        /**Trouver un aeroport de destination
+         * p_ListePosAeroport: Liste des position des aéroport
+         * p_rnd: Seed Random
+         */
         public void TrouverDestination(List<PosCarte> p_ListePosAeroport, Random p_rnd)
         {
             //Taille de l'image 900 par 528
@@ -148,13 +166,13 @@ namespace Simulateur
             }
         }
 
+        /**Accesseurs
+         */
         public override string obtenirInfoClient()
         {
             //Renvoi Type,PositionX,PositionY,nbClients
-
             return this.ToString() + "," + this.PositionX + "," + this.PositionY + "," + this.NbClients.ToString();
         }
-
 
         public int NbClients
         {

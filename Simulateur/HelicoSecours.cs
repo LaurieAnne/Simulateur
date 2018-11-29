@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Simulateur
 {
@@ -26,9 +25,7 @@ namespace Simulateur
         {
         }
 
-        /**Constructeur vide pour XML
-         */
-        public HelicoSecours() : base() { }
+        public HelicoSecours() : base() { }//Constructeur vide pour XML
 
         /** Changer l'État du véhicule (Delegate)
          *  Passer au prochain État lorsque l'État actuel annonce qu'il est prêt à changer
@@ -39,38 +36,43 @@ namespace Simulateur
             int surplus = m_etat.Surplus;
             Usine usine = Usine.obtenirUsine();
 
+            //Si l'etat de l'avion est dans le hangar et qu'un client lui est assigné.
             if (m_etat.ToString() == "Hangar" && m_client != null)
             {
                 PosCarte posDestination = m_client.PositionDepart;
-                PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
-                int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4; //Formule ?
+                PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y);
+                int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4; //Calcul du temps de vol
+
+                //Créer l'Etat et s'abonner (AllerRetour)
                 m_etat = usine.creerAllerRetour(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
                 if (surplus > 0)
                     m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "AllerRetour")
             {
+                //Créer l'Etat et s'abonner (Maintenance)
                 m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
                 if (surplus > 0)
                     m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Maintenance")
             {
+                //Créer l'Etat et s'abonner (Hangar)
                 m_etat = usine.creerHangar(this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
-                ResetClient();
-                //ResetEtat();
-                //To delete aide visuel
-                //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
 
+                ResetClient();
             }
         }
 
+        public override void ResetClient()
+        {
+            m_client = null;
+        }
 
         /** Assigne un client au véhicule
          *  p_client: le client qui lui est assigné
@@ -83,7 +85,7 @@ namespace Simulateur
 
         /** Accesseurs
          */
-        public override string ToString() //ToString
+        public override string ToString()
         {
             string vehicule;
             vehicule = m_nom + " (Secours)->(" + m_etat.ToString() + ")";
@@ -98,11 +100,6 @@ namespace Simulateur
         public override Client Client()
         {
             return m_client;
-        }
-
-        public override void ResetClient()
-        {
-            m_client = null;
         }
     }
 }

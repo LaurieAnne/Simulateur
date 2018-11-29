@@ -10,7 +10,7 @@ namespace Simulateur
     public class AvionPassagers : AvionTransport //Véhicule de type transport de type passagers
     {
 
-        /** Constructeur d'un avion de passagers
+        /** Constructeur d'un avion de marchandises
          * p_nom: le nom du véhicule
          * p_KMH: la vitesse de déplacement de l'avion
          * p_tempsMain: le temps de maintenance
@@ -18,6 +18,8 @@ namespace Simulateur
          * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
          * p_tempsEmb: le temps d'embarquement de l'avion
          * p_tempsDeb: le temps de debarquement de l'avion
+         * p_scenario: référence au scenario
+         * p_aeroport: référence à l'aeroport dans lequel il est
          */
         public AvionPassagers(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, PosCarte p_posAeroport, Scenario p_scenario, Aeroport p_aeroport) //Constructeur
             : base(p_nom, p_KMH, p_tempsMain, p_tempsEmb, p_tempsDeb, Color.Green, p_posAeroport, p_scenario, p_aeroport)
@@ -30,7 +32,7 @@ namespace Simulateur
 
         /**Accesseurs
          */
-        public override string ToString() //ToString
+        public override string ToString()
         {
             string vehicule;
             vehicule = m_nom + " (Passagers)->(" + m_etat.ToString() + ")";

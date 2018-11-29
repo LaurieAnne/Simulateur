@@ -6,32 +6,42 @@ using System.Threading.Tasks;
 
 namespace Simulateur
 {
-    public delegate void DelegateEtatFini(object sender);
+    public delegate void DelegateEtatFini(object sender); //Delegué pour changement d'Etat.
 
-    public abstract class Etat
+    public abstract class Etat //Etat d'un véhicule
     {
         protected int m_temps; //Temp de l'Etat
         protected int m_surplus; //Temps de surplus
-        public event DelegateEtatFini eventEtatFini;
+        public event DelegateEtatFini eventEtatFini; //Delegué pour changement d'Etat.
         protected Vehicule m_vehicule; //Associé à quel véhicule
 
-        public Etat(int p_temps, Vehicule p_vehicule) //Constructeur
+        /**Constructeur
+         * p_temps: le temps avant le prochain Etat
+         * p_vehicule: référence au véhicule qui contient l'état
+         */
+        public Etat(int p_temps, Vehicule p_vehicule)
         {
             m_temps = p_temps;
             m_vehicule = p_vehicule;
             m_surplus = 0;
         }
 
+        /**L'Event Etat Fini
+         */
         public void onEtatFini()
         {
             if (eventEtatFini != null)
                 eventEtatFini(this);
         }
 
+        /**Avance le temps avant le prochain Etat
+         * p_temps: le temps écoulé
+         */
         public virtual void Avance(int p_temps)
         {
-            int m_surplus = 0; //Temps de surplus après modification
+            int m_surplus = 0;
 
+            //Ajuster le temps avant le prochain État selon le temps écoulé
             if (p_temps > m_temps)
             {
                 m_surplus = p_temps - m_temps;

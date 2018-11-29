@@ -8,15 +8,30 @@ namespace Simulateur
 {
     public abstract class Client
     {
-        protected int m_PosX;
-        protected int m_PosY;
-        protected PosCarte m_PositionDepart;
+        protected int m_PosX; //Position en X
+        protected int m_PosY; //Position en Y
+        protected PosCarte m_PositionDepart; //Position de départ
 
-        public Client() //Constructeur
+        public Client(){}//Constructeur
+
+        /**Séparer un client Passager
+         * p_nbClients: la quantité de clients à enlever
+         */
+        public virtual Passager separerClientPassager(int p_nbClients)
         {
-
+            return new Passager();
         }
 
+        /**Séparer un client Marchandise
+         * p_nbClients: la quantité de clients à enlever
+         */
+        public virtual Marchandise separerClientMarchandise(int p_nbClients)
+        {
+            return new Marchandise();
+        }
+
+        /**Accesseurs
+         */
         public int PositionX
         {
             get { return m_PosX; }
@@ -32,29 +47,10 @@ namespace Simulateur
             get { return m_PositionDepart; }
         }
 
-        /*public override string ToString() //ToString
-        {
-            string client;
-            string coord = m_pos.ToString();
-            client = m_Nom + " (" + coord + ")";
-            return client;
-        }*/
-
         public virtual string obtenirInfoClient()
         {
             //Renvoi Type,PositionX,PositionY
-
             return this.ToString() + "," + this.PositionX + "," + this.PositionY;
-        }
-
-        public virtual Passager separerClientPassager(int p_nbClients)
-        {
-            return new Passager();
-        }
-
-        public virtual Marchandise separerClientMarchandise(int p_nbClients)
-        {
-            return new Marchandise();
         }
     }
 }

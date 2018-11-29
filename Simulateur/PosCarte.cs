@@ -6,24 +6,29 @@ using System.Threading.Tasks;
 
 namespace Simulateur
 {
-    public class PosCarte
+    public class PosCarte //Position cartographique
     {
         private int m_x; //Pos X
         private int m_y; //Pos Y
         private int[] m_taille; //Taille l'image
 
-        public PosCarte(int p_x, int p_y, int[] p_taille) //Constructeur
+        /**Constructeur
+         * p_x: la coordonnée x
+         * p_y: la coordonée y
+         * p_taille: les dimension de l'image de fond
+         */
+        public PosCarte(int p_x, int p_y, int[] p_taille)
         {
             m_x = p_x;
             m_y = p_y;
             m_taille = p_taille;
         }
 
-        public PosCarte()
-        {
+        public PosCarte(){} //Constructeur vide pour XML
 
-        }
 
+        /**Accesseurs
+         */
         public int X
         {
             get { return m_x; }
@@ -91,7 +96,7 @@ namespace Simulateur
             return longi;
         }
 
-        public override string ToString() //ToString
+        public override string ToString()
         {
             char[] cadran = obtenirCadran();
             int lat = obtenirLat(cadran[0]);
@@ -100,7 +105,13 @@ namespace Simulateur
             return coord;
         }
 
-        public void changerPosition(PosCarte p_depart, PosCarte p_destination, int p_vitesse, int p_temps) //Changer la position selon la vitesse et le temps
+        /**Changer la position selon la vitesse et le temps
+         * p_depart: la position de départ
+         * p_destination: la position de destination
+         * p_vitesse: la vitesse du véhicule
+         * p_temps: le temps écoulé
+        */
+        public void changerPosition(PosCarte p_depart, PosCarte p_destination, int p_vitesse, int p_temps) 
         {
             int distance = p_vitesse * (p_temps / 10); //Le % de complété
             int distancex = p_destination.X - p_depart.X; //La distance en x entre le depart et la destination
@@ -108,7 +119,7 @@ namespace Simulateur
             char directionx = (p_depart.X > p_destination.X) ? 'g' : 'd'; //Direction Gauche Droite
             char directiony = (p_depart.Y > p_destination.Y) ? 'h' : 'b'; //Direction Haut Bas
 
-
+            //Calcul de la droite pour ajuster Y selon X
             double a = (double)distancey / (double)distancex;
             double b = (p_depart.Y - (a * p_depart.X));
 
@@ -158,6 +169,10 @@ namespace Simulateur
             }
         }
 
+        /**Calculer la Distance entre deux positions cartographique
+         * p_depart: la position de départ
+         * p_destination: la position de destination
+         */
         public static int Distance(PosCarte p_depart, PosCarte p_destination)
         {
             int distance;
@@ -173,7 +188,7 @@ namespace Simulateur
             return distance;
         }
 
-        public string Coords() //ToString
+        public string Coords() //Obtenir les coordonnées
         {
             string coords;
             coords = m_x.ToString();

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Simulateur
 {
-    public class Observateur : Client
+    public class Observateur : Client //Client de type Observateur
     {
-
-        public Observateur(Random p_rnd) : base() //Constructeur
+        /**Constructeur
+         * p_rnd: seed Random
+         */
+        public Observateur(Random p_rnd) : base() 
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Simulateur
 {
-    public class AvionMarchandises : AvionTransport //Véhicule de type marchandises
+    public class AvionMarchandises : AvionTransport //Véhicule de type transport de type marchandises
     {
 
         /** Constructeur d'un avion de marchandises
@@ -18,6 +18,8 @@ namespace Simulateur
          * p_aeroport: l'aeroport qui le contient (pour extraire ses coordonnées)
          * p_tempsEmb: le temps d'embarquement de l'avion
          * p_tempsDeb: le temps de debarquement de l'avion
+         * p_scenario: référence au scenario
+         * p_aeroport: référence à l'aeroport dans lequel il est
          */
         public AvionMarchandises(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, PosCarte p_posAeroport, Scenario p_scenario, Aeroport p_aeroport) //Constructeur
             : base(p_nom, p_KMH, p_tempsMain, p_tempsEmb, p_tempsDeb, Color.Blue, p_posAeroport, p_scenario, p_aeroport)
@@ -32,7 +34,7 @@ namespace Simulateur
 
         /**Accesseurs
         */
-        public override string ToString() //ToString
+        public override string ToString()
         {
             string vehicule;
             vehicule = m_nom + " (Marchandises)->(" + m_etat.ToString() + ")";

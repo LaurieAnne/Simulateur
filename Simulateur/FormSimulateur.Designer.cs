@@ -41,7 +41,7 @@
             // lstAeroports
             // 
             this.lstAeroports.FormattingEnabled = true;
-            this.lstAeroports.ItemHeight = 16;
+            this.lstAeroports.ItemHeight = 14;
             this.lstAeroports.Location = new System.Drawing.Point(12, 3);
             this.lstAeroports.Name = "lstAeroports";
             this.lstAeroports.Size = new System.Drawing.Size(296, 116);
@@ -52,7 +52,7 @@
             // 
             this.lstVehicules.Enabled = false;
             this.lstVehicules.FormattingEnabled = true;
-            this.lstVehicules.ItemHeight = 16;
+            this.lstVehicules.ItemHeight = 14;
             this.lstVehicules.Location = new System.Drawing.Point(314, 3);
             this.lstVehicules.Name = "lstVehicules";
             this.lstVehicules.Size = new System.Drawing.Size(296, 116);
@@ -62,7 +62,7 @@
             // 
             this.lstCl.Enabled = false;
             this.lstCl.FormattingEnabled = true;
-            this.lstCl.ItemHeight = 16;
+            this.lstCl.ItemHeight = 14;
             this.lstCl.Location = new System.Drawing.Point(616, 3);
             this.lstCl.Name = "lstCl";
             this.lstCl.Size = new System.Drawing.Size(296, 116);
@@ -92,10 +92,10 @@
             0,
             0});
             this.updTemps.Name = "updTemps";
-            this.updTemps.Size = new System.Drawing.Size(158, 23);
+            this.updTemps.Size = new System.Drawing.Size(158, 20);
             this.updTemps.TabIndex = 6;
             this.updTemps.Value = new decimal(new int[] {
-            1,
+            20,
             0,
             0,
             0});
@@ -113,7 +113,7 @@
             // 
             // FormSimulateur
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(924, 712);

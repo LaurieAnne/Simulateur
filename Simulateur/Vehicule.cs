@@ -25,7 +25,7 @@ namespace Simulateur
         protected Scenario m_scenario; //Référence au scénario
         protected Aeroport m_aeroport; //Référence à l'aeroport
 
-        /** Constructeur de véhicule
+        /**Constructeur de véhicule
          * p_nom: le nom du véhicule
          * p_KMH: la vitesse de déplacement du véhicule
          * p_tempsMaintenance: le temps de maintenance du véhicule
@@ -58,13 +58,13 @@ namespace Simulateur
         }
 
 
-        /** Changer l'État du véhicule (Delegate)
-         *  Effectue une action lorsque l'État annonce qu'il est prêt à changer
+        /**Changer l'État du véhicule (Delegate)
+         * Effectue une action lorsque l'État annonce qu'il est prêt à changer
          */
         public abstract void ChangerEtat(object source); 
 
-        /** Avance le véhicule dans le temps
-         *  p_temps: le temps avant la prochaine action
+        /**Avance le véhicule d'un certains temps
+         * p_temps: le temps écoulé
          */
         public void Avance(int p_temps)
         {
@@ -72,13 +72,20 @@ namespace Simulateur
                 m_etat.Avance(p_temps);
         }
 
-        /** Assigne un client au véhicule
-         *  p_client: le client qui lui est assigné
+        /**Assigne un client au véhicule
+         * p_client: le client qui lui est assigné
          */
         public abstract void AssignerClient(Client p_client);
 
+        public void ResetEtat()
+        {
+            m_etat = null;
+        }
 
-        /** Accesseurs
+        public abstract void ResetClient();
+
+
+        /**Accesseurs
          */
         public string Nom
         {
@@ -122,14 +129,26 @@ namespace Simulateur
             set { m_aeroport = value; }
         }
 
+        public abstract string Type();
+
+        public virtual int CapaciteMaximum
+        {
+            get { return -1; }
+        }
+
+        public virtual int CapaciteRestante
+        {
+            get { return -1; }
+        }
+
+        public abstract Client Client();
+
         public override string ToString()
         {
             string vehicule;
             vehicule = m_nom + " (Véhicule), " + m_etat.ToString();
             return vehicule;
-        }
-
-        public abstract string Type();
+        } //Obtenir les informations en string du véhicule
 
         public bool enVol()
         {
@@ -138,40 +157,16 @@ namespace Simulateur
                 return true;
             }
             return false;
-        }
+        } //Obtenir si le véhicule est en vol
 
         public string obtenirPosVehicule() //Obtenir les stats de pos véhicule
         {
             return m_etat.obtenirPosVehicule();
         }
 
-        public void ResetEtat()
-        {
-            m_etat = null;
-        }
-
-        /*public bool disponible() //Si c'est disponible
-        {
-            return (m_etat is Hangar);
-        }*/
-
-        public virtual bool disponible() //Si c'est disponible
+        public virtual bool disponible() //Obtenir si le véhicule est disponible
         {
             return (m_etat is Hangar) && (Client() == null);
         }
-
-        public virtual int CapaciteMaximum
-        {
-            get {return -1; }
-        }
-
-        public virtual int CapaciteRestante
-        {
-            get { return -1; }
-        }
-
-        public abstract void ResetClient();
-
-        public abstract Client Client();
     }
 }

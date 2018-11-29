@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Simulateur
 {
-    public class Maintenance : Etat
+    public class Maintenance : Etat //Etat de type maintenance
     {
-
+        /**Constructeur
+         * p_temps: le temps avant le prochain Etat
+         * p_vehicule: référence au véhicule qui contient l'état
+         */
         public Maintenance(int p_temps, Vehicule p_vehicule) : base(p_temps, p_vehicule) //Constructeur
         {
         }

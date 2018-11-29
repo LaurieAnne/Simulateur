@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Simulateur
 {
-    public class Secours : Client
+    public class Secours : Client //Clien de type Secours
     {
-
-        public Secours(Random p_rnd) : base() //Constructeur
+        /**Constructeur
+         * p_rnd: seed Random
+         */
+        public Secours(Random p_rnd) : base() 
         {
             //Taille de l'image 900 par 528
             int[] Taille = new int[2];
@@ -24,6 +26,8 @@ namespace Simulateur
             m_PositionDepart = new PosCarte(m_PosX, m_PosY, Taille);
         }
 
+        /**Accesseurs
+         */
         public override string ToString()
         {
             return "Secours";

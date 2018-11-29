@@ -269,10 +269,10 @@ namespace Simulateur
         {
             m_chrono.NouvelleHeure += new Chrono.NouvelleHeureDelegate(onNouvelleHeure);
             m_chrono.Nouveau4Heures += new Chrono.Nouveau4HeuresDelegate(onNouveau4Heures);
-            m_chrono.changerSauts(60);
+            m_chrono.changerSauts(20);
             while (true)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 m_chrono.avancerTemps();
                 assignerClients();
                 avancerVehicules(m_chrono.Saut);

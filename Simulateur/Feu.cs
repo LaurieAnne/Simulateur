@@ -8,8 +8,11 @@ namespace Simulateur
 {
     public class Feu : Client
     {
-        private int m_intensite;
+        private int m_intensite; //Intensité du feu (nombre d'aller retour)
 
+        /**Constructeur
+         * p_rnd: seed Random
+         */
         public Feu(Random p_rnd) : base() //Constructeur
         {
             //Taille de l'image 900 par 528
@@ -28,6 +31,8 @@ namespace Simulateur
             m_intensite = p_rnd.Next(1, 6);
         }
 
+        /**Accesseurs
+         */
         public int IntensiteFeu
         {
             get { return m_intensite; }

@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Simulateur
 {
@@ -42,34 +41,37 @@ namespace Simulateur
             int surplus = m_etat.Surplus;
             Usine usine = Usine.obtenirUsine();
 
+
+            //Si l'etat de l'avion est dans le hangar et qu'un client est assigné
             if (m_etat.ToString() == "Hangar" && m_client != null)
             {
                 PosCarte posDestination = m_client.PositionDepart;
-                PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
-                int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4;
+                PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y);
+                int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4; //Calcul du temps de vol
+
+                //Créer l'Etat et s'abonner (Observer)
                 m_etat = usine.creerObserver(m_posDepart, posActuelle, posDestination, tempsVol, surplus, this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
                 if (surplus > 0)
                     m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Observation")
             {
+                //Créer l'Etat et s'abonner (Maintenance)
                 m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
                 if (surplus > 0)
                     m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Maintenance")
             {
+                //Créer l'Etat et s'abonner (Hangar)
                 m_etat = usine.creerHangar(this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
                 ResetClient();
-                //ResetEtat();
-                //To delete aide visuel
-                //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
             }
         }
 
@@ -83,6 +85,10 @@ namespace Simulateur
                 m_client = (Observateur)p_client;
         }
 
+        public override void ResetClient()
+        {
+            m_client = null;
+        }
 
 
         /**Accesseurs
@@ -102,11 +108,6 @@ namespace Simulateur
         public override Client Client()
         {
             return m_client;
-        }
-
-        public override void ResetClient()
-        {
-            m_client = null;
         }
     }
 }

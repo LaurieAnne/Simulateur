@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Simulateur
 {
@@ -14,7 +13,7 @@ namespace Simulateur
         const double pourcentage = 0.75; //Le % avant d'être prêt à partir
         protected int m_tempsEmbarquement; //Temps d'embarquement
         protected int m_tempsDebarquement; //Temps de débarquement
-        protected ClientTransport m_client; //Le client de transport
+        protected ClientTransport m_client; //Le client du véhicule
 
 
         /** Constructeur d'un avion de transport
@@ -25,8 +24,8 @@ namespace Simulateur
          * p_posAeroport: l'aeroport qui le contient
          * p_tempsEmb: le temps d'embarquement de l'avion
          * p_tempsDeb: le temps de debarquement de l'avion
-         * p_scenario: référence sur le scenario
-         * p_aeroport: référence sur l'aeroport dans lequel il est
+         * p_scenario: référence au scenario
+         * p_aeroport: référence à l'aeroport dans lequel il est
          */
         public AvionTransport(string p_nom, int p_KMH, int p_tempsMain, int p_tempsEmb, int p_tempsDeb, Color p_couleur, PosCarte p_posAeroport, Scenario p_scenario, Aeroport p_aeroport) //Constructeur
             : base(p_nom, p_KMH, p_tempsMain, p_couleur, p_posAeroport, p_scenario, p_aeroport)
@@ -37,9 +36,7 @@ namespace Simulateur
 
         /**Constructeur vide pour XML
          */
-        public AvionTransport() : base()
-        {
-        }
+        public AvionTransport() : base(){}
 
 
         /** Changer l'État du véhicule (Delegate)
@@ -47,53 +44,63 @@ namespace Simulateur
          */
         public override void ChangerEtat(object source)
         {
-            string EtatAvant = m_etat.ToString();
             int surplus = m_etat.Surplus;
             Usine usine = Usine.obtenirUsine();
 
+            //Si l'etat de l'avion est dans le hangar et que le minimum de clients est atteint
             if (m_etat.ToString() == "Hangar" && (m_client != null) && (m_client.NbClients >= (nbMax * pourcentage)))
             {
+                //Créer l'Etat et s'abonner (Embarquement)
                 m_etat = usine.creerEmbarquement(m_tempsEmbarquement, surplus, this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Embarquement")
             {
                 PosCarte posDestination = m_client.Destination;
-                PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y); //Position actuelle
-
+                PosCarte posActuelle = usine.creerPosition(m_posDepart.X, m_posDepart.Y);
                 int nbClients = m_client.NbClients;
-                int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4;
+                int tempsVol = PosCarte.Distance(m_posDepart, posDestination) * 4; //Calcul du temps de vol
+
+                //Créer l'Etat et s'abonner (Aller)
                 m_etat = usine.creerAller(m_posDepart, posActuelle, posDestination, nbClients, tempsVol, surplus, this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Aller")
             {
                 int nbClients = m_client.NbClients;
                 m_aeroport.transfererVehicule(this, m_etat.DestinationFinale());
+
+                //Créer l'Etat et s'abonner (Debarquement)
                 m_etat = usine.creerDebarquement(nbClients, m_tempsDebarquement, surplus, this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Debarquement")
             {
                 m_client.NbClients = 0;
+
+                //Créer l'Etat et s'abonner (Maintenance)
                 m_etat = usine.creerMaintenance(m_tempsMaintenance, surplus, this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
+                if (surplus > 0)
+                    m_etat.Avance(surplus);
             }
             else if (m_etat.ToString() == "Maintenance")
             {
+                //Créer l'Etat et s'abonner  (Hangar)
                 m_etat = usine.creerHangar(this);
-                //S'abonne au nouvel événement
                 m_etat.eventEtatFini += new DelegateEtatFini(ChangerEtat);
+
                 ResetClient();
-
-
-                //ResetEtat();
-                //To delete aide visuel
-                //MessageBox.Show("Terminé: " + this.m_nom + " est au hangar"); //Ne pas oublier de delete la référence using System.Windows.Forms;
             }
         }
 
@@ -115,7 +122,10 @@ namespace Simulateur
             }
         }
 
-
+        public override void ResetClient()
+        {
+            m_client = null;
+        }
 
         /** Accesseurs
          */
@@ -134,11 +144,6 @@ namespace Simulateur
         public override Client Client()
         {
             return m_client;
-        }
-
-        public override void ResetClient()
-        {
-            m_client = null;
         }
 
         public override int CapaciteMaximum
